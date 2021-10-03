@@ -15,7 +15,7 @@ public class SimulationListActivity extends AppCompatActivity implements ListAct
 
     @Override
     public void loadCategory() {
-        
+
     }
 
     @Override
