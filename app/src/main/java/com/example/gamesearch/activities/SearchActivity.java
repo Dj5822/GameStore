@@ -1,14 +1,16 @@
-package com.example.gamesearch;
+package com.example.gamesearch.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ListActivity extends AppCompatActivity {
+import com.example.gamesearch.R;
+
+public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_search);
     }
 }

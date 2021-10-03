@@ -1,8 +1,10 @@
-package com.example.gamesearch;
+package com.example.gamesearch.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.gamesearch.R;
 
 public class DetailsActivity extends AppCompatActivity {
 
