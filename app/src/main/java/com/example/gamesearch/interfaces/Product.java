@@ -2,7 +2,7 @@ package com.example.gamesearch.interfaces;
 
 public interface Product {
 
-    public int getCost();
+    public double getCost();
 
     public int getAmountSold();
 
@@ -10,6 +10,6 @@ public interface Product {
 
     public Item getItem();
 
-    public void setViewCount();
+    public void setViewCount(int viewCount);
 
 }
