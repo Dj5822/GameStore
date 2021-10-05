@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "170991884084",
+    "project_id": "game-store-3c187",
+    "storage_bucket": "game-store-3c187.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170991884084:android:83d2b6a72163367b8bb761",
+        "android_client_info": {
+          "package_name": "com.example.gamestoreapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170991884084-1v683h3a5lttuucjp24gpptm6akg0kdp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGw7-b5nHiF1x-B1N_ezrAtnMuie6nqHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170991884084-1v683h3a5lttuucjp24gpptm6akg0kdp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
