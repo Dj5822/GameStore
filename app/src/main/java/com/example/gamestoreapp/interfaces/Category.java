@@ -1,4 +1,4 @@
-package com.example.gamesearch.interfaces;
+package com.example.gamestoreapp.interfaces;
 
 import java.util.List;
 

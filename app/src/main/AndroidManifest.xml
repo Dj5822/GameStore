@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gamesearch">
+    package="com.example.gamestoreapp">
 
     <application
         android:allowBackup="true"
@@ -10,25 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MainActivity">
         <activity
-            android:name=".activities.SimulationListActivity"
+            android:name="com.example.gamestoreapp.activities.SimulationListActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.StrategyListActivity"
+            android:name="com.example.gamestoreapp.activities.StrategyListActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.CasualListActivity"
+            android:name="com.example.gamestoreapp.activities.CasualListActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.ActionListActivity"
+            android:name="com.example.gamestoreapp.activities.ActionListActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.SearchActivity"
+            android:name="com.example.gamestoreapp.activities.SearchActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.DetailsActivity"
+            android:name="com.example.gamestoreapp.activities.DetailsActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.example.gamestoreapp.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

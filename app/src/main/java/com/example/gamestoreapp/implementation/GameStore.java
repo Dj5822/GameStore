@@ -1,8 +1,8 @@
-package com.example.gamesearch.implementation;
+package com.example.gamestoreapp.implementation;
 
-import com.example.gamesearch.interfaces.Category;
-import com.example.gamesearch.interfaces.Product;
-import com.example.gamesearch.interfaces.Store;
+import com.example.gamestoreapp.interfaces.Category;
+import com.example.gamestoreapp.interfaces.Product;
+import com.example.gamestoreapp.interfaces.Store;
 
 import java.util.List;
 

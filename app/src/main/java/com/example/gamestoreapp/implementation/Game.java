@@ -1,6 +1,6 @@
-package com.example.gamesearch.implementation;
+package com.example.gamestoreapp.implementation;
 
-import com.example.gamesearch.interfaces.Item;
+import com.example.gamestoreapp.interfaces.Item;
 
 import java.util.List;
 

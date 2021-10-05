@@ -1,4 +1,4 @@
-package com.example.gamesearch;
+package com.example.gamestoreapp;
 
 import android.content.Context;
 

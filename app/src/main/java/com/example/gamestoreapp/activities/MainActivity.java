@@ -1,10 +1,10 @@
-package com.example.gamesearch.activities;
+package com.example.gamestoreapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import com.example.gamesearch.R;
-import com.example.gamesearch.interfaces.Store;
-import com.example.gamesearch.listeners.CategoryClickListener;
+import com.example.gamestoreapp.R;
+import com.example.gamestoreapp.interfaces.Store;
+import com.example.gamestoreapp.listeners.CategoryClickListener;
 
 public class MainActivity extends AppCompatActivity {
 

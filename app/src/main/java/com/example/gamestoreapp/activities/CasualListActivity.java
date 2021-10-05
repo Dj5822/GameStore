@@ -1,9 +1,9 @@
-package com.example.gamesearch.activities;
+package com.example.gamestoreapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import com.example.gamesearch.R;
-import com.example.gamesearch.interfaces.ListActivity;
+import com.example.gamestoreapp.R;
+import com.example.gamestoreapp.interfaces.ListActivity;
 
 public class CasualListActivity extends AppCompatActivity implements ListActivity {
 
