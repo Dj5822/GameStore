@@ -13,4 +13,9 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="ListViewItemTheme">
+        <item name="android:backgroundTint">@color/dark_blue_background</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">24sp</item>
+    </style>
 </resources>

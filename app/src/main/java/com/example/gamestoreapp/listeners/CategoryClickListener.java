@@ -1,4 +1,10 @@
 package com.example.gamestoreapp.listeners;
 
-public class CategoryClickListener {
+import android.view.View;
+
+public class CategoryClickListener implements View.OnClickListener {
+    @Override
+    public void onClick(View view) {
+        return;
+    }
 }
