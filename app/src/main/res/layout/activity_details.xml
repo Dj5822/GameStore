@@ -14,8 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </ImageView>
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
 
     <TextView
         android:id="@+id/textView"
@@ -37,4 +36,54 @@
         android:textSize="34sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/textView"></TextView>
+
+    <TextView
+        android:id="@+id/soldCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="28dp"
+        android:text="100M +"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Sold"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/soldCount"
+        app:layout_constraintStart_toStartOf="@+id/soldCount"
+        app:layout_constraintTop_toBottomOf="@+id/soldCount">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/viewCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
+        android:text="700M +"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/soldCount">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Views"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/viewCount"
+        app:layout_constraintStart_toStartOf="@+id/viewCount"
+        app:layout_constraintTop_toBottomOf="@+id/viewCount">
+
+    </TextView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
