@@ -6,11 +6,11 @@ import com.example.gamestoreapp.interfaces.Product;
 public class GameProduct implements Product {
 
     private Item item;
-    private double cost;
+    private int cost;
     private int amountSold;
     private int viewCount;
 
-    public GameProduct(Item item, double cost, int amountSold, int viewCount){
+    public GameProduct(Item item, int cost, int amountSold, int viewCount){
         this.item = item;
         this.cost = cost;
         this.amountSold = amountSold;
@@ -18,7 +18,7 @@ public class GameProduct implements Product {
     }
 
     @Override
-    public double getCost() {
+    public int getCost() {
         return cost;
     }
 

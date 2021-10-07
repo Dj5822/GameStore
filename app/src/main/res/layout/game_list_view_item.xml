@@ -15,14 +15,14 @@
         android:padding="4dp">
 
         <ImageView
-            android:id="@+id/play_image_view"
+            android:id="@+id/product_icon_view"
             android:layout_width="84dp"
             android:layout_height="84dp"
             android:layout_gravity="center"
             android:src="@drawable/watermelon"/>
 
         <TextView
-            android:id="@+id/english_text_view"
+            android:id="@+id/product_title_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -30,11 +30,11 @@
             android:gravity="center" />
 
         <TextView
-            android:id="@+id/maori_text_view"
+            android:id="@+id/product_price_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="$50"
+            android:text="$25"
             android:gravity="center"/>
 
     </LinearLayout>

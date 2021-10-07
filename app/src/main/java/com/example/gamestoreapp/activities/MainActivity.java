@@ -14,7 +14,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Store store;
-    private CategoryClickListener listener;
 
     private class ViewHolder {
         CardView actionCardView, strategyCardView, casualCardView, simulationCardView;
@@ -38,5 +37,8 @@ public class MainActivity extends AppCompatActivity {
         ViewHolder vh = new ViewHolder();
 
         vh.actionCardView.setOnClickListener(new CategoryClickListener(ActionListActivity.class));
+        vh.strategyCardView.setOnClickListener(new CategoryClickListener(StrategyListActivity.class));
+        vh.casualCardView.setOnClickListener(new CategoryClickListener(CasualListActivity.class));
+        vh.simulationCardView.setOnClickListener(new CategoryClickListener(SimulationListActivity.class));
     }
 }

@@ -2,7 +2,7 @@ package com.example.gamestoreapp.interfaces;
 
 public interface Product {
 
-    public double getCost();
+    public int getCost();
 
     public int getAmountSold();
 
