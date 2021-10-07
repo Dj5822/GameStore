@@ -8,7 +8,7 @@
     tools:context=".activities.ActionListActivity">
 
   <ProgressBar
-      android:id="@+id/load_progressbar"
+      android:id="@+id/load_progressbar_action"
       android:layout_width="60dp"
       android:layout_height="60dp"
       android:layout_gravity="center"
@@ -16,7 +16,7 @@
       />
 
   <ListView
-      android:id="@+id/list_view"
+      android:id="@+id/list_view_action"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:padding="16dp"

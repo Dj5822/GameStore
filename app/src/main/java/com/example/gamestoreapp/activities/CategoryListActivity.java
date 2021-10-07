@@ -30,15 +30,15 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
 
     protected String categoryName;
     protected ViewHolder vh;
-    private List<Product> productList;
+    private List<Product> productList = new LinkedList<>();
 
     protected class ViewHolder {
         ListView listView;
         ProgressBar progressBar;
 
-        public ViewHolder() {
-            listView = findViewById(R.id.list_view);
-            progressBar = findViewById(R.id.load_progressbar);
+        public ViewHolder(ListView listView, ProgressBar progressBar) {
+            this.listView = listView;
+            this.progressBar = progressBar;
         }
     }
 
@@ -68,7 +68,6 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     fetchProductData(task.getResult().getDocuments());
-                                    propagateAdapter();
                                 } else {
                                     Toast.makeText(getBaseContext(), "Loading Categories Collection failed from Firestore!", Toast.LENGTH_LONG).show();
                                 }
@@ -105,8 +104,9 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             DocumentSnapshot itemSnapshot = task.getResult();
+
                             Item item = new Game(Integer.parseInt(id),
-                                    itemSnapshot.get("name", String.class),
+                                    itemSnapshot.getString("name"),
                                     itemSnapshot.get("description", String.class),
                                     null, // TODO: images
                                     itemSnapshot.get("iconImageName", String.class),
@@ -118,6 +118,7 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
                                     productSnapshot.get("viewCount", int.class));
 
                             productList.add(product);
+                            propagateAdapter();
 
                             Log.i("Parsing Products", product.getItem().getName() + " loaded.");
 

@@ -24,26 +24,26 @@ public class Game implements Item {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public String getDescription() {
-        return null;
+        return description;
     }
 
     @Override
     public List<String> getDImagesNames() {
-        return null;
+        return imageNames;
     }
 
     @Override
     public String getIconImageName() {
-        return null;
+        return iconImageName;
     }
 
     @Override
     public String getStudioName() {
-        return null;
+        return studioName;
     }
 }
