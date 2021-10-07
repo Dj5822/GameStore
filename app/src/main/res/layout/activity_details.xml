@@ -9,6 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView"
+        android:src="@drawable/TempImage"
+        android:scaleType="centerCrop"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
@@ -106,7 +108,6 @@
         app:layout_constraintEnd_toEndOf="@+id/button"
         app:layout_constraintStart_toStartOf="@+id/button"
         app:layout_constraintTop_toBottomOf="@+id/button">
-
     </ImageSwitcher>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
