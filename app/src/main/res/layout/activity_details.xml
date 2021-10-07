@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="100M +"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,10 +91,10 @@
     </TextView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/purchaseButton"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#64DD17"
         android:text="Price here"
         app:layout_constraintEnd_toEndOf="@+id/viewCount"
@@ -102,12 +102,61 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"></Button>
 
     <ImageSwitcher
+        android:id="@+id/gameImageSwitcher"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button">
+        app:layout_constraintEnd_toEndOf="@+id/purchaseButton"
+        app:layout_constraintStart_toStartOf="@+id/purchaseButton"
+        app:layout_constraintTop_toBottomOf="@+id/purchaseButton">
     </ImageSwitcher>
+
+    <Button
+        android:id="@+id/imageSwitchButton1"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#9E9E9E"
+        android:translationX="-60dp"
+        app:layout_constraintEnd_toEndOf="@+id/gameImageSwitcher"
+        app:layout_constraintStart_toStartOf="@+id/gameImageSwitcher"
+        app:layout_constraintTop_toBottomOf="@+id/gameImageSwitcher">
+    </Button>
+
+    <Button
+        android:id="@+id/imageSwitchButton2"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#9E9E9E"
+        android:translationX="-20dp"
+        app:layout_constraintEnd_toEndOf="@+id/gameImageSwitcher"
+        app:layout_constraintStart_toStartOf="@+id/gameImageSwitcher"
+        app:layout_constraintTop_toBottomOf="@+id/gameImageSwitcher">
+    </Button>
+
+    <Button
+        android:id="@+id/imageSwitchButton3"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#9E9E9E"
+        android:translationX="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/gameImageSwitcher"
+        app:layout_constraintStart_toStartOf="@+id/gameImageSwitcher"
+        app:layout_constraintTop_toBottomOf="@+id/gameImageSwitcher">
+    </Button>
+
+    <Button
+        android:id="@+id/imageSwitchButton4"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#9E9E9E"
+        android:translationX="60dp"
+        app:layout_constraintEnd_toEndOf="@+id/gameImageSwitcher"
+        app:layout_constraintStart_toStartOf="@+id/gameImageSwitcher"
+        app:layout_constraintTop_toBottomOf="@+id/gameImageSwitcher">
+    </Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
