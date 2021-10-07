@@ -32,6 +32,8 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
     protected ViewHolder vh;
     private List<Product> productList = new LinkedList<>();
 
+    private int expectedProductCount;
+
     protected class ViewHolder {
         ListView listView;
         ProgressBar progressBar;
@@ -76,6 +78,7 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
     }
 
     private void fetchProductData(List<DocumentSnapshot> documentSnapshots) {
+        expectedProductCount = documentSnapshots.size();
         for (DocumentSnapshot snapshot : documentSnapshots) {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("GameProducts").document(snapshot.getId()).get()
@@ -118,7 +121,9 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
                                     productSnapshot.get("viewCount", int.class));
 
                             productList.add(product);
-                            propagateAdapter();
+                            if (productList.size() == expectedProductCount) {
+                                propagateAdapter();
+                            }
 
                             Log.i("Parsing Products", product.getItem().getName() + " loaded.");
 
