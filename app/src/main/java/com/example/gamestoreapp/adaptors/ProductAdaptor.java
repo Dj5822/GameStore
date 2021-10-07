@@ -72,7 +72,7 @@ public class ProductAdaptor extends ArrayAdapter {
         vh.productNameView.setText(currentItem.getName());
 
         // Set Price
-        int price = 5000;
+        int price = currentProduct.getCost();
         int cents = price % 100;
         int dollars = price / 100;
         String priceString = "$" + dollars;
