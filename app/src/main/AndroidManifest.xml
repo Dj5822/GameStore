@@ -11,15 +11,19 @@
         android:theme="@style/Theme.MainActivity">
         <activity
             android:name="com.example.gamestoreapp.activities.SimulationListActivity"
+            android:label="Simulation Games"
             android:exported="true" />
         <activity
             android:name="com.example.gamestoreapp.activities.StrategyListActivity"
+            android:label="Strategy Games"
             android:exported="true" />
         <activity
             android:name="com.example.gamestoreapp.activities.CasualListActivity"
+            android:label="Casual Games"
             android:exported="true" />
         <activity
             android:name="com.example.gamestoreapp.activities.ActionListActivity"
+            android:label="Action Games"
             android:exported="true" />
         <activity
             android:name="com.example.gamestoreapp.activities.SearchActivity"
@@ -29,6 +33,7 @@
             android:exported="true" />
         <activity
             android:name="com.example.gamestoreapp.activities.MainActivity"
+            android:label="Games Store"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

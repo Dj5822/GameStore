@@ -34,6 +34,7 @@
             android:paddingBottom="6dp"
             >
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_simulation"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -41,6 +42,7 @@
                 android:layout_marginRight="6dp"
                 />
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_action"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -56,6 +58,7 @@
             android:paddingTop="6dp"
             >
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_casual"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -63,6 +66,7 @@
                 android:layout_marginRight="6dp"
                 />
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_strategy"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
