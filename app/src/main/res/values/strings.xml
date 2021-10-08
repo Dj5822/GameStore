@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MainActivity</string>
+    <string name="SoldLabel">Sold</string>
+    <string name="ViewLabel">Views</string>
 </resources>
