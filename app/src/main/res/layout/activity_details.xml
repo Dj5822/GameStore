@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.DetailsActivity">
+    android:background="#263238"
+    tools:context=".activities.DetailsActivity"
+    android:theme="@style/Theme.DetailsActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -91,11 +93,11 @@
     </TextView>
 
     <Button
+        style="@style/DetailsActivityPurchaseButton"
         android:id="@+id/purchaseButton"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="#64DD17"
         android:text="Price here"
         app:layout_constraintEnd_toEndOf="@+id/viewCount"
         app:layout_constraintStart_toStartOf="@+id/soldCount"
