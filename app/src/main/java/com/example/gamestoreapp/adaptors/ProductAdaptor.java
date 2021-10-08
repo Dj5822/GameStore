@@ -72,12 +72,17 @@ public class ProductAdaptor extends ArrayAdapter {
         vh.productNameView.setText(currentItem.getName());
 
         // Set Price
+        String priceString;
         int price = currentProduct.getCost();
-        int cents = price % 100;
-        int dollars = price / 100;
-        String priceString = "$" + dollars;
-        if (cents > 0) {
-            priceString += "." + cents;
+        if (price <= 0) {
+            priceString = "Free";
+        } else {
+            int cents = price % 100;
+            int dollars = price / 100;
+            priceString = "$" + dollars;
+            if (cents > 0) {
+                priceString += "." + cents;
+            }
         }
         vh.productPriceView.setText(priceString);
 

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.ActionListActivity">
+    tools:context=".activities.ActionListActivity"
+    android:background="@color/darker_blue_background">
 
   <ProgressBar
       android:id="@+id/load_progressbar_action"
@@ -15,14 +16,72 @@
       android:layout_margin="32dp"
       />
 
-  <ListView
-      android:id="@+id/list_view_action"
+  <RelativeLayout
+      android:id="@+id/action_layout"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:padding="16dp"
-      android:divider="@android:color/transparent"
-      android:dividerHeight="10sp"
-      android:visibility="gone"
-      ></ListView>
+      android:layout_height="wrap_content"
+      android:layout_margin="12dp"
+      android:visibility="gone">
+
+    <ImageView
+        android:id="@+id/header_image_action"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/action" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Action"
+        android:textSize="48dp"
+        android:gravity="center"
+        android:layout_alignBaseline="@id/header_image_action"
+        android:layout_centerHorizontal="true"
+        android:background="@color/darker_blue_transparent"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:id="@+id/list_header_action"
+        android:layout_below="@id/header_image_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="60dp">
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@color/white"
+          android:layout_weight="1"
+          android:textSize="18sp"
+          android:gravity="center"
+          android:paddingLeft="40dp"
+          android:text="Title"
+        />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:textColor="@color/white"
+          android:textSize="18sp"
+          android:gravity="center"
+          android:text="Price"
+          />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list_view_action"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10sp"
+        android:layout_below="@id/list_header_action"
+        ></ListView>
+
+  </RelativeLayout>
 
 </LinearLayout>

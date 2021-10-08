@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,10 +38,12 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
     protected class ViewHolder {
         ListView listView;
         ProgressBar progressBar;
+        RelativeLayout layout;
 
-        public ViewHolder(ListView listView, ProgressBar progressBar) {
+        public ViewHolder(ListView listView, ProgressBar progressBar, RelativeLayout layout) {
             this.listView = listView;
             this.progressBar = progressBar;
+            this.layout = layout;
         }
     }
 
@@ -147,6 +150,6 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
         ProductAdaptor itemsAdapter = new ProductAdaptor(this, R.layout.game_list_view_item,
                 productList);
         vh.listView.setAdapter(itemsAdapter);
-        vh.listView.setVisibility(View.VISIBLE);
+        vh.layout.setVisibility(View.VISIBLE);
     }
 }

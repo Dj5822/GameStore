@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.interfaces.ListActivity;
@@ -17,7 +18,8 @@ public class ActionListActivity extends CategoryListActivity {
 
         ProgressBar progressBar = findViewById(R.id.load_progressbar_action);
         ListView listView = findViewById(R.id.list_view_action);
-        vh = new ViewHolder(listView, progressBar);
+        RelativeLayout actionLayout = findViewById(R.id.action_layout);
+        vh = new ViewHolder(listView, progressBar, actionLayout);
 
         categoryName = "action";
 
