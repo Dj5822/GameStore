@@ -17,104 +17,120 @@
         android:scaleType="fitStart"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        />
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:orientation="vertical"
-        android:layout_marginTop="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
         android:layout_marginBottom="12dp"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:paddingBottom="6dp"
-            >
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_simulation"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@android:color/holo_blue_bright"
-                android:layout_marginRight="6dp"
-                />
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_action"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@android:color/holo_red_light"
-                android:layout_marginLeft="6dp"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:paddingTop="6dp"
-            >
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_casual"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@android:color/holo_orange_light"
-                android:layout_marginRight="6dp"
-                />
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_strategy"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@android:color/holo_green_light"
-                android:layout_marginLeft="6dp"
-                />
-        </LinearLayout>
-    </LinearLayout>
+        android:background="@color/blue_background"
+        />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
-        android:orientation="vertical"
+        android:layout_weight="11"
+        android:orientation="horizontal"
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             >
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:orientation="vertical"
                 android:layout_marginLeft="12dp"
-                android:background="@android:color/transparent"
-                android:text="Bestselling"
-                />
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_marginRight="12dp"
-                android:background="@android:color/transparent"
-                android:text="Most Viewed"
+                android:layout_marginBottom="12dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingBottom="6dp"
+                    >
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view_simulation"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@android:color/holo_blue_bright"
+                        android:layout_marginRight="6dp"
+                        />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view_action"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@android:color/holo_red_light"
+                        android:layout_marginLeft="6dp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingTop="6dp"
+                    >
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view_casual"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@android:color/holo_orange_light"
+                        android:layout_marginRight="6dp"
+                        />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view_strategy"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@android:color/holo_green_light"
+                        android:layout_marginLeft="6dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_blue"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                >
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="12dp"
+                    android:background="@android:color/transparent"
+                    android:text="Bestselling"
+                    />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginRight="12dp"
+                    android:background="@android:color/transparent"
+                    android:text="Most Viewed"
+                    />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_blue"
+                />
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="800dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 />
         </LinearLayout>
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5"
-            android:layout_marginTop="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            />
-    </LinearLayout>
+    </ScrollView>
 </LinearLayout>
