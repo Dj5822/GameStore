@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.interfaces.ListActivity;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         CardView actionCardView, strategyCardView, casualCardView, simulationCardView;
         Button bestsellingButton, mostViewedButton;
         ListView productListView;
+        ProgressBar mainProgressBar;
 
         public ViewHolder() {
             actionCardView = findViewById(R.id.card_view_action);
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             bestsellingButton = findViewById(R.id.bestselling_button);
             mostViewedButton = findViewById(R.id.most_viewed_button);
             productListView = findViewById(R.id.main_product_list_view);
+            mainProgressBar = findViewById(R.id.main_progress_bar);
         }
     }
 

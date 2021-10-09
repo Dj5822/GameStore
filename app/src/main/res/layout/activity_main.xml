@@ -8,6 +8,7 @@
     tools:context=".activities.MainActivity"
     android:paddingTop="12dp"
     android:background="@color/dark_blue_background"
+    android:theme="@style/Theme.MainActivity"
     >
     
     <SearchView
@@ -159,6 +160,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/light_blue"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textColor="@color/light_blue"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="130dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:textColor="@color/light_blue"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="120dp"
+                    />
+            </LinearLayout>
+            <ProgressBar
+                android:id="@+id/main_progress_bar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="60dp"
                 />
             <ListView
                 android:id="@+id/main_product_list_view"
