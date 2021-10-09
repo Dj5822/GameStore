@@ -33,7 +33,7 @@ public class Game implements Item {
     }
 
     @Override
-    public List<String> getDImagesNames() {
+    public List<String> getImagesNames() {
         return imageNames;
     }
 

@@ -9,10 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gamestoreapp.R;
+import com.example.gamestoreapp.implementation.Game;
+import com.example.gamestoreapp.implementation.GameProduct;
+
+import java.util.ArrayList;
 
 public class DetailsActivity extends AppCompatActivity {
 
     private ViewHolder vh;
+    private GameProduct gameProduct; //This will get received from the intent that switches the screen to this activity
 
     private class ViewHolder{
         ImageView gameIcon;
@@ -42,6 +47,13 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        //need to set the product here
+        //temp code will make a dummy product for now
+        gameProduct=new GameProduct(new Game(0, "World of Watermelons","text to describe here", new ArrayList<String>(), "watermelon", "Watermelon Games")
+        , 5000,1200000, 15260000);
+
         vh = new ViewHolder();
+
+        vh.gameIcon.setImageResource(this.getResources().getIdentifier("R.drawable."+gameProduct.getItem().getIconImageName(),"drawable", this.getPackageName()));
     }
 }

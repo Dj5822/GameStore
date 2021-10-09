@@ -8,7 +8,7 @@ public interface Item {
 
     public String getDescription();
 
-    public List<String> getDImagesNames();
+    public List<String> getImagesNames();
 
     public String getIconImageName();
 
