@@ -54,6 +54,15 @@ public class DetailsActivity extends AppCompatActivity {
 
         vh = new ViewHolder();
 
+        vh.detailsText.setText(gameProduct.getItem().getDescription());
+        vh.gameName.setText(gameProduct.getItem().getName());
+        vh.studioName.setText(gameProduct.getItem().getStudioName());
+
+        vh.soldCount.setText(gameProduct.getAmountSold());
+        vh.viewCount.setText(gameProduct.getViewCount());
+        //may end up rounding these and then converting to "200k +" format
+
+        vh.purchaseButton.setText(gameProduct.getCost());
         vh.gameIcon.setImageResource(this.getResources().getIdentifier("R.drawable."+gameProduct.getItem().getIconImageName(),"drawable", this.getPackageName()));
     }
 }

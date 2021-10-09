@@ -11,7 +11,7 @@
 
     <ImageView
         android:id="@+id/gameIcon"
-        android:src="@drawable/TempImage"
+        android:src="@drawable/tempimage"
         android:scaleType="centerCrop"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -170,7 +170,6 @@
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
         app:layout_constraintEnd_toEndOf="@+id/gameImageSwitcher"
         app:layout_constraintStart_toStartOf="@+id/gameImageSwitcher"
-        app:layout_constraintTop_toBottomOf="@+id/gameImageSwitcher"
-        app:layoutconstrintTop_toBottomOf="@+id/gameImageSwitcher" />
+        app:layout_constraintTop_toBottomOf="@+id/gameImageSwitcher" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
