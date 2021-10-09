@@ -190,7 +190,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="60dp"
                 />
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_product_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

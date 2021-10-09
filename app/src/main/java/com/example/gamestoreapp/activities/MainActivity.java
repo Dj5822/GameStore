@@ -2,17 +2,22 @@ package com.example.gamestoreapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.example.gamestoreapp.R;
+import com.example.gamestoreapp.implementation.Game;
+import com.example.gamestoreapp.implementation.GameStore;
 import com.example.gamestoreapp.interfaces.ListActivity;
 import com.example.gamestoreapp.interfaces.Store;
 import com.example.gamestoreapp.listeners.CategoryClickListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private class ViewHolder {
         CardView actionCardView, strategyCardView, casualCardView, simulationCardView;
         Button bestsellingButton, mostViewedButton;
-        ListView productListView;
+        RecyclerView productListView;
         ProgressBar mainProgressBar;
 
         public ViewHolder() {
@@ -52,5 +57,15 @@ public class MainActivity extends AppCompatActivity {
         vh.strategyCardView.setOnClickListener(new CategoryClickListener(StrategyListActivity.class));
         vh.casualCardView.setOnClickListener(new CategoryClickListener(CasualListActivity.class));
         vh.simulationCardView.setOnClickListener(new CategoryClickListener(SimulationListActivity.class));
+
+        fetchData();
+    }
+
+    private void fetchData() {
+        List<String> gamesList = new ArrayList<>();
+        gamesList.add("test1");
+        gamesList.add("test2");
+        gamesList.add("test3");
+
     }
 }
