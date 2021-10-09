@@ -12,4 +12,6 @@ public interface Product {
 
     public void setViewCount(int viewCount);
 
+    public String getCostAsString();
+
 }
