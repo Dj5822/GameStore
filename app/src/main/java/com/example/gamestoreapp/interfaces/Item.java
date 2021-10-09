@@ -1,8 +1,10 @@
 package com.example.gamestoreapp.interfaces;
 
+import android.os.Parcelable;
+
 import java.util.List;
 
-public interface Item {
+public interface Item extends Parcelable {
 
     public String getName();
 

@@ -49,8 +49,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         //need to set the product here
         //temp code will make a dummy product for now
-        gameProduct=new GameProduct(new Game(0, "World of Watermelons","text to describe here", new ArrayList<String>(), "watermelon", "Watermelon Games")
-        , 5000,1200000, 15260000);
+        gameProduct = getIntent().getParcelableExtra("Product");
 
         vh = new ViewHolder();
 
@@ -58,11 +57,11 @@ public class DetailsActivity extends AppCompatActivity {
         vh.gameName.setText(gameProduct.getItem().getName());
         vh.studioName.setText(gameProduct.getItem().getStudioName());
 
-        vh.soldCount.setText(gameProduct.getAmountSold());
-        vh.viewCount.setText(gameProduct.getViewCount());
+        vh.soldCount.setText(String.valueOf(gameProduct.getAmountSold()));
+        vh.viewCount.setText(String.valueOf(gameProduct.getViewCount()));
         //may end up rounding these and then converting to "200k +" format
 
-        vh.purchaseButton.setText(gameProduct.getCost());
+        vh.purchaseButton.setText(gameProduct.getCostAsString());
         vh.gameIcon.setImageResource(this.getResources().getIdentifier("R.drawable."+gameProduct.getItem().getIconImageName(),"drawable", this.getPackageName()));
     }
 }

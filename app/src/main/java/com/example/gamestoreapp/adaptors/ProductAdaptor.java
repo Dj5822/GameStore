@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.interfaces.Item;
 import com.example.gamestoreapp.interfaces.Product;
+import com.example.gamestoreapp.listeners.ProductClickListener;
 
 import java.util.List;
 
@@ -74,7 +75,8 @@ public class ProductAdaptor extends ArrayAdapter {
         // Set Price
         vh.productPriceView.setText(currentProduct.getCostAsString());
 
-        // TODO: set onclick handler
+        // Set OnClick Listener
+        currentListViewItem.setOnClickListener(new ProductClickListener(currentProduct));
 
         return currentListViewItem;
     }

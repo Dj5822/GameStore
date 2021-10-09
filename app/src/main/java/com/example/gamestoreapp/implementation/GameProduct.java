@@ -1,5 +1,7 @@
 package com.example.gamestoreapp.implementation;
 
+import android.os.Parcel;
+
 import com.example.gamestoreapp.interfaces.Item;
 import com.example.gamestoreapp.interfaces.Product;
 
@@ -16,6 +18,25 @@ public class GameProduct implements Product {
         this.amountSold = amountSold;
         this.viewCount = viewCount;
     }
+
+    protected GameProduct(Parcel parcel) {
+        item = Game.CREATOR.createFromParcel(parcel);
+        cost = parcel.readInt();
+        amountSold = parcel.readInt();
+        viewCount = parcel.readInt();
+    }
+
+    public static final Creator<GameProduct> CREATOR = new Creator<GameProduct>() {
+        @Override
+        public GameProduct createFromParcel(Parcel parcel) {
+            return new GameProduct(parcel);
+        }
+
+        @Override
+        public GameProduct[] newArray(int size) {
+            return new GameProduct[size];
+        }
+    };
 
     @Override
     public int getCost() {
@@ -60,5 +81,19 @@ public class GameProduct implements Product {
             priceString += "." + cents;
         }
         return priceString;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        Game game = (Game) item;
+        game.writeToParcel(parcel, i);
+        parcel.writeInt(cost);
+        parcel.writeInt(amountSold);
+        parcel.writeInt(viewCount);
     }
 }

@@ -1,6 +1,8 @@
 package com.example.gamestoreapp.interfaces;
 
-public interface Product {
+import android.os.Parcelable;
+
+public interface Product extends Parcelable{
 
     public int getCost();
 
