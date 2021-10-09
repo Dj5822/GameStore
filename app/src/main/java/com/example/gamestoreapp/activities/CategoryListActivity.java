@@ -114,7 +114,7 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
                             Item item = new Game(Integer.parseInt(id),
                                     itemSnapshot.getString("name"),
                                     itemSnapshot.get("description", String.class),
-                                    null, // TODO: images
+                                    (List<String>) itemSnapshot.get("imageNames"),
                                     itemSnapshot.get("iconImageName", String.class),
                                     itemSnapshot.get("studioName", String.class));
 
