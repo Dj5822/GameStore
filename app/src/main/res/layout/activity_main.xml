@@ -12,14 +12,16 @@
     >
     
     <SearchView
+        android:id="@+id/main_search_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="48dp"
         android:scaleType="fitStart"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_marginBottom="12dp"
         android:background="@color/blue_background"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Games"
         />
 
     <ScrollView
