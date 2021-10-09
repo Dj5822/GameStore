@@ -29,7 +29,7 @@
     </style>
 
     <style name="DetailsActivityPurchaseButton">
-        <item name="backgroundTint">#64DD17</item>
+        <item name="backgroundTint">#689F38</item>
         <item name="android:textColor">@color/black</item>
     </style>
 </resources>

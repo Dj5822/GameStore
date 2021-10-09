@@ -10,7 +10,7 @@
     android:theme="@style/Theme.DetailsActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/gameIcon"
         android:src="@drawable/TempImage"
         android:scaleType="centerCrop"
         android:layout_width="100dp"
@@ -21,25 +21,26 @@
         app:layout_constraintTop_toTopOf="parent"></ImageView>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/gameName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Game Name"
         android:textSize="34sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/gameIcon"
         app:layout_constraintTop_toTopOf="parent"></TextView>
 
     <TextView
+        android:id="@+id/studioName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Studio"
         android:textSize="34sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"></TextView>
+        app:layout_constraintStart_toEndOf="@+id/gameIcon"
+        app:layout_constraintTop_toBottomOf="@+id/gameName"></TextView>
 
     <TextView
         android:id="@+id/soldCount"
@@ -50,12 +51,12 @@
         android:text="100M +"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/gameIcon">
 
     </TextView>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/soldLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -80,7 +81,7 @@
     </TextView>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/viewLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -101,7 +102,7 @@
         android:text="Price here"
         app:layout_constraintEnd_toEndOf="@+id/viewCount"
         app:layout_constraintStart_toStartOf="@+id/soldCount"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/soldLabel"></Button>
 
     <ImageSwitcher
         android:id="@+id/gameImageSwitcher"
@@ -162,6 +163,7 @@
     </Button>
 
     <TextView
+        android:id="@+id/detailsText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
