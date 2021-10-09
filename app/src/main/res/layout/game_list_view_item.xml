@@ -6,6 +6,7 @@
     android:layout_margin="4dp"
     app:cardCornerRadius="4dp"
     android:elevation="4dp"
+    android:background="@color/dark_blue_background"
     android:theme="@style/ListViewItemTheme">
 
     <LinearLayout

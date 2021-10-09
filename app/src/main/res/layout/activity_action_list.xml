@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activities.ActionListActivity"
-    android:background="@color/darker_blue_background">
+    android:background="@color/dark_blue_background">
 
   <ProgressBar
       android:id="@+id/load_progressbar_action"
