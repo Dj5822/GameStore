@@ -3,9 +3,12 @@ package com.example.gamestoreapp.activities;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +27,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.w3c.dom.Text;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,6 +36,8 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
 
     protected String categoryName;
     protected ViewHolder vh;
+    protected List<String> imageNames;
+    private int currentImage;
     private List<Product> productList = new LinkedList<>();
 
     private int expectedProductCount;
@@ -38,18 +45,41 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
     protected class ViewHolder {
         ListView listView;
         ProgressBar progressBar;
-        RelativeLayout layout;
+        LinearLayout layout;
+        ImageView categoryImageView;
+        TextView nextImageIcon;
+        TextView prevImageIcon;
 
-        public ViewHolder(ListView listView, ProgressBar progressBar, RelativeLayout layout) {
+        public ViewHolder(ListView listView, ProgressBar progressBar, LinearLayout layout,
+                          ImageView categoryImageView, TextView nextImageIcon, TextView prevImageIcon) {
             this.listView = listView;
             this.progressBar = progressBar;
             this.layout = layout;
+            this.categoryImageView = categoryImageView;
+            this.nextImageIcon = nextImageIcon;
+            this.prevImageIcon = prevImageIcon;
         }
     }
 
     @Override
     public void loadCategory() {
         fetchCategoryData();
+        fetchCategoryImageNames();
+
+        vh.nextImageIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setCategoryImage(currentImage + 1);
+            }
+        });
+
+        vh.prevImageIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setCategoryImage(currentImage - 1);
+            }
+        });
+
     }
 
     @Override
@@ -151,5 +181,37 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
                 productList);
         vh.listView.setAdapter(itemsAdapter);
         vh.layout.setVisibility(View.VISIBLE);
+    }
+
+    private void fetchCategoryImageNames() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("categories").
+                document(categoryName).get().
+                addOnCompleteListener(
+                        new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                   imageNames = (List<String>) task.getResult().get("imageNames");
+                                    setCategoryImage(0);
+                                } else {
+                                    Toast.makeText(getBaseContext(), "Loading Categories Collection failed from Firestore!", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+    }
+
+    private void setCategoryImage(int i) {
+        if (i >= imageNames.size()) {
+            i = 0;
+        } else if (i < 0) {
+            i = imageNames.size()-1;
+        }
+        int image = getBaseContext().getResources().getIdentifier(
+                imageNames.get(i), "drawable",
+                getBaseContext().getPackageName());
+        vh.categoryImageView.setImageResource(image);
+
+        currentImage = i;
     }
 }
