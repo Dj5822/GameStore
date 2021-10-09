@@ -31,7 +31,7 @@ public class Game implements Item {
     public Game(long id, String name, String description, List<String> imageNames, String iconImageName, String studioName){
         this.id = id;
         this.name = name;
-        this.description = description;
+        this.description = description.replace("\\n",System.lineSeparator());
         this.imageNames = imageNames;
         this.iconImageName = iconImageName;
         this.studioName = studioName;
