@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ListView;
+
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.interfaces.ListActivity;
 import com.example.gamestoreapp.interfaces.Store;
@@ -17,11 +20,17 @@ public class MainActivity extends AppCompatActivity {
 
     private class ViewHolder {
         CardView actionCardView, strategyCardView, casualCardView, simulationCardView;
+        Button bestsellingButton, mostViewedButton;
+        ListView productListView;
+
         public ViewHolder() {
             actionCardView = findViewById(R.id.card_view_action);
             strategyCardView = findViewById(R.id.card_view_strategy);
             casualCardView = findViewById(R.id.card_view_casual);
             simulationCardView = findViewById(R.id.card_view_simulation);
+            bestsellingButton = findViewById(R.id.bestselling_button);
+            mostViewedButton = findViewById(R.id.most_viewed_button);
+            productListView = findViewById(R.id.main_product_list_view);
         }
     }
 
