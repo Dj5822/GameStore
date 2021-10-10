@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
@@ -18,7 +19,6 @@ import android.widget.SearchView;
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.adaptors.MainItemAdaptor;
 import com.example.gamestoreapp.interfaces.Store;
-import com.example.gamestoreapp.layout.ProductRecycleListLayout;
 import com.example.gamestoreapp.listeners.CategoryClickListener;
 
 import java.util.ArrayList;
@@ -84,24 +84,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ProductRecycleListLayout productRecycleListLayout = new ProductRecycleListLayout(this);
+        LinearLayoutManager productRecycleListLayout = new LinearLayoutManager (this);
         vh.productListView.setLayoutManager(productRecycleListLayout);
         vh.productListView.setNestedScrollingEnabled(false);
-
-        vh.mainScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-                View view = vh.mainScrollView.getChildAt(vh.mainScrollView.getChildCount() - 1);
-                int topDetector = vh.mainScrollView.getScrollY();
-                int bottomDetector = view.getBottom() - (vh.mainScrollView.getHeight() + vh.mainScrollView.getScrollY());
-                if (bottomDetector == 0) {
-                    vh.productListView.setNestedScrollingEnabled(true);
-                }
-                else {
-                    vh.productListView.setNestedScrollingEnabled(false);
-                }
-            }
-        });
 
         propagateAdapter();
     }

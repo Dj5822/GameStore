@@ -27,8 +27,7 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/main_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="11"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:scrollbars="none"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -36,7 +35,7 @@
         <LinearLayout
             android:id="@+id/main_category_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             >
             <LinearLayout
@@ -132,6 +131,7 @@
                 android:layout_height="1dp"
                 android:background="@color/light_blue"
                 />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -195,11 +195,12 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_product_list_view"
                 android:layout_width="match_parent"
-                android:layout_height="900dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/full_margin"
                 android:layout_marginLeft="@dimen/full_margin"
                 android:layout_marginRight="@dimen/full_margin"
                 />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>
