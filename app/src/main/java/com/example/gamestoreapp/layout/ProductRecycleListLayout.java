@@ -1,4 +1,4 @@
-package com.example.gamestoreapp.layoutManagers;
+package com.example.gamestoreapp.layout;
 
 import android.content.Context;
 

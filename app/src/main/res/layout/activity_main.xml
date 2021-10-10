@@ -24,11 +24,13 @@
         android:queryHint="Search Games"
         />
 
-    <ScrollView
+    <com.example.gamestoreapp.layout.LockableScrollView
+        android:id="@+id/main_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="11"
         android:orientation="horizontal"
+        android:scrollbars="none"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -191,11 +193,11 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_product_list_view"
                 android:layout_width="match_parent"
-                android:layout_height="900dp"
+                android:layout_height="510dp"
                 android:layout_marginTop="@dimen/full_margin"
                 android:layout_marginLeft="@dimen/full_margin"
                 android:layout_marginRight="@dimen/full_margin"
                 />
         </LinearLayout>
-    </ScrollView>
+    </com.example.gamestoreapp.layout.LockableScrollView>
 </LinearLayout>

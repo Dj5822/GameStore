@@ -3,40 +3,25 @@ package com.example.gamestoreapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.adaptors.MainItemAdaptor;
-import com.example.gamestoreapp.adaptors.ProductAdaptor;
-import com.example.gamestoreapp.implementation.Game;
-import com.example.gamestoreapp.implementation.GameProduct;
-import com.example.gamestoreapp.implementation.GameStore;
-import com.example.gamestoreapp.interfaces.ListActivity;
-import com.example.gamestoreapp.interfaces.Product;
 import com.example.gamestoreapp.interfaces.Store;
-import com.example.gamestoreapp.layoutManagers.ProductRecycleListLayout;
+import com.example.gamestoreapp.layout.LockableScrollView;
+import com.example.gamestoreapp.layout.ProductRecycleListLayout;
 import com.example.gamestoreapp.listeners.CategoryClickListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Store store;
     private ViewHolder vh;
-    private ProductRecycleListLayout productRecycleListLayout;
 
     private class ViewHolder {
         CardView actionCardView, strategyCardView, casualCardView, simulationCardView;
@@ -52,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         Button bestsellingButton, mostViewedButton;
         RecyclerView productListView;
         ProgressBar mainProgressBar;
+        LockableScrollView mainScrollView;
 
         public ViewHolder() {
             actionCardView = findViewById(R.id.card_view_action);
@@ -63,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             mostViewedButton = findViewById(R.id.most_viewed_button);
             productListView = findViewById(R.id.main_product_list_view);
             mainProgressBar = findViewById(R.id.main_progress_bar);
+            mainScrollView = findViewById(R.id.main_scroll_view);
         }
     }
 
@@ -97,10 +83,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        productRecycleListLayout = new ProductRecycleListLayout(this);
-        productRecycleListLayout.setScrollEnabled(false);
+        ProductRecycleListLayout productRecycleListLayout = new ProductRecycleListLayout(this);
         vh.productListView.setLayoutManager(productRecycleListLayout);
 
+        productRecycleListLayout.setScrollEnabled(false);
+        vh.mainScrollView.setScrollingEnabled(true);
+
+        vh.mainScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                View view = vh.mainScrollView.getChildAt(vh.mainScrollView.getChildCount() - 1);
+                int topDetector = vh.mainScrollView.getScrollY();
+                int bottomDetector = view.getBottom() - (vh.mainScrollView.getHeight() + vh.mainScrollView.getScrollY());
+                if (topDetector > 1360) {
+                    productRecycleListLayout.setScrollEnabled(true);
+                    vh.mainScrollView.setScrollingEnabled(false);
+                }
+                else {
+                    productRecycleListLayout.setScrollEnabled(false);
+                    vh.mainScrollView.setScrollingEnabled(true);
+                }
+            }
+        });
 
         propagateAdapter();
     }
@@ -112,27 +116,27 @@ public class MainActivity extends AppCompatActivity {
 
     private void propagateAdapter() {
         List<String> productList = new ArrayList<>();
-        productList.add("test");
+        productList.add("first element");
         productList.add("test2");
         productList.add("test3");
-        productList.add("test");
-        productList.add("test2");
-        productList.add("test3");
-        productList.add("test");
-        productList.add("test2");
-        productList.add("test3");
-        productList.add("test");
-        productList.add("test2");
-        productList.add("test3");
-        productList.add("test");
-        productList.add("test2");
-        productList.add("test3");
-        productList.add("test");
-        productList.add("test2");
-        productList.add("test3");
-        productList.add("test");
-        productList.add("test2");
-        productList.add("test3");
+        productList.add("test4");
+        productList.add("test6");
+        productList.add("test7");
+        productList.add("test8");
+        productList.add("test9");
+        productList.add("test10");
+        productList.add("test11");
+        productList.add("test12");
+        productList.add("test13");
+        productList.add("test14");
+        productList.add("test15");
+        productList.add("test16");
+        productList.add("test17");
+        productList.add("test18");
+        productList.add("test19");
+        productList.add("test20");
+        productList.add("test21");
+        productList.add("last element");
 
 
         MainItemAdaptor adapter = new MainItemAdaptor(this, productList);
