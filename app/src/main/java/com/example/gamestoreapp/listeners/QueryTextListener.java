@@ -20,6 +20,7 @@ public class QueryTextListener implements SearchView.OnQueryTextListener {
     public boolean onQueryTextSubmit(String query) {
         //From research it doesnt seem like firebase has a neat way of dont contains/wildcard queries
         //May instead only return only exact results or can process the entire list of games in java
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         return false;
     }
 
