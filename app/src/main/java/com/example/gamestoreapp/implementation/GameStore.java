@@ -11,7 +11,7 @@ import java.util.List;
 public class GameStore implements Store {
 
     @Override
-    public List<Product> getBestSellingProducts() {
+    public List<Product> getBestsellingProducts() {
         List<Product> bestsellingGames = new ArrayList<>();
         for (int i=0; i<20; i++) {
             Game game = new Game(i, "test", "test", new ArrayList<String>(), "test", "test");

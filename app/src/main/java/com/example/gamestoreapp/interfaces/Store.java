@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Store {
 
-    public List<Product> getBestSellingProducts();
+    public List<Product> getBestsellingProducts();
 
     public List<Product> getMostViewedProducts();
 
