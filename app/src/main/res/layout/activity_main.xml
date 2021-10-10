@@ -51,33 +51,33 @@
                     android:paddingBottom="6dp"
                     >
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/card_view_simulation"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="@android:color/holo_blue_bright"
-                        android:layout_marginEnd="6dp"
-                        >
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="SIMULATION"
-                            android:textSize="24sp"
-                            android:textAlignment="center"
-                            />
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
                         android:id="@+id/card_view_action"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@android:color/holo_red_light"
+                        android:layout_marginEnd="6dp"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/action"
+                            android:textSize="24sp"
+                            android:textAlignment="center"
+                            />
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view_casual"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@android:color/holo_orange_light"
                         android:layout_marginStart="6dp"
                         >
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="ACTION"
+                            android:text="@string/casual"
                             android:textSize="24sp"
                             android:textAlignment="center"
                             />
@@ -91,17 +91,17 @@
                     android:paddingTop="6dp"
                     >
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/card_view_casual"
+                        android:id="@+id/card_view_simulation"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@android:color/holo_orange_light"
+                        app:cardBackgroundColor="@android:color/holo_blue_light"
                         android:layout_marginEnd="6dp"
                         >
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="CASUAL"
+                            android:text="@string/simulation"
                             android:textSize="24sp"
                             android:textAlignment="center"
                             />
@@ -117,7 +117,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="STRATEGY"
+                            android:text="@string/strategy"
                             android:textSize="24sp"
                             android:textAlignment="center"
                             />
@@ -140,8 +140,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_marginLeft="12dp"
-                    android:text="Bestselling"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/bestselling"
                     android:textAllCaps="false"
                     android:stateListAnimator="@null"
                     />
@@ -150,8 +150,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_marginRight="12dp"
-                    android:text="Most Viewed"
+                    android:layout_marginEnd="12dp"
+                    android:text="@string/most_viewed"
                     android:textAllCaps="false"
                     android:stateListAnimator="@null"
                     />
@@ -169,18 +169,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="@string/name"
                     android:textColor="@color/light_blue"
                     android:textSize="12sp"
-                    android:layout_marginLeft="130dp"
+                    android:layout_marginStart="130dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Price"
+                    android:text="@string/price"
                     android:textColor="@color/light_blue"
                     android:textSize="12sp"
-                    android:layout_marginLeft="120dp"
+                    android:layout_marginStart="120dp"
                     />
             </LinearLayout>
             <ProgressBar
