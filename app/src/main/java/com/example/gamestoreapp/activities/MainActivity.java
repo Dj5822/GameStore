@@ -2,9 +2,12 @@ package com.example.gamestoreapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +73,21 @@ public class MainActivity extends AppCompatActivity {
         vh.strategyCardView.setOnClickListener(new CategoryClickListener(StrategyListActivity.class));
         vh.casualCardView.setOnClickListener(new CategoryClickListener(CasualListActivity.class));
         vh.simulationCardView.setOnClickListener(new CategoryClickListener(SimulationListActivity.class));
+        vh.bestsellingButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.blue_background));
+
+        vh.bestsellingButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                vh.bestsellingButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.blue_background));
+                vh.mostViewedButton.setBackgroundColor(Color.TRANSPARENT);
+            }
+        });
+
+        vh.mostViewedButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                vh.bestsellingButton.setBackgroundColor(Color.TRANSPARENT);
+                vh.mostViewedButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.blue_background));
+            }
+        });
 
         fetchData();
     }

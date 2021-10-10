@@ -143,9 +143,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_marginLeft="12dp"
-                    android:background="@android:color/transparent"
                     android:text="Bestselling"
                     android:textAllCaps="false"
+                    android:stateListAnimator="@null"
                     />
                 <Button
                     android:id="@+id/most_viewed_button"
@@ -153,9 +153,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_marginRight="12dp"
-                    android:background="@android:color/transparent"
                     android:text="Most Viewed"
                     android:textAllCaps="false"
+                    android:stateListAnimator="@null"
                     />
             </LinearLayout>
             <TextView
