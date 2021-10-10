@@ -11,6 +11,7 @@ import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -32,6 +33,7 @@ import com.example.gamestoreapp.implementation.GameStore;
 import com.example.gamestoreapp.interfaces.ListActivity;
 import com.example.gamestoreapp.interfaces.Product;
 import com.example.gamestoreapp.interfaces.Store;
+import com.example.gamestoreapp.layoutManagers.ProductRecycleListLayout;
 import com.example.gamestoreapp.listeners.CategoryClickListener;
 
 import java.lang.reflect.Array;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Store store;
     private ViewHolder vh;
+    private ProductRecycleListLayout productRecycleListLayout;
 
     private class ViewHolder {
         CardView actionCardView, strategyCardView, casualCardView, simulationCardView;
@@ -94,7 +97,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        vh.productListView.setLayoutManager(new LinearLayoutManager(this));
+        productRecycleListLayout = new ProductRecycleListLayout(this);
+        productRecycleListLayout.setScrollEnabled(false);
+        vh.productListView.setLayoutManager(productRecycleListLayout);
+
 
         propagateAdapter();
     }
@@ -106,6 +112,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void propagateAdapter() {
         List<String> productList = new ArrayList<>();
+        productList.add("test");
+        productList.add("test2");
+        productList.add("test3");
+        productList.add("test");
+        productList.add("test2");
+        productList.add("test3");
+        productList.add("test");
+        productList.add("test2");
+        productList.add("test3");
         productList.add("test");
         productList.add("test2");
         productList.add("test3");
