@@ -3,12 +3,14 @@ package com.example.gamestoreapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -19,16 +21,20 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.gamestoreapp.R;
+import com.example.gamestoreapp.adaptors.MainItemAdaptor;
 import com.example.gamestoreapp.adaptors.ProductAdaptor;
 import com.example.gamestoreapp.implementation.Game;
+import com.example.gamestoreapp.implementation.GameProduct;
 import com.example.gamestoreapp.implementation.GameStore;
 import com.example.gamestoreapp.interfaces.ListActivity;
 import com.example.gamestoreapp.interfaces.Product;
 import com.example.gamestoreapp.interfaces.Store;
 import com.example.gamestoreapp.listeners.CategoryClickListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         Button bestsellingButton, mostViewedButton;
         RecyclerView productListView;
         ProgressBar mainProgressBar;
-
 
         public ViewHolder() {
             actionCardView = findViewById(R.id.card_view_action);
@@ -89,11 +94,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        fetchData();
+        vh.productListView.setLayoutManager(new LinearLayoutManager(this));
+
+        propagateAdapter();
     }
 
     private void fetchData() {
 
 
+    }
+
+    private void propagateAdapter() {
+        List<String> productList = new ArrayList<>();
+        productList.add("test");
+        productList.add("test2");
+        productList.add("test3");
+        productList.add("test");
+        productList.add("test2");
+        productList.add("test3");
+        productList.add("test");
+        productList.add("test2");
+        productList.add("test3");
+        productList.add("test");
+        productList.add("test2");
+        productList.add("test3");
+
+
+        MainItemAdaptor adapter = new MainItemAdaptor(this, productList);
+        vh.productListView.setAdapter(adapter);
+
+        vh.mainProgressBar.setVisibility(View.GONE);
     }
 }

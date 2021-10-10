@@ -191,7 +191,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_product_list_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="900dp"
                 android:layout_marginTop="@dimen/full_margin"
                 android:layout_marginLeft="@dimen/full_margin"
                 android:layout_marginRight="@dimen/full_margin"
