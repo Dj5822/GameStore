@@ -3,22 +3,21 @@ package com.example.gamestoreapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.SearchView;
 
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.adaptors.MainItemAdaptor;
 import com.example.gamestoreapp.interfaces.Store;
-import com.example.gamestoreapp.layout.LockableScrollView;
 import com.example.gamestoreapp.layout.ProductRecycleListLayout;
 import com.example.gamestoreapp.listeners.CategoryClickListener;
 
@@ -36,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         Button bestsellingButton, mostViewedButton;
         RecyclerView productListView;
         ProgressBar mainProgressBar;
-        LockableScrollView mainScrollView;
+        NestedScrollView mainScrollView;
+        LinearLayout mainCategoryView;
 
         public ViewHolder() {
             actionCardView = findViewById(R.id.card_view_action);
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             productListView = findViewById(R.id.main_product_list_view);
             mainProgressBar = findViewById(R.id.main_progress_bar);
             mainScrollView = findViewById(R.id.main_scroll_view);
+            mainCategoryView = findViewById(R.id.main_category_view);
         }
     }
 
@@ -85,9 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         ProductRecycleListLayout productRecycleListLayout = new ProductRecycleListLayout(this);
         vh.productListView.setLayoutManager(productRecycleListLayout);
-
-        productRecycleListLayout.setScrollEnabled(false);
-        vh.mainScrollView.setScrollingEnabled(true);
+        vh.productListView.setNestedScrollingEnabled(false);
 
         vh.mainScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
@@ -95,13 +94,11 @@ public class MainActivity extends AppCompatActivity {
                 View view = vh.mainScrollView.getChildAt(vh.mainScrollView.getChildCount() - 1);
                 int topDetector = vh.mainScrollView.getScrollY();
                 int bottomDetector = view.getBottom() - (vh.mainScrollView.getHeight() + vh.mainScrollView.getScrollY());
-                if (topDetector > 1360) {
-                    productRecycleListLayout.setScrollEnabled(true);
-                    vh.mainScrollView.setScrollingEnabled(false);
+                if (bottomDetector == 0) {
+                    vh.productListView.setNestedScrollingEnabled(true);
                 }
                 else {
-                    productRecycleListLayout.setScrollEnabled(false);
-                    vh.mainScrollView.setScrollingEnabled(true);
+                    vh.productListView.setNestedScrollingEnabled(false);
                 }
             }
         });

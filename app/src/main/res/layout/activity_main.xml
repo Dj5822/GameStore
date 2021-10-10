@@ -24,15 +24,17 @@
         android:queryHint="Search Games"
         />
 
-    <com.example.gamestoreapp.layout.LockableScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/main_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="11"
         android:orientation="horizontal"
         android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
         <LinearLayout
+            android:id="@+id/main_category_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -193,11 +195,11 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_product_list_view"
                 android:layout_width="match_parent"
-                android:layout_height="510dp"
+                android:layout_height="900dp"
                 android:layout_marginTop="@dimen/full_margin"
                 android:layout_marginLeft="@dimen/full_margin"
                 android:layout_marginRight="@dimen/full_margin"
                 />
         </LinearLayout>
-    </com.example.gamestoreapp.layout.LockableScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>
