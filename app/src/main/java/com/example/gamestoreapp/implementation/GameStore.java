@@ -1,33 +1,35 @@
 package com.example.gamestoreapp.implementation;
 
 import com.example.gamestoreapp.interfaces.Category;
+import com.example.gamestoreapp.interfaces.Item;
 import com.example.gamestoreapp.interfaces.Product;
 import com.example.gamestoreapp.interfaces.Store;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameStore implements Store {
 
-    private Long id;
-    private String name;
-    private List<Product> productList;
-    private List<Category> categoryList;
-
-    public GameStore(Long id, String name, List<Product> productList, List<Category> categoryList){
-        this.id = id;
-        this.name = name;
-        this.productList = productList;
-        this.categoryList = categoryList;
-    }
-
     @Override
     public List<Product> getBestSellingProducts() {
-        return null;
+        List<Product> bestsellingGames = new ArrayList<>();
+        for (int i=0; i<20; i++) {
+            Game game = new Game(i, "test", "test", new ArrayList<String>(), "test", "test");
+            bestsellingGames.add(new GameProduct(game, 0, 0, 0));
+        }
+
+        return bestsellingGames;
     }
 
     @Override
     public List<Product> getMostViewedProducts() {
-        return null;
+        List<Product> bestsellingGames = new ArrayList<>();
+        for (int i=0; i<20; i++) {
+            Game game = new Game(i, "test", "test", new ArrayList<String>(), "test", "test");
+            bestsellingGames.add(new GameProduct(game, 0, 0, 0));
+        }
+
+        return bestsellingGames;
     }
 
     @Override

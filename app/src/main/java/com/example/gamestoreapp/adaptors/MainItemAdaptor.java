@@ -10,17 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gamestoreapp.R;
+import com.example.gamestoreapp.interfaces.Product;
 
 import java.util.List;
 
 public class MainItemAdaptor extends RecyclerView.Adapter<MainItemAdaptor.ViewHolder> {
 
-    private List<String> mData;
+    private List<Product> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public MainItemAdaptor(Context context, List<String> data) {
+    public MainItemAdaptor(Context context, List<Product> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -35,8 +36,8 @@ public class MainItemAdaptor extends RecyclerView.Adapter<MainItemAdaptor.ViewHo
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        Product product = mData.get(position);
+        holder.myTextView.setText(product.getItem().getName());
     }
 
     // total number of rows
@@ -63,7 +64,7 @@ public class MainItemAdaptor extends RecyclerView.Adapter<MainItemAdaptor.ViewHo
     }
 
     // convenience method for getting data at click position
-    String getItem(int id) {
+    Product getItem(int id) {
         return mData.get(id);
     }
 

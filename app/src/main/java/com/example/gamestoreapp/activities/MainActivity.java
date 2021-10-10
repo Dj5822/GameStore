@@ -18,6 +18,8 @@ import android.widget.SearchView;
 
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.adaptors.MainItemAdaptor;
+import com.example.gamestoreapp.implementation.GameStore;
+import com.example.gamestoreapp.interfaces.Product;
 import com.example.gamestoreapp.interfaces.Store;
 import com.example.gamestoreapp.listeners.CategoryClickListener;
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Store store;
     private ViewHolder vh;
+    List<Product> productList;
 
     private class ViewHolder {
         CardView actionCardView, strategyCardView, casualCardView, simulationCardView;
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         vh = new ViewHolder();
+        store = new GameStore();
 
         vh.actionCardView.setOnClickListener(new CategoryClickListener(ActionListActivity.class));
         vh.strategyCardView.setOnClickListener(new CategoryClickListener(StrategyListActivity.class));
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 vh.bestsellingButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.blue_background));
                 vh.mostViewedButton.setBackgroundColor(Color.TRANSPARENT);
+                productList = store.getBestSellingProducts();
             }
         });
 
@@ -81,49 +86,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 vh.bestsellingButton.setBackgroundColor(Color.TRANSPARENT);
                 vh.mostViewedButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.blue_background));
+                productList = store.getMostViewedProducts();
             }
         });
 
         LinearLayoutManager productRecycleListLayout = new LinearLayoutManager (this);
         vh.productListView.setLayoutManager(productRecycleListLayout);
         vh.productListView.setNestedScrollingEnabled(false);
+        productList = store.getBestSellingProducts();
 
         propagateAdapter();
     }
 
-    private void fetchData() {
-
-
-    }
-
     private void propagateAdapter() {
-        List<String> productList = new ArrayList<>();
-        productList.add("first element");
-        productList.add("test2");
-        productList.add("test3");
-        productList.add("test4");
-        productList.add("test6");
-        productList.add("test7");
-        productList.add("test8");
-        productList.add("test9");
-        productList.add("test10");
-        productList.add("test11");
-        productList.add("test12");
-        productList.add("test13");
-        productList.add("test14");
-        productList.add("test15");
-        productList.add("test16");
-        productList.add("test17");
-        productList.add("test18");
-        productList.add("test19");
-        productList.add("test20");
-        productList.add("test21");
-        productList.add("last element");
-
-
         MainItemAdaptor adapter = new MainItemAdaptor(this, productList);
         vh.productListView.setAdapter(adapter);
-
         vh.mainProgressBar.setVisibility(View.GONE);
     }
 }
