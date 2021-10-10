@@ -15,4 +15,6 @@
     <color name="darker_blue_background">#1f292d</color>
     <color name="red">#B71C1C</color>
     <color name="dark_red">#C62828</color>
+    <color name="orange">#FFB300</color>
+    <color name="orange_dark">#FFA000</color>
 </resources>
