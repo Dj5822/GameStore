@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         vh.simulationCardView.setOnClickListener(new CategoryClickListener(SimulationListActivity.class));
         vh.bestsellingButton.setOnClickListener(view -> bestsellingProductsSelected());
         vh.mostViewedButton.setOnClickListener(view -> mostViewedProductsSelected());
-
         vh.mainSearchView.setOnQueryTextListener(new QueryTextListener());
 
         // Setup recycle view.
