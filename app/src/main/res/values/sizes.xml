@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Component dimensions -->
+    <dimen name="category_card_height">150dp</dimen>
+    <dimen name="full_margin">12dp</dimen>
+    <dimen name="half_margin">12dp</dimen>
+
+    <!-- Font dimensions -->
+    <dimen name="category_card_name">24sp</dimen>
+    <dimen name="list_column_font">12sp</dimen>
+</resources>
