@@ -14,7 +14,7 @@ public class GameStore implements Store {
     public List<Product> getBestsellingProducts() {
         List<Product> bestsellingGames = new ArrayList<>();
         for (int i=0; i<20; i++) {
-            Game game = new Game(i, "test", "test", new ArrayList<String>(), "test", "test");
+            Game game = new Game(i, "bestselling", "test", new ArrayList<String>(), "lemon", "test");
             bestsellingGames.add(new GameProduct(game, 0, 0, 0));
         }
 
@@ -25,8 +25,8 @@ public class GameStore implements Store {
     public List<Product> getMostViewedProducts() {
         List<Product> bestsellingGames = new ArrayList<>();
         for (int i=0; i<20; i++) {
-            Game game = new Game(i, "test", "test", new ArrayList<String>(), "test", "test");
-            bestsellingGames.add(new GameProduct(game, 0, 0, 0));
+            Game game = new Game(i, "most viewed", "test", new ArrayList<String>(), "watermelon", "test");
+            bestsellingGames.add(new GameProduct(game, 10, 0, 0));
         }
 
         return bestsellingGames;
