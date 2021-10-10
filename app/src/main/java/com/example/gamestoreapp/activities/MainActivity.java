@@ -19,6 +19,7 @@ import com.example.gamestoreapp.implementation.GameStore;
 import com.example.gamestoreapp.interfaces.Product;
 import com.example.gamestoreapp.interfaces.Store;
 import com.example.gamestoreapp.listeners.CategoryClickListener;
+import com.example.gamestoreapp.listeners.QueryTextListener;
 
 import java.util.List;
 
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         vh.simulationCardView.setOnClickListener(new CategoryClickListener(SimulationListActivity.class));
         vh.bestsellingButton.setOnClickListener(view -> bestsellingProductsSelected());
         vh.mostViewedButton.setOnClickListener(view -> mostViewedProductsSelected());
+
+        vh.mainSearchView.setOnQueryTextListener(new QueryTextListener());
 
         // Setup recycle view.
         LinearLayoutManager productRecycleListLayout = new LinearLayoutManager (this);
