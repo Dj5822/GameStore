@@ -47,8 +47,6 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        //need to set the product here
-        //temp code will make a dummy product for now
         gameProduct = getIntent().getParcelableExtra("Product");
 
         vh = new ViewHolder();
@@ -62,6 +60,6 @@ public class DetailsActivity extends AppCompatActivity {
         //may end up rounding these and then converting to "200k +" format
 
         vh.purchaseButton.setText(gameProduct.getCostAsString());
-        vh.gameIcon.setImageResource(this.getResources().getIdentifier("R.drawable."+gameProduct.getItem().getIconImageName(),"drawable", this.getPackageName()));
+        vh.gameIcon.setImageResource(this.getResources().getIdentifier(gameProduct.getItem().getIconImageName(),"drawable", "com.example.gamestoreapp"));
     }
 }
