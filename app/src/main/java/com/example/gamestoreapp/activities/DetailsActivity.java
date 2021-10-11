@@ -88,6 +88,10 @@ public class DetailsActivity extends AppCompatActivity {
         images.addAll(gameProduct.getItem().getImagesNames());
         imageCounter = 0;
 
+        if(images.size() == 0){
+            return;
+        }
+
         //Set up the factory to switch images in the image switcher
         vh.gameImageSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
