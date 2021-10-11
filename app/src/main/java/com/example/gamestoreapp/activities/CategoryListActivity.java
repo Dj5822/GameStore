@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.adaptors.ProductAdaptor;
+import com.example.gamestoreapp.data.QueryHandler;
 import com.example.gamestoreapp.implementation.Game;
 import com.example.gamestoreapp.implementation.GameProduct;
 import com.example.gamestoreapp.interfaces.Item;
@@ -38,7 +39,7 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
     protected ViewHolder vh;
     protected List<String> imageNames;
     private int currentImage;
-    private List<Product> productList = new LinkedList<>();
+    private List<Product> productList;
 
     private int expectedProductCount;
 
@@ -63,8 +64,22 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
 
     @Override
     public void loadCategory() {
-        fetchCategoryData();
-        fetchCategoryImageNames();
+
+        imageNames = QueryHandler.fetchCategoryImageNames(categoryName, new QueryHandler.QueryListener() {
+            @Override
+            public void OnQueryComplete() {
+                if (!imageNames.isEmpty()) {
+                    setCategoryImage(0);
+                }
+            }
+        });
+
+        productList = QueryHandler.queryCategoryCollection(categoryName, new QueryHandler.QueryListener() {
+            @Override
+            public void OnQueryComplete() {
+                propagateAdapter();
+            }
+        });
 
         vh.nextImageIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,82 +107,6 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
 
     }
 
-    private void fetchCategoryData() {
-        // Get categories collection from Firestore
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("categories").
-                document(categoryName).collection("gameProducts").get().
-                addOnCompleteListener(
-                        new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    fetchProductData(task.getResult().getDocuments());
-                                } else {
-                                    Toast.makeText(getBaseContext(), "Loading Categories Collection failed from Firestore!", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
-    }
-
-    private void fetchProductData(List<DocumentSnapshot> documentSnapshots) {
-        expectedProductCount = documentSnapshots.size();
-        for (DocumentSnapshot snapshot : documentSnapshots) {
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("GameProducts").document(snapshot.getId()).get()
-                    .addOnCompleteListener(
-                            new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        fetchItemData(task.getResult());
-                                    } else {
-                                        Toast.makeText(getBaseContext(), "Loading Products Collection failed from Firestore!", Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            }
-                    );
-        }
-    }
-
-    private void fetchItemData(DocumentSnapshot productSnapshot) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String id = productSnapshot.get("id", String.class);
-        db.collection("games").document(id)
-                .get().addOnCompleteListener(
-                new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot itemSnapshot = task.getResult();
-
-                            Item item = new Game(Integer.parseInt(id),
-                                    itemSnapshot.getString("name"),
-                                    itemSnapshot.get("description", String.class),
-                                    (List<String>) itemSnapshot.get("imageNames"),
-                                    itemSnapshot.get("iconImageName", String.class),
-                                    itemSnapshot.get("studioName", String.class));
-
-                            Product product = new GameProduct(item,
-                                    productSnapshot.get("price", int.class),
-                                    productSnapshot.get("amountSold", int.class),
-                                    productSnapshot.get("viewCount", int.class));
-
-                            productList.add(product);
-                            if (productList.size() == expectedProductCount) {
-                                propagateAdapter();
-                            }
-
-                            Log.i("Parsing Products", product.getItem().getName() + " loaded.");
-
-                        } else {
-                            Toast.makeText(getBaseContext(), "Loading Games Collection failed from Firestore!", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }
-        );
-    }
-
     private void propagateAdapter() {
 
         if (productList.size() > 0) {
@@ -181,24 +120,6 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
                 productList);
         vh.listView.setAdapter(itemsAdapter);
         vh.layout.setVisibility(View.VISIBLE);
-    }
-
-    private void fetchCategoryImageNames() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("categories").
-                document(categoryName).get().
-                addOnCompleteListener(
-                        new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                   imageNames = (List<String>) task.getResult().get("imageNames");
-                                    setCategoryImage(0);
-                                } else {
-                                    Toast.makeText(getBaseContext(), "Loading Categories Collection failed from Firestore!", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
     }
 
     private void setCategoryImage(int i) {
