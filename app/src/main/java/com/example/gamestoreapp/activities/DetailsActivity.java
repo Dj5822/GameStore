@@ -3,6 +3,9 @@ package com.example.gamestoreapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageSwitcher;
@@ -23,6 +26,7 @@ public class DetailsActivity extends AppCompatActivity {
     private GameProduct gameProduct; //This will get received from the intent that switches the screen to this activity
     private int imageCounter;
     private List<String> images;
+    private GestureDetector gestureDetector;
 
     private class ViewHolder{
         ImageView gameIcon;
@@ -46,7 +50,6 @@ public class DetailsActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,38 +67,60 @@ public class DetailsActivity extends AppCompatActivity {
         vh.viewCount.setText(String.valueOf(gameProduct.getViewCount()));
         //may end up rounding these and then converting to "200k +" format
 
+        vh.purchaseButton.setText(gameProduct.getCostAsString());
+        vh.gameIcon.setImageResource(this.getResources().getIdentifier(gameProduct.getItem().getIconImageName(),"drawable", "com.example.gamestoreapp"));
+
         images = new ArrayList<String>();
         images.addAll(gameProduct.getItem().getImagesNames());
-
-        System.out.println("printing image names:");
-        for (String name : images){
-            System.out.println(name);
-        }
-
         imageCounter = 0;
-
-        System.out.println(images.get(0));
-        System.out.println(this.getResources().getIdentifier(images.get(0),"drawable", "com.example.gamestoreapp"));
-        System.out.println("switcher id: " + vh.gameImageSwitcher.getId());
-        //vh.gameImageSwitcher.setImageResource(this.getResources().getIdentifier(images.get(0),"drawable", "com.example.gamestoreapp"));
 
         vh.gameImageSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
             public View makeView() {
                 ImageView imageView = new ImageView(getApplicationContext());
-                imageView.setImageResource(getApplicationContext().getResources().getIdentifier(images.get(imageCounter),"drawable", "com.example.gamestoreapp"));
-
-                imageCounter++;
-                if(imageCounter >= images.size()){
-                    imageCounter = 0;
-                }
+                //imageView.setImageResource(getApplicationContext().getResources().getIdentifier(images.get(imageCounter),"drawable", "com.example.gamestoreapp"));
                 return imageView;
             }
         });
-        vh.gameImageSwitcher.setInAnimation(this, android.R.anim.slide_in_left);
-        vh.gameImageSwitcher.setOutAnimation(this, android.R.anim.slide_out_right);
 
-        vh.purchaseButton.setText(gameProduct.getCostAsString());
-        vh.gameIcon.setImageResource(this.getResources().getIdentifier(gameProduct.getItem().getIconImageName(),"drawable", "com.example.gamestoreapp"));
+        vh.gameImageSwitcher.setImageResource(getApplicationContext().getResources().getIdentifier(images.get(imageCounter),"drawable", "com.example.gamestoreapp"));
+
+
+        gestureDetector = new GestureDetector(this, new SwitcherGestureDetector());
+
+        vh.gameImageSwitcher.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return gestureDetector.onTouchEvent(motionEvent);
+            }
+        });
+    }
+
+    class SwitcherGestureDetector extends SimpleOnGestureListener{
+        @Override
+        public boolean onDown(MotionEvent motionEvent){
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY){
+            if (Math.abs(velocityY) > Math.abs(velocityX)){
+                return false;
+            }
+            if (velocityX > 0){
+                imageCounter ++;
+                if(imageCounter >= images.size()){
+                    imageCounter = 0;
+                }
+            }
+            else {
+                imageCounter --;
+                if (imageCounter < 0){
+                    imageCounter = images.size() - 1;
+                }
+            }
+            vh.gameImageSwitcher.setImageResource(getApplicationContext().getResources().getIdentifier(images.get(imageCounter),"drawable", "com.example.gamestoreapp"));
+            return true;
+        }
     }
 }
