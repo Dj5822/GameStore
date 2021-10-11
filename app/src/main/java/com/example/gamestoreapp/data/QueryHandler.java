@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class QueryHandler {
      * The productList will be populated asynchronously as the queries return.
      * @param categoryName id of the category in the database
      * @param queryListener functional query listener interface
+     * @return List of products that will be filled
      */
     public static List<Product> queryCategoryCollection(String categoryName, QueryListener queryListener) {
         QueryList<Product> productList = new QueryList<>(queryListener);
@@ -83,6 +85,33 @@ public class QueryHandler {
                             }
                         });
         return imageNames;
+    }
+
+    /**
+     * Queries the firebase database for the top 10 products in the field
+     * @param queryListener functional query listener interface
+     * @param field
+     * @return List of products that will be filled
+     */
+    public static List<Product> queryField(String field, QueryListener queryListener) {
+        QueryList<Product> productList = new QueryList<>(queryListener);
+        // Get categories collection from Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("GameProducts").orderBy(field, Query.Direction.DESCENDING).limit(10).get().
+                addOnCompleteListener(
+                        new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    List<DocumentSnapshot> productSnapshots = task.getResult().getDocuments();
+                                    queryProductCollection(productSnapshots, productList);
+                                } else {
+                                    throw new RuntimeException("Failed to load categories Collection");
+                                }
+                            }
+                        });
+
+        return productList;
     }
 
     /**

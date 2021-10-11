@@ -15,12 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.adaptors.MainItemAdaptor;
+import com.example.gamestoreapp.data.QueryHandler;
 import com.example.gamestoreapp.implementation.GameStore;
 import com.example.gamestoreapp.interfaces.Product;
 import com.example.gamestoreapp.interfaces.Store;
 import com.example.gamestoreapp.listeners.CategoryClickListener;
 import com.example.gamestoreapp.listeners.QueryTextListener;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -84,8 +87,18 @@ public class MainActivity extends AppCompatActivity {
     private void bestsellingProductsSelected() {
         vh.bestsellingButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.blue_background));
         vh.mostViewedButton.setBackgroundColor(Color.TRANSPARENT);
-        productList = store.getBestsellingProducts();
-        propagateAdapter();
+        productList = QueryHandler.queryField( "amountSold", new QueryHandler.QueryListener() {
+            @Override
+            public void OnQueryComplete() {
+                Collections.sort(productList,new Comparator<Product>() {
+                    @Override
+                    public int compare(Product product, Product t1) {
+                        return product.getAmountSold() < t1.getAmountSold() ? 1 : -1;
+                    }
+                });
+                propagateAdapter();
+            }
+        });
     }
 
     /**
@@ -96,7 +109,18 @@ public class MainActivity extends AppCompatActivity {
         vh.bestsellingButton.setBackgroundColor(Color.TRANSPARENT);
         vh.mostViewedButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.blue_background));
         productList = store.getMostViewedProducts();
-        propagateAdapter();
+        productList = QueryHandler.queryField("viewCount", new QueryHandler.QueryListener() {
+            @Override
+            public void OnQueryComplete() {
+                Collections.sort(productList,new Comparator<Product>() {
+                    @Override
+                    public int compare(Product product, Product t1) {
+                        return product.getViewCount() < t1.getViewCount() ? 1 : -1;
+                    }
+                });
+                propagateAdapter();
+            }
+        });
     }
 
     /**
