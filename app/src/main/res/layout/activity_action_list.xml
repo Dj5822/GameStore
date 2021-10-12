@@ -74,34 +74,32 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_blue"
+        />
     <LinearLayout
-        android:id="@+id/list_header_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="60dp">
-
+        >
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:textColor="@color/white"
-          android:layout_weight="1"
-          android:textSize="18sp"
-          android:gravity="center"
-          android:paddingLeft="40dp"
-          android:text="Title"
-        />
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:textColor="@color/white"
-          android:textSize="18sp"
-          android:gravity="center"
-          android:text="Price"
+          android:text="@string/name"
+          android:textColor="@color/light_blue"
+          android:textSize="@dimen/list_column_font"
+          android:layout_marginStart="130dp"
           />
-
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/price"
+          android:textColor="@color/light_blue"
+          android:textSize="@dimen/list_column_font"
+          android:layout_marginStart="120dp"
+          />
     </LinearLayout>
 
     <ListView
