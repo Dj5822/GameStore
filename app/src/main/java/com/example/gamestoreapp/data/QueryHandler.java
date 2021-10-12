@@ -67,7 +67,7 @@ public class QueryHandler {
      * @return List of image names
      */
     public static List<String> fetchCategoryImageNames(String categoryName, QueryListener queryListener) {
-        QueryList<String> imageNames = new QueryList<String>(queryListener);
+        List<String> imageNames = new ArrayList<String>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("categories").
                 document(categoryName).get().
@@ -77,8 +77,8 @@ public class QueryHandler {
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 if (task.isSuccessful()) {
                                     List<String> result = (List<String>) task.getResult().get("imageNames");
-                                    imageNames.setExpectedQuerySize(result.size());
-                                    imageNames.addAll((List<String>) task.getResult().get("imageNames"));
+                                    imageNames.addAll(result);
+                                    queryListener.OnQueryComplete();
                                 } else {
                                     throw new RuntimeException("Failed to load categories Collection");
                                 }
@@ -125,15 +125,17 @@ public class QueryHandler {
 
         productList.setExpectedQuerySize(productDocumentSnapshots.size());
 
-        for (DocumentSnapshot snapshot : productDocumentSnapshots) {
+        for (int i = 0; i < productDocumentSnapshots.size(); i++) {
+            DocumentSnapshot snapshot = productDocumentSnapshots.get(i);
             FirebaseFirestore db = FirebaseFirestore.getInstance();
+            int pos = i;
             db.collection("GameProducts").document(snapshot.getId()).get()
                     .addOnCompleteListener(
                             new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                     if (task.isSuccessful()) {
-                                        queryItemCollection(task.getResult(), productList);
+                                        queryItemCollection(task.getResult(), productList, pos);
                                     } else {
                                         throw new RuntimeException("Failed to load Products Collection");
                                     }
@@ -149,8 +151,9 @@ public class QueryHandler {
      * The productList will be populated asynchronously with suitable products as the queries return.
      * @param productDocumentSnapshot list of documents representing products
      * @param productList address of product list to populate
+     * @param pos position to insert product in list
      */
-    private static void queryItemCollection(DocumentSnapshot productDocumentSnapshot, QueryList<Product> productList) {
+    private static void queryItemCollection(DocumentSnapshot productDocumentSnapshot, QueryList<Product> productList, int pos) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String id = productDocumentSnapshot.get("id", String.class);
         db.collection("games").document(id)
@@ -160,7 +163,7 @@ public class QueryHandler {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             Product product = createProductFromSnapshots(task.getResult(), productDocumentSnapshot);
-                            productList.add(product);
+                            productList.addWrapper(pos, product);
                         } else {
                             throw new RuntimeException("Failed to load Items collection!");
                         }

@@ -12,6 +12,7 @@ public class QueryList<Object> extends ArrayList<Object> {
 
     QueryHandler.QueryListener queryListener;
     int expectedQuerySize = 0;
+    int size = 0;
 
     public QueryList(QueryHandler.QueryListener queryListener) {
         this.queryListener = queryListener;
@@ -21,12 +22,18 @@ public class QueryList<Object> extends ArrayList<Object> {
         this.expectedQuerySize = expectedQuerySize;
     }
 
-    @Override
-    public boolean add(Object object) {
-        boolean isSuccess = super.add(object);
-        if (size() == expectedQuerySize) {
+    public void addWrapper(int pos,Object object) {
+        for (int i = size(); i <= pos; i++) {
+            super.add(i, null);
+        }
+        super.set(pos, object);
+        size++;
+        if (sizeWrapper() == expectedQuerySize) {
             queryListener.OnQueryComplete();
         }
-        return isSuccess;
+    }
+
+    public int sizeWrapper() {
+        return size;
     }
 }

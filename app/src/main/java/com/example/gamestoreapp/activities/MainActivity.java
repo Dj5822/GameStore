@@ -90,12 +90,6 @@ public class MainActivity extends AppCompatActivity {
         productList = QueryHandler.queryField( "amountSold", new QueryHandler.QueryListener() {
             @Override
             public void OnQueryComplete() {
-                Collections.sort(productList,new Comparator<Product>() {
-                    @Override
-                    public int compare(Product product, Product t1) {
-                        return product.getAmountSold() < t1.getAmountSold() ? 1 : -1;
-                    }
-                });
                 propagateAdapter();
             }
         });
@@ -112,12 +106,6 @@ public class MainActivity extends AppCompatActivity {
         productList = QueryHandler.queryField("viewCount", new QueryHandler.QueryListener() {
             @Override
             public void OnQueryComplete() {
-                Collections.sort(productList,new Comparator<Product>() {
-                    @Override
-                    public int compare(Product product, Product t1) {
-                        return product.getViewCount() < t1.getViewCount() ? 1 : -1;
-                    }
-                });
                 propagateAdapter();
             }
         });
