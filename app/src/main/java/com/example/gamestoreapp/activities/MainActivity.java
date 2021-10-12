@@ -1,15 +1,19 @@
 package com.example.gamestoreapp.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,27 +24,31 @@ import com.example.gamestoreapp.implementation.GameStore;
 import com.example.gamestoreapp.interfaces.Product;
 import com.example.gamestoreapp.interfaces.Store;
 import com.example.gamestoreapp.listeners.CategoryClickListener;
+import com.example.gamestoreapp.listeners.ProductClickListener;
 import com.example.gamestoreapp.listeners.QueryTextListener;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private Store store;
     private ViewHolder vh;
     List<Product> productList;
+    List<Product> searchResultList;
 
     /*
      * Used to get and hold view components.
      */
     private class ViewHolder {
         CardView actionCardView, strategyCardView, casualCardView, simulationCardView;
+        LinearLayout searchLayout;
         SearchView mainSearchView;
         Button bestsellingButton, mostViewedButton;
-        RecyclerView productListView;
-        ProgressBar mainProgressBar;
+        RecyclerView productListView, searchListView;
+        ProgressBar mainProgressBar, searchProgressBar;
+        NestedScrollView mainScrollView;
 
         public ViewHolder() {
             actionCardView = findViewById(R.id.card_view_action);
@@ -51,7 +59,11 @@ public class MainActivity extends AppCompatActivity {
             bestsellingButton = findViewById(R.id.bestselling_button);
             mostViewedButton = findViewById(R.id.most_viewed_button);
             productListView = findViewById(R.id.main_product_list_view);
+            searchListView = findViewById(R.id.main_product_search_list_view);
+            searchLayout = findViewById(R.id.search_layout);
             mainProgressBar = findViewById(R.id.main_progress_bar);
+            searchProgressBar = findViewById(R.id.search_progress_bar);
+            mainScrollView = findViewById(R.id.main_scroll_view);
         }
     }
 
@@ -71,20 +83,19 @@ public class MainActivity extends AppCompatActivity {
         vh.simulationCardView.setOnClickListener(new CategoryClickListener(SimulationListActivity.class));
         vh.bestsellingButton.setOnClickListener(view -> bestsellingProductsSelected());
         vh.mostViewedButton.setOnClickListener(view -> mostViewedProductsSelected());
-        vh.mainSearchView.setOnQueryTextListener(new QueryTextListener());
+        vh.mainSearchView.setOnQueryTextListener(this);
 
         // Setup recycle view.
         LinearLayoutManager productRecycleListLayout = new LinearLayoutManager (this);
         vh.productListView.setLayoutManager(productRecycleListLayout);
         vh.productListView.setNestedScrollingEnabled(false);
-        bestsellingProductsSelected();
 
-        List<Product> searchResult = QueryHandler.searchQuery("of", new QueryHandler.QueryListener() {
-            @Override
-            public void OnQueryComplete() {
-                System.out.println("FOUND GAME");
-            }
-        });
+        // Setup recycle view.
+        LinearLayoutManager searchProductRecycleListLayout = new LinearLayoutManager (this);
+        vh.searchListView.setLayoutManager(searchProductRecycleListLayout);
+        vh.searchListView.setNestedScrollingEnabled(false);
+
+        bestsellingProductsSelected();
     }
 
     /**
@@ -125,5 +136,57 @@ public class MainActivity extends AppCompatActivity {
         MainItemAdaptor adapter = new MainItemAdaptor(this, productList);
         vh.productListView.setAdapter(adapter);
         vh.mainProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        vh.searchLayout.setVisibility(View.GONE);
+        vh.mainScrollView.setVisibility(View.VISIBLE);
+        vh.searchProgressBar.setVisibility(View.GONE);
+        searchResultList = QueryHandler.searchQuery(query, new QueryHandler.QueryListener() {
+            @Override
+            public void OnQueryComplete() {
+                vh.searchProgressBar.setVisibility(View.GONE);
+                if (searchResultList.size() > 0) {
+                    ProductClickListener listener = new ProductClickListener(searchResultList.get(0));
+                    listener.onClick(vh.searchListView);
+                }
+            }
+        });
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String query) {
+        if (query.length() > 0) {
+            vh.searchProgressBar.setVisibility(View.VISIBLE);
+        } else {
+            return onQueryTextSubmit(query);
+        }
+        searchResultList = QueryHandler.searchQuery(query, new QueryHandler.QueryListener() {
+            @Override
+            public void OnQueryComplete() {
+                vh.searchProgressBar.setVisibility(View.GONE);
+                propagateSearchAdapter();
+            }
+        });
+        return true;
+    }
+
+    private void propagateSearchAdapter() {
+        MainItemAdaptor adapter = new MainItemAdaptor(this, searchResultList);
+        vh.searchListView.setAdapter(adapter);
+        vh.searchLayout.setVisibility(View.VISIBLE);
+        vh.mainScrollView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (vh.searchLayout.getVisibility() == View.VISIBLE) {
+            vh.searchLayout.setVisibility(View.GONE);
+            vh.mainScrollView.setVisibility(View.VISIBLE);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

@@ -131,7 +131,11 @@ public class QueryHandler {
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     List<DocumentSnapshot> productSnapshots = task.getResult().getDocuments();
-                                    queryProductCollection(productSnapshots, productList);
+                                    if (productSnapshots.size() == 0) {
+                                        productList.complete();
+                                    } else {
+                                        queryProductCollection(productSnapshots, productList);
+                                    }
                                 } else {
                                     throw new RuntimeException("Failed to load categories Collection");
                                 }

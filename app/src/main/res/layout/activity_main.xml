@@ -24,6 +24,59 @@
         android:queryHint="Search Games"
         />
 
+    <LinearLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_blue"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textColor="@color/light_blue"
+                android:textSize="@dimen/list_column_font"
+                android:layout_marginStart="130dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price"
+                android:textColor="@color/light_blue"
+                android:textSize="@dimen/list_column_font"
+                android:layout_marginStart="120dp"
+                />
+        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/search_progress_bar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:visibility="gone"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_product_search_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/full_margin"
+            android:layout_marginLeft="@dimen/full_margin"
+            android:layout_marginRight="@dimen/full_margin"
+            />
+
+    </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/main_scroll_view"
         android:layout_width="match_parent"

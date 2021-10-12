@@ -36,4 +36,8 @@ public class QueryList<Object> extends ArrayList<Object> {
     public int sizeWrapper() {
         return size;
     }
+
+    public void complete() {
+        queryListener.OnQueryComplete();
+    }
 }
