@@ -17,8 +17,10 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Helper Class for Database Queries
@@ -98,6 +100,30 @@ public class QueryHandler {
         // Get categories collection from Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("GameProducts").orderBy(field, Query.Direction.DESCENDING).limit(10).get().
+                addOnCompleteListener(
+                        new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    List<DocumentSnapshot> productSnapshots = task.getResult().getDocuments();
+                                    queryProductCollection(productSnapshots, productList);
+                                } else {
+                                    throw new RuntimeException("Failed to load categories Collection");
+                                }
+                            }
+                        });
+
+        return productList;
+    }
+
+    /**
+     * Queries the database for products whose names or studio names match the given string.
+     */
+    public static List<Product> searchQuery(String searchInput, QueryListener queryListener) {
+        QueryList<Product> productList = new QueryList<>(queryListener);
+        // Get categories collection from Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("games").get().
                 addOnCompleteListener(
                         new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -195,6 +221,62 @@ public class QueryHandler {
         Log.i("Parsing Products", product.getItem().getName() + " loaded.");
 
         return product;
+    }
+
+    public static void updateKeyWords() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("GameProducts").get().addOnCompleteListener(
+                new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                String id = documentSnapshot.get("id", String.class);
+                                db.collection("games").document(id)
+                                        .get().addOnCompleteListener(
+                                        new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    List<String> keyWords = getKeyWords(task.getResult());
+                                                    documentSnapshot.getReference().update("keywords", keyWords);
+                                                } else {
+                                                    throw new RuntimeException("Failed to load Items collection!");
+                                                }
+                                            }
+                                        }
+                                );
+                            }
+                        } else {
+                            throw new RuntimeException("Failed to load Items collection!");
+                        }
+                    }
+                }
+        );
+    }
+
+    private static List<String> getKeyWords(DocumentSnapshot gameSnapshot) {
+        Set<String> keywords = new HashSet<String>();
+        String studioName = gameSnapshot.getString("studioName");
+        String name = gameSnapshot.getString("name");
+
+        keywords.addAll(createKeyWords(name));
+        keywords.addAll(createKeyWords(studioName));
+
+        return new ArrayList<>(keywords);
+    }
+
+    private static List<String> createKeyWords(String name) {
+        int length = name.length();
+        List<String> keywords = new ArrayList<String>((length * (length-1))/2);
+        String currentString = "";
+        for (int i = 0; i < length; i++) {
+            for (int j = i + 1; j <= length; j++) {
+                keywords.add(name.substring(i, j));
+            }
+        }
+        return keywords;
     }
 
 }

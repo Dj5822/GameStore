@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         vh.productListView.setLayoutManager(productRecycleListLayout);
         vh.productListView.setNestedScrollingEnabled(false);
         bestsellingProductsSelected();
+
+        QueryHandler.updateKeyWords();
     }
 
     /**
