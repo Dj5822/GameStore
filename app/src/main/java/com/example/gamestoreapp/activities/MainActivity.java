@@ -184,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         if (vh.searchLayout.getVisibility() == View.VISIBLE) {
             vh.searchLayout.setVisibility(View.GONE);
             vh.mainScrollView.setVisibility(View.VISIBLE);
+            vh.mainScrollView.scrollTo(0,0);
         } else {
             super.onBackPressed();
         }
