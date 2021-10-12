@@ -123,7 +123,9 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
     }
 
     private void setCategoryImage(int i) {
-        if (i >= imageNames.size()) {
+        if (imageNames.size() == 0) {
+            return;
+        } else if (i >= imageNames.size()) {
             i = 0;
         } else if (i < 0) {
             i = imageNames.size()-1;
