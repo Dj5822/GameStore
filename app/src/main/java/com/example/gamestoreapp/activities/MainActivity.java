@@ -79,7 +79,12 @@ public class MainActivity extends AppCompatActivity {
         vh.productListView.setNestedScrollingEnabled(false);
         bestsellingProductsSelected();
 
-        QueryHandler.updateKeyWords();
+        List<Product> searchResult = QueryHandler.searchQuery("of", new QueryHandler.QueryListener() {
+            @Override
+            public void OnQueryComplete() {
+                System.out.println("FOUND GAME");
+            }
+        });
     }
 
     /**

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -123,8 +124,8 @@ public class QueryHandler {
         QueryList<Product> productList = new QueryList<>(queryListener);
         // Get categories collection from Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("games").get().
-                addOnCompleteListener(
+        db.collection("GameProducts").whereArrayContains("keywords", searchInput.toLowerCase()).get()
+                .addOnCompleteListener(
                         new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -268,6 +269,7 @@ public class QueryHandler {
     }
 
     private static List<String> createKeyWords(String name) {
+        name = name.toLowerCase();
         int length = name.length();
         List<String> keywords = new ArrayList<String>((length * (length-1))/2);
         String currentString = "";
