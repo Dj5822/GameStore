@@ -140,20 +140,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        vh.searchLayout.setVisibility(View.GONE);
-        vh.mainScrollView.setVisibility(View.VISIBLE);
-        vh.searchProgressBar.setVisibility(View.GONE);
-        searchResultList = QueryHandler.searchQuery(query, new QueryHandler.QueryListener() {
-            @Override
-            public void OnQueryComplete() {
-                vh.searchProgressBar.setVisibility(View.GONE);
-                if (searchResultList.size() > 0) {
-                    ProductClickListener listener = new ProductClickListener(searchResultList.get(0));
-                    listener.onClick(vh.searchListView);
-                }
-            }
-        });
-        return true;
+        return false;
     }
 
     @Override
@@ -161,7 +148,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         if (query.length() > 0) {
             vh.searchProgressBar.setVisibility(View.VISIBLE);
         } else {
-            return onQueryTextSubmit(query);
+            vh.searchLayout.setVisibility(View.GONE);
+            vh.mainScrollView.setVisibility(View.VISIBLE);
+            vh.searchProgressBar.setVisibility(View.GONE);
+            return true;
         }
         searchResultList = QueryHandler.searchQuery(query, new QueryHandler.QueryListener() {
             @Override
