@@ -27,6 +27,7 @@ import com.example.gamestoreapp.listeners.CategoryClickListener;
 import com.example.gamestoreapp.listeners.ProductClickListener;
 import com.example.gamestoreapp.listeners.QueryTextListener;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -157,14 +158,22 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             @Override
             public void OnQueryComplete() {
                 vh.searchProgressBar.setVisibility(View.GONE);
-                propagateSearchAdapter();
+                propagateSearchAdapter(new ArrayList<Product>(searchResultList));
             }
         });
         return true;
     }
 
-    private void propagateSearchAdapter() {
-        MainItemAdaptor adapter = new MainItemAdaptor(this, searchResultList);
+    private void propagateSearchAdapter(ArrayList<Product> productList) {
+        MainItemAdaptor adapter = new MainItemAdaptor(this, productList);
+        adapter.setClickListener(new MainItemAdaptor.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent detailsOpenIntent = new Intent(view.getContext(), DetailsActivity.class);
+                detailsOpenIntent.putExtra("Product", productList.get(position));
+                view.getContext().startActivity(detailsOpenIntent);
+            }
+        });
         vh.searchListView.setAdapter(adapter);
         vh.searchLayout.setVisibility(View.VISIBLE);
         vh.mainScrollView.setVisibility(View.GONE);
