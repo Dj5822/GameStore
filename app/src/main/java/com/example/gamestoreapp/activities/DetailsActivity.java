@@ -97,16 +97,16 @@ public class DetailsActivity extends AppCompatActivity {
 
         //Set up width, height and padding for the buttons in dp and then converted to pixels so that it can be made on runtime.
 
-        int pixelHeight = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics()));
-        int pixelWidth = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics()));
+        int pixelHeight = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics()));
+        int pixelWidth = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics()));
         int padding = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics()));
 
         for (int i = 0; i < images.size(); i++){
             Button button = new Button(getApplicationContext());
-            button.setMaxWidth(pixelWidth);
-            button.setMaxHeight(0);
-            button.setPadding(padding, 0, padding, 0);
             vh.imageSwitcherButtonHolder.addView(button);
+            button.getLayoutParams().height=pixelHeight;
+            button.getLayoutParams().width=pixelWidth;
+
         }
 
         //Set up the factory to switch images in the image switcher
