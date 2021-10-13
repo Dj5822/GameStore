@@ -8,21 +8,12 @@
     tools:context=".activities.ActionListActivity"
     android:background="@color/dark_blue_background">
 
-  <ProgressBar
-      android:id="@+id/load_progressbar"
-      android:layout_width="60dp"
-      android:layout_height="60dp"
-      android:layout_gravity="center"
-      android:layout_margin="32dp"
-      />
-
   <LinearLayout
       android:id="@+id/list_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_margin="10dp"
       android:orientation="vertical"
-      android:visibility="gone"
       >
 
     <RelativeLayout
@@ -104,6 +95,14 @@
           />
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/load_progressbar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_margin="32dp"
+        />
+
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
@@ -111,7 +110,8 @@
         android:padding="16dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="10sp"
-        ></ListView>
+        android:visibility="gone"
+        />
 
   </LinearLayout>
 
