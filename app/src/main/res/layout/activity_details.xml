@@ -11,9 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="@dimen/full_margin"
-        android:paddingLeft="@dimen/full_margin"
-        android:paddingRight="@dimen/full_margin">
+        android:padding="@dimen/full_margin">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -172,11 +170,19 @@
         </LinearLayout>
 
         <TextView
+            android:layout_marginTop="@dimen/full_margin"
+            android:layout_marginBottom="@dimen/half_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/h5_font"
+            android:text="@string/description"/>
+
+        <TextView
             android:id="@+id/detailsText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/full_margin"
+            android:layout_marginBottom="@dimen/full_margin"
             android:text="@string/details_text_placeholder"
-            />
+            android:textColor="@color/blue_gray_100"/>
     </LinearLayout>
 </ScrollView>
