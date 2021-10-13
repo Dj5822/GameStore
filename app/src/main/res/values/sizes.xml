@@ -6,7 +6,7 @@
     <dimen name="full_margin">12dp</dimen>
     <dimen name="half_margin">6dp</dimen>
     <dimen name="quarter_margin">3dp</dimen>
-    <dimen name="icon_height">100dp</dimen>
+    <dimen name="icon_height">75dp</dimen>
 
     <!-- Font dimensions -->
     <dimen name="h5_font">24sp</dimen>
