@@ -19,7 +19,7 @@
             android:layout_marginStart="@dimen/full_margin"
             android:layout_marginEnd="@dimen/full_margin"
             android:src="@drawable/lemon"
-            />
+            android:contentDescription="@string/game_icon" />
         <TextView
             android:id="@+id/main_list_product_name"
             android:layout_width="0dp"
@@ -38,8 +38,6 @@
             android:text="@string/price"
             android:padding="@dimen/full_margin"
             />
-
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
