@@ -137,6 +137,8 @@ public class DetailsActivity extends AppCompatActivity {
                 if(imageCounter >= images.size()){
                     imageCounter = 0;
                 }
+                vh.gameImageSwitcher.setInAnimation(getApplicationContext(), R.anim.slide_in_right);
+                vh.gameImageSwitcher.setOutAnimation(getApplicationContext(), R.anim.slide_out_left);
             }
             //Otherwise, switch to the previous image, if this was the first image, go to the last instead
             else {
@@ -144,6 +146,8 @@ public class DetailsActivity extends AppCompatActivity {
                 if (imageCounter < 0){
                     imageCounter = images.size() - 1;
                 }
+                vh.gameImageSwitcher.setInAnimation(getApplicationContext(), R.anim.slide_in_left);
+                vh.gameImageSwitcher.setOutAnimation(getApplicationContext(), R.anim.slide_out_right);
             }
             //Sets the new image according to the change in imageCounter decided above
             vh.gameImageSwitcher.setImageResource(getApplicationContext().getResources().getIdentifier(images.get(imageCounter),"drawable", "com.example.gamestoreapp"));
