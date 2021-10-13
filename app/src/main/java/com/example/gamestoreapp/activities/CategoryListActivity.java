@@ -119,7 +119,7 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
         ProductAdaptor itemsAdapter = new ProductAdaptor(this, R.layout.game_list_view_item,
                 productList);
         vh.listView.setAdapter(itemsAdapter);
-        vh.layout.setVisibility(View.VISIBLE);
+        vh.listView.setVisibility(View.VISIBLE);
     }
 
     private void setCategoryImage(int i) {

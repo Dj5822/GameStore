@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/name"
                 android:textColor="@color/light_blue"
-                android:textSize="@dimen/list_column_font"
+                android:textSize="@dimen/caption_font"
                 android:layout_marginStart="130dp"
                 />
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/price"
                 android:textColor="@color/light_blue"
-                android:textSize="@dimen/list_column_font"
+                android:textSize="@dimen/caption_font"
                 android:layout_marginStart="120dp"
                 />
         </LinearLayout>
@@ -117,7 +117,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/action"
-                            android:textSize="@dimen/category_card_name"
+                            android:textSize="@dimen/h5_font"
                             android:textAlignment="center"
                             />
                     </androidx.cardview.widget.CardView>
@@ -133,7 +133,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/casual"
-                            android:textSize="@dimen/category_card_name"
+                            android:textSize="@dimen/h5_font"
                             android:textAlignment="center"
                             />
                     </androidx.cardview.widget.CardView>
@@ -156,7 +156,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/simulation"
-                            android:textSize="@dimen/category_card_name"
+                            android:textSize="@dimen/h5_font"
                             android:textAlignment="center"
                             />
                     </androidx.cardview.widget.CardView>
@@ -172,7 +172,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/strategy"
-                            android:textSize="@dimen/category_card_name"
+                            android:textSize="@dimen/h5_font"
                             android:textAlignment="center"
                             />
                     </androidx.cardview.widget.CardView>
@@ -230,7 +230,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/name"
                     android:textColor="@color/light_blue"
-                    android:textSize="@dimen/list_column_font"
+                    android:textSize="@dimen/caption_font"
                     android:layout_marginStart="130dp"
                     />
                 <TextView
@@ -238,7 +238,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/price"
                     android:textColor="@color/light_blue"
-                    android:textSize="@dimen/list_column_font"
+                    android:textSize="@dimen/caption_font"
                     android:layout_marginStart="120dp"
                     />
             </LinearLayout>
