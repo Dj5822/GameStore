@@ -114,8 +114,12 @@
             style="@style/DetailsActivityPurchaseButton"
             android:id="@+id/purchaseButton"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="@string/details_price_button_text" />
+            android:layout_height="wrap_content"
+            android:text="@string/details_price_button_text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/h5_font"
+            android:paddingTop="@dimen/half_margin"
+            android:paddingBottom="@dimen/half_margin"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
