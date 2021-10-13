@@ -44,7 +44,7 @@
                     android:layout_marginStart="@dimen/full_margin"
                     android:layout_marginTop="@dimen/full_margin"
                     android:text="@string/game_name"
-                    android:textSize="@dimen/h5_font" />
+                    android:textSize="@dimen/h5_font"/>
 
                 <TextView
                     android:id="@+id/studioName"
@@ -53,7 +53,8 @@
                     android:layout_marginStart="@dimen/full_margin"
                     android:layout_marginTop="@dimen/half_margin"
                     android:text="@string/studio"
-                    android:textSize="@dimen/h5_font"/>
+                    android:textSize="@dimen/subtitle1_font"
+                    android:textColor="@color/blue_gray_100"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -83,7 +84,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/SoldLabel"
-                    android:textSize="@dimen/subtitle1_font"/>
+                    android:textSize="@dimen/subtitle1_font"
+                    android:textColor="@color/blue_gray_100"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -103,7 +105,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/ViewLabel"
-                    android:textSize="@dimen/subtitle1_font"/>
+                    android:textSize="@dimen/subtitle1_font"
+                    android:textColor="@color/blue_gray_100"/>
             </LinearLayout>
         </LinearLayout>
 
