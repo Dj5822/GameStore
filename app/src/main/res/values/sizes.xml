@@ -2,6 +2,7 @@
 <resources>
     <!-- Component dimensions -->
     <dimen name="category_card_height">150dp</dimen>
+    <dimen name="icon_corner_radius">12dp</dimen>
     <dimen name="full_margin">12dp</dimen>
     <dimen name="half_margin">6dp</dimen>
     <dimen name="quarter_margin">3dp</dimen>

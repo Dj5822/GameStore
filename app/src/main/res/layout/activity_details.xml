@@ -21,7 +21,8 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="@dimen/icon_height"
-                android:layout_height="@dimen/icon_height">
+                android:layout_height="@dimen/icon_height"
+                app:cardCornerRadius="@dimen/icon_corner_radius">
                 <ImageView
                     android:id="@+id/gameIcon"
                     android:layout_width="match_parent"
