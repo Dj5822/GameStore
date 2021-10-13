@@ -24,7 +24,7 @@ public class CasualListActivity extends CategoryListActivity {
         TextView prevImageIcon = findViewById(R.id.prev_image_icon);
 
         TextView title = findViewById(R.id.category_title);
-        title.setText("Casual");
+        title.setText(R.string.casual);
 
         vh = new ViewHolder(listView, progressBar, actionLayout,
                 categoryImageView, nextImageIcon, prevImageIcon);

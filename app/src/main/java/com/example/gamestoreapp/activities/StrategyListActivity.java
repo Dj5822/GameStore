@@ -26,7 +26,7 @@ public class StrategyListActivity extends AppCompatActivity implements ListActiv
         TextView prevImageIcon = findViewById(R.id.prev_image_icon);
 
         TextView title = findViewById(R.id.category_title);
-        title.setText("Strategy");
+        title.setText(R.string.strategy);
     }
 
     @Override
