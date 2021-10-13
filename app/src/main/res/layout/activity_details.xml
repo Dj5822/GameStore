@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,169 +7,164 @@
     android:orientation="vertical"
     android:background="@color/dark_blue_background"
     tools:context=".activities.DetailsActivity"
-    android:theme="@style/Theme.DetailsActivity">
+    android:theme="@style/Theme.DetailsActivity"
+    android:paddingTop="@dimen/full_margin"
+    android:paddingLeft="@dimen/full_margin"
+    android:paddingRight="@dimen/full_margin">
 
-    <ImageView
-        android:id="@+id/gameIcon"
-        android:scaleType="centerCrop"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ImageView>
-
-    <TextView
-        android:id="@+id/gameName"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Game Name"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/gameIcon"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/gameIcon"
+            android:scaleType="centerCrop"
+            android:layout_width="@dimen/icon_height"
+            android:layout_height="@dimen/icon_height"
+            android:layout_marginTop="@dimen/full_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/white"
+            android:contentDescription="@string/game_image_icon"/>
 
-    <TextView
-        android:id="@+id/studioName"
-        android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/gameName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/full_margin"
+                android:layout_marginTop="@dimen/full_margin"
+                android:text="@string/game_name"
+                android:textSize="@dimen/h5_font"
+                app:layout_constraintStart_toEndOf="@+id/gameIcon"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/studioName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/full_margin"
+                android:layout_marginTop="@dimen/half_margin"
+                android:text="@string/studio"
+                android:textSize="@dimen/h5_font"
+                app:layout_constraintStart_toEndOf="@+id/gameIcon"
+                app:layout_constraintTop_toBottomOf="@+id/gameName"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Studio"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/gameIcon"
-        app:layout_constraintTop_toBottomOf="@+id/gameName"></TextView>
-
-    <TextView
-        android:id="@+id/soldCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="8dp"
-        android:text="100M +"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameIcon">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/soldLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/SoldLabel"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/soldCount"
-        app:layout_constraintStart_toStartOf="@+id/soldCount"
-        app:layout_constraintTop_toBottomOf="@+id/soldCount">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/viewCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
-        android:text="700M +"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/soldCount">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/viewLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/ViewLabel"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/viewCount"
-        app:layout_constraintStart_toStartOf="@+id/viewCount"
-        app:layout_constraintTop_toBottomOf="@+id/viewCount">
-
-    </TextView>
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/full_margin"
+        android:layout_marginBottom="@dimen/full_margin"
+        android:baselineAligned="false">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/soldCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/details_sold_count_placeholder"
+                android:textSize="@dimen/h6_font"/>
+            <TextView
+                android:id="@+id/soldLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/SoldLabel"
+                android:textSize="@dimen/subtitle1_font"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/viewCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/details_view_count_placeholder"
+                android:textSize="@dimen/h6_font"/>
+            <TextView
+                android:id="@+id/viewLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/ViewLabel"
+                android:textSize="@dimen/subtitle1_font"/>
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         style="@style/DetailsActivityPurchaseButton"
         android:id="@+id/purchaseButton"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:text="Price here"
-        app:layout_constraintEnd_toEndOf="@+id/viewCount"
-        app:layout_constraintStart_toStartOf="@+id/soldCount"
-        app:layout_constraintTop_toBottomOf="@+id/soldLabel"></Button>
+        android:text="@string/details_price_button_text" />
 
     <ImageSwitcher
         android:id="@+id/gameImageSwitcher"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/purchaseButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/purchaseButton"
-        app:layout_constraintTop_toBottomOf="@+id/purchaseButton"></ImageSwitcher>
+        android:layout_marginTop="@dimen/full_margin"
+        android:background="@color/white"/>
 
-    <Button
-        android:id="@+id/imageSwitchButton1"
-        android:layout_width="30dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#9E9E9E"
-        android:translationX="-60dp"
-        app:layout_constraintEnd_toEndOf="@+id/gameImageSwitcher"
-        app:layout_constraintStart_toStartOf="@+id/gameImageSwitcher"
-        app:layout_constraintTop_toBottomOf="@+id/gameImageSwitcher">
-    </Button>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/half_margin"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/imageSwitchButton1"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:backgroundTint="#9E9E9E"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_marginEnd="@dimen/half_margin"/>
 
-    <Button
-        android:id="@+id/imageSwitchButton2"
-        android:layout_width="30dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#9E9E9E"
-        android:translationX="-20dp"
-        app:layout_constraintEnd_toEndOf="@+id/gameImageSwitcher"
-        app:layout_constraintStart_toStartOf="@+id/gameImageSwitcher"
-        app:layout_constraintTop_toBottomOf="@+id/gameImageSwitcher">
-    </Button>
+        <Button
+            android:id="@+id/imageSwitchButton2"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:backgroundTint="#9E9E9E"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_marginEnd="@dimen/quarter_margin"/>
 
-    <Button
-        android:id="@+id/imageSwitchButton3"
-        android:layout_width="30dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#9E9E9E"
-        android:translationX="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/gameImageSwitcher"
-        app:layout_constraintStart_toStartOf="@+id/gameImageSwitcher"
-        app:layout_constraintTop_toBottomOf="@+id/gameImageSwitcher">
-    </Button>
+        <Button
+            android:id="@+id/imageSwitchButton3"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:backgroundTint="#9E9E9E"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_marginStart="@dimen/quarter_margin"/>
 
-    <Button
-        android:id="@+id/imageSwitchButton4"
-        android:layout_width="30dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#9E9E9E"
-        android:translationX="60dp"
-        app:layout_constraintEnd_toEndOf="@+id/gameImageSwitcher"
-        app:layout_constraintStart_toStartOf="@+id/gameImageSwitcher"
-        app:layout_constraintTop_toBottomOf="@+id/gameImageSwitcher">
-    </Button>
+        <Button
+            android:id="@+id/imageSwitchButton4"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:backgroundTint="#9E9E9E"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_marginStart="@dimen/half_margin"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/detailsText"
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
-        app:layout_constraintEnd_toEndOf="@+id/gameImageSwitcher"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/gameImageSwitcher"
-        app:layout_constraintTop_toBottomOf="@+id/gameImageSwitcher" />
+        android:layout_marginTop="@dimen/full_margin"
+        android:text="@string/details_text_placeholder"
+    />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
