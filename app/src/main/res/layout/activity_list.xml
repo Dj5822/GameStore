@@ -9,7 +9,7 @@
     android:background="@color/dark_blue_background">
 
   <ProgressBar
-      android:id="@+id/load_progressbar_action"
+      android:id="@+id/load_progressbar"
       android:layout_width="60dp"
       android:layout_height="60dp"
       android:layout_gravity="center"
@@ -17,26 +17,27 @@
       />
 
   <LinearLayout
-      android:id="@+id/action_layout"
+      android:id="@+id/list_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_margin="10dp"
       android:orientation="vertical"
-      android:visibility="gone">
+      android:visibility="gone"
+      >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
       <ImageView
-          android:id="@+id/header_image_action"
+          android:id="@+id/header_image"
           android:layout_width="480dp"
           android:layout_height="270dp"
           android:layout_centerHorizontal="true"
           android:src="@drawable/action" />
 
       <TextView
-          android:id="@+id/prev_image_icon_action"
+          android:id="@+id/prev_image_icon"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:padding="10dp"
@@ -44,12 +45,12 @@
           android:textColor="@color/white"
           android:background="@color/darker_blue_transparent"
           android:textSize="38dp"
-          android:layout_alignBaseline="@id/header_image_action"
+          android:layout_alignBaseline="@id/header_image"
           android:layout_centerVertical="true"
-          android:layout_alignLeft="@id/header_image_action" />
+          android:layout_alignLeft="@id/header_image" />
 
       <TextView
-          android:id="@+id/next_image_icon_action"
+          android:id="@+id/next_image_icon"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:padding="10dp"
@@ -57,17 +58,18 @@
           android:textColor="@color/white"
           android:background="@color/darker_blue_transparent"
           android:textSize="38dp"
-          android:layout_alignBaseline="@id/header_image_action"
+          android:layout_alignBaseline="@id/header_image"
           android:layout_centerVertical="true"
-          android:layout_alignRight="@id/header_image_action" />
+          android:layout_alignRight="@id/header_image" />
 
       <TextView
+          android:id="@+id/category_title"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:text="Action"
           android:textSize="48dp"
           android:gravity="center"
-          android:layout_alignBaseline="@id/header_image_action"
+          android:layout_alignBaseline="@id/header_image"
           android:layout_centerHorizontal="true"
           android:background="@color/darker_blue_transparent"
           android:textColor="@color/white"/>
@@ -103,7 +105,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/list_view_action"
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
