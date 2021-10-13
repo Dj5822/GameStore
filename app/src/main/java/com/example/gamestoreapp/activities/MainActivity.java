@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         vh.bestsellingButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.blue_background));
         vh.mostViewedButton.setBackgroundColor(Color.TRANSPARENT);
         vh.mainProgressBar.setVisibility(View.VISIBLE);
+        vh.productListView.setVisibility(View.INVISIBLE);
         productList = QueryHandler.queryField( "amountSold", new QueryHandler.QueryListener() {
             @Override
             public void OnQueryComplete() {
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         vh.mostViewedButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.blue_background));
         productList = store.getMostViewedProducts();
         vh.mainProgressBar.setVisibility(View.VISIBLE);
+        vh.productListView.setVisibility(View.INVISIBLE);
         productList = QueryHandler.queryField("viewCount", new QueryHandler.QueryListener() {
             @Override
             public void OnQueryComplete() {
@@ -139,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         MainItemAdaptor adapter = new MainItemAdaptor(this, productList);
         vh.productListView.setAdapter(adapter);
         vh.mainProgressBar.setVisibility(View.GONE);
+        vh.productListView.setVisibility(View.VISIBLE);
     }
 
     @Override
