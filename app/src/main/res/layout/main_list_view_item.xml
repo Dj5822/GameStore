@@ -34,6 +34,7 @@
             android:gravity="center"
             android:text="@string/game_name"
             android:padding="@dimen/full_margin"
+            android:textSize="@dimen/subtitle1_font"
             />
         <TextView
             android:id="@+id/main_list_product_price"
@@ -43,6 +44,7 @@
             android:gravity="center"
             android:text="@string/price"
             android:padding="@dimen/full_margin"
+            android:textSize="@dimen/subtitle1_font"
             />
     </LinearLayout>
 
