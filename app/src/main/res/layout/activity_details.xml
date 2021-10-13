@@ -131,42 +131,12 @@
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
+            android:id="@+id/imageSwitcherButtonHolder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/half_margin"
             android:layout_gravity="center">
-            <Button
-                android:id="@+id/imageSwitchButton1"
-                android:layout_width="30dp"
-                android:layout_height="20dp"
-                android:backgroundTint="#9E9E9E"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_marginEnd="@dimen/half_margin"/>
-
-            <Button
-                android:id="@+id/imageSwitchButton2"
-                android:layout_width="30dp"
-                android:layout_height="20dp"
-                android:backgroundTint="#9E9E9E"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_marginEnd="@dimen/quarter_margin"/>
-
-            <Button
-                android:id="@+id/imageSwitchButton3"
-                android:layout_width="30dp"
-                android:layout_height="20dp"
-                android:backgroundTint="#9E9E9E"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_marginStart="@dimen/quarter_margin"/>
-
-            <Button
-                android:id="@+id/imageSwitchButton4"
-                android:layout_width="30dp"
-                android:layout_height="20dp"
-                android:backgroundTint="#9E9E9E"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_marginStart="@dimen/half_margin"/>
         </LinearLayout>
 
         <TextView

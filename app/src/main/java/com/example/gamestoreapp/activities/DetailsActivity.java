@@ -3,6 +3,8 @@ package com.example.gamestoreapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
@@ -34,7 +37,8 @@ public class DetailsActivity extends AppCompatActivity {
     private class ViewHolder{
         ImageView gameIcon;
         TextView gameName, studioName, viewCount, soldCount, detailsText;
-        Button purchaseButton, imageSwitchButton1, imageSwitchButton2, imageSwitchButton3, imageSwitchButton4;
+        Button purchaseButton;
+        LinearLayout imageSwitcherButtonHolder;
         ImageSwitcher gameImageSwitcher;
 
         public ViewHolder(){
@@ -45,11 +49,8 @@ public class DetailsActivity extends AppCompatActivity {
             soldCount = findViewById(R.id.soldCount);
             detailsText = findViewById(R.id.detailsText);
             purchaseButton = findViewById(R.id.purchaseButton);
-            imageSwitchButton1 = findViewById(R.id.imageSwitchButton1);
-            imageSwitchButton2 = findViewById(R.id.imageSwitchButton2);
-            imageSwitchButton3 = findViewById(R.id.imageSwitchButton3);
-            imageSwitchButton4 = findViewById(R.id.imageSwitchButton4);
             gameImageSwitcher = findViewById(R.id.gameImageSwitcher);
+            imageSwitcherButtonHolder = findViewById(R.id.imageSwitcherButtonHolder);
         }
     }
 
@@ -90,6 +91,22 @@ public class DetailsActivity extends AppCompatActivity {
 
         if(images.size() == 0){
             return;
+        }
+
+
+
+        //Set up width, height and padding for the buttons in dp and then converted to pixels so that it can be made on runtime.
+
+        int pixelHeight = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics()));
+        int pixelWidth = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics()));
+        int padding = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics()));
+
+        for (int i = 0; i < images.size(); i++){
+            Button button = new Button(getApplicationContext());
+            button.setMaxWidth(pixelWidth);
+            button.setMaxHeight(0);
+            button.setPadding(padding, 0, padding, 0);
+            vh.imageSwitcherButtonHolder.addView(button);
         }
 
         //Set up the factory to switch images in the image switcher
