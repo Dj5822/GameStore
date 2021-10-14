@@ -1,6 +1,7 @@
 package com.example.gamestoreapp.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gamestoreapp.R;
@@ -30,6 +32,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -136,5 +139,21 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
         vh.categoryImageView.setImageResource(image);
 
         currentImage = i;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        List<Product> copy = new ArrayList<>(productList);
+        for (int i = 0; i < productList.size(); i++) {
+            Product product = productList.get(i);
+            if ((int)product.getID() == requestCode) {
+                copy.remove(i);
+                copy.add(i, data.getParcelableExtra("Product"));
+                break;
+            }
+        }
+        productList = copy;
+        propagateAdapter();
     }
 }

@@ -2,6 +2,8 @@ package com.example.gamestoreapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -187,5 +189,13 @@ public class DetailsActivity extends AppCompatActivity {
             vh.gameImageSwitcher.setImageResource(getApplicationContext().getResources().getIdentifier(images.get(imageCounter),"drawable", "com.example.gamestoreapp"));
             return true;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("Product", gameProduct);
+        setResult(Activity.RESULT_OK, returnIntent);
+        super.onBackPressed();
     }
 }
