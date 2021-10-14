@@ -176,8 +176,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             @Override
             public void onItemClick(View view, int position) {
                 Intent detailsOpenIntent = new Intent(view.getContext(), DetailsActivity.class);
-                detailsOpenIntent.putExtra("Product", searchList.get(position));
-                view.getContext().startActivity(detailsOpenIntent);
+                Product product = searchList.get(position);
+                detailsOpenIntent.putExtra("Product", product);
+                startActivityForResult(detailsOpenIntent, (int) product.getID() );
             }
         });
         vh.searchListView.setAdapter(adapter);

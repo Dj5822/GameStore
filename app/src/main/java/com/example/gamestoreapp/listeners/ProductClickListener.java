@@ -24,7 +24,8 @@ public class ProductClickListener implements View.OnClickListener {
     public void onClick(View view) {
         Intent detailsOpenIntent = new Intent(view.getContext(), DetailsActivity.class);
         detailsOpenIntent.putExtra("Product", product);
-        unwrap(view.getContext()).startActivityForResult(detailsOpenIntent, (int) product.getID());
+        AppCompatActivity activity = unwrap(view.getContext());
+        activity.startActivityForResult(detailsOpenIntent, (int) product.getID());
     }
 
     private static AppCompatActivity unwrap(Context context) {
