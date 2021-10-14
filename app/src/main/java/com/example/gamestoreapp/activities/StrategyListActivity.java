@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.interfaces.ListActivity;
 
-public class StrategyListActivity extends AppCompatActivity implements ListActivity {
+public class StrategyListActivity extends CategoryListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,20 +27,12 @@ public class StrategyListActivity extends AppCompatActivity implements ListActiv
 
         TextView title = findViewById(R.id.category_title);
         title.setText(R.string.strategy);
-    }
 
-    @Override
-    public void loadCategory() {
+        vh = new ViewHolder(listView, progressBar, actionLayout,
+                categoryImageView, nextImageIcon, prevImageIcon);
 
-    }
+        categoryName = "strategy";
 
-    @Override
-    public void goToNextCategory() {
-
-    }
-
-    @Override
-    public void goToPreviousCategory() {
-
+        loadCategory();
     }
 }
