@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Game implements Item {
 
-    private long id;
     private String name;
     private String description;
     private List<String> imageNames;
@@ -28,8 +27,7 @@ public class Game implements Item {
         }
     };
 
-    public Game(long id, String name, String description, List<String> imageNames, String iconImageName, String studioName){
-        this.id = id;
+    public Game(String name, String description, List<String> imageNames, String iconImageName, String studioName){
         this.name = name;
         this.description = description.replace("\\n",System.lineSeparator());
         this.imageNames = imageNames;
@@ -38,7 +36,6 @@ public class Game implements Item {
     }
 
     public Game(Parcel parcel) {
-        this.id = parcel.readLong();
         this.name = parcel.readString();
         this.description = parcel.readString();
         this.imageNames = parcel.createStringArrayList();
@@ -78,7 +75,6 @@ public class Game implements Item {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeLong(id);
         parcel.writeString(name);
         parcel.writeString(description);
         parcel.writeStringList(imageNames);

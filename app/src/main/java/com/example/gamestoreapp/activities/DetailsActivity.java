@@ -69,6 +69,9 @@ public class DetailsActivity extends AppCompatActivity {
 
         gameProduct = getIntent().getParcelableExtra("Product");
 
+        // Increment viewCount of gameProduct
+        gameProduct.view();
+
         //Set up a view holder, containing references to all of the views in the activity
         vh = new ViewHolder();
 
@@ -80,6 +83,15 @@ public class DetailsActivity extends AppCompatActivity {
         vh.soldCount.setText(String.valueOf(gameProduct.getAmountSold()));
         vh.viewCount.setText(String.valueOf(gameProduct.getViewCount()));
         //may end up rounding these and then converting to "200k +" format
+
+        // Buy game when purchase button is clicked
+        vh.purchaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameProduct.buy();
+                vh.soldCount.setText(String.valueOf(gameProduct.getAmountSold()));
+            }
+        });
 
         //Get the Image resource from the product and set it for the game icon view
         vh.gameIcon.setImageResource(this.getResources().getIdentifier(gameProduct.getItem().getIconImageName(),"drawable", "com.example.gamestoreapp"));

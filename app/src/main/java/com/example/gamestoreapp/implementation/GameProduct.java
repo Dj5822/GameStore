@@ -2,17 +2,20 @@ package com.example.gamestoreapp.implementation;
 
 import android.os.Parcel;
 
+import com.example.gamestoreapp.data.QueryHandler;
 import com.example.gamestoreapp.interfaces.Item;
 import com.example.gamestoreapp.interfaces.Product;
 
 public class GameProduct implements Product {
 
+    private long id;
     private Item item;
     private int cost;
     private int amountSold;
     private int viewCount;
 
-    public GameProduct(Item item, int cost, int amountSold, int viewCount){
+    public GameProduct(long id, Item item, int cost, int amountSold, int viewCount){
+        this.id = id;
         this.item = item;
         this.cost = cost;
         this.amountSold = amountSold;
@@ -20,6 +23,7 @@ public class GameProduct implements Product {
     }
 
     protected GameProduct(Parcel parcel) {
+        id = parcel.readLong();
         item = Game.CREATOR.createFromParcel(parcel);
         cost = parcel.readInt();
         amountSold = parcel.readInt();
@@ -59,6 +63,11 @@ public class GameProduct implements Product {
     }
 
     @Override
+    public long getID() {
+        return id;
+    }
+
+    @Override
     public void setViewCount(int viewCount) {
         //todo: need to update database here with new view count
         this.viewCount = viewCount;
@@ -90,10 +99,21 @@ public class GameProduct implements Product {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(id);
         Game game = (Game) item;
         game.writeToParcel(parcel, i);
         parcel.writeInt(cost);
         parcel.writeInt(amountSold);
         parcel.writeInt(viewCount);
+    }
+
+    @Override
+    public void view() {
+        viewCount++;
+    }
+
+    @Override
+    public void buy() {
+        amountSold++;
     }
 }

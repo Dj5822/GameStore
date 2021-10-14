@@ -6,6 +6,8 @@ public interface Product extends Parcelable{
 
     public int getCost();
 
+    public long getID();
+
     public int getAmountSold();
 
     public int getViewCount();
@@ -15,5 +17,9 @@ public interface Product extends Parcelable{
     public void setViewCount(int viewCount);
 
     public String getCostAsString();
+
+    public void buy();
+
+    public void view();
 
 }

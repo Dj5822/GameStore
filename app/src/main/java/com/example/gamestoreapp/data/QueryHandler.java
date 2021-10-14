@@ -213,13 +213,15 @@ public class QueryHandler {
     public static Product createProductFromSnapshots(DocumentSnapshot itemSnapshot, DocumentSnapshot productSnapshot) {
         String id = productSnapshot.get("id", String.class);
 
-        Item item = new Game(Integer.parseInt(id),
+        Item item = new Game(
                 itemSnapshot.getString("name"),
                 itemSnapshot.get("description", String.class),
                 (List<String>) itemSnapshot.get("imageNames"),
                 itemSnapshot.get("iconImageName", String.class),
                 itemSnapshot.get("studioName", String.class));
-        Product product = new GameProduct(item,
+        Product product = new GameProduct(
+                Integer.parseInt(id),
+                item,
                 productSnapshot.get("price", int.class),
                 productSnapshot.get("amountSold", int.class),
                 productSnapshot.get("viewCount", int.class));

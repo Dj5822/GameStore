@@ -123,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private void mostViewedProductsSelected() {
         vh.bestsellingButton.setBackgroundColor(Color.TRANSPARENT);
         vh.mostViewedButton.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.blue_background));
-        productList = store.getMostViewedProducts();
         vh.mainProgressBar.setVisibility(View.VISIBLE);
         vh.productListView.setVisibility(View.INVISIBLE);
         productList = QueryHandler.queryField("viewCount", new QueryHandler.QueryListener() {
