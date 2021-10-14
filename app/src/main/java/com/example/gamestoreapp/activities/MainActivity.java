@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.SearchView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
@@ -162,19 +163,20 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             @Override
             public void OnQueryComplete() {
                 vh.searchProgressBar.setVisibility(View.GONE);
-                propagateSearchAdapter(new ArrayList<Product>(searchResultList));
+                propagateSearchAdapter();
             }
         });
         return true;
     }
 
-    private void propagateSearchAdapter(ArrayList<Product> productList) {
-        MainItemAdaptor adapter = new MainItemAdaptor(this, productList);
+    private void propagateSearchAdapter() {
+        List<Product> searchList = new ArrayList<>(searchResultList);
+        MainItemAdaptor adapter = new MainItemAdaptor(this, searchList);
         adapter.setClickListener(new MainItemAdaptor.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Intent detailsOpenIntent = new Intent(view.getContext(), DetailsActivity.class);
-                detailsOpenIntent.putExtra("Product", productList.get(position));
+                detailsOpenIntent.putExtra("Product", searchList.get(position));
                 view.getContext().startActivity(detailsOpenIntent);
             }
         });
@@ -192,5 +194,33 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        List<Product> copy = new ArrayList<>(productList);
+        for (int i = 0; i < productList.size(); i++) {
+            Product product = productList.get(i);
+            if ((int)product.getID() == requestCode) {
+                copy.remove(i);
+                copy.add(i, data.getParcelableExtra("Product"));
+                break;
+            }
+        }
+        productList = copy;
+        propagateAdapter();
+
+        copy = new ArrayList<>(searchResultList);
+        for (int i = 0; i < searchResultList.size(); i++) {
+            Product product = searchResultList.get(i);
+            if ((int)product.getID() == requestCode) {
+                copy.remove(i);
+                copy.add(i, data.getParcelableExtra("Product"));
+                break;
+            }
+        }
+        searchResultList = copy;
+        propagateSearchAdapter();
     }
 }

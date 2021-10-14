@@ -11,6 +11,7 @@ import com.example.gamestoreapp.interfaces.Item;
 import com.example.gamestoreapp.interfaces.Product;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -174,6 +175,17 @@ public class QueryHandler {
                             }
                     );
         }
+    }
+
+    /**
+     * Update viewCount and amountSold on db for the given product
+     * @param product product whose fields will be updated
+     */
+    public static void updateSalesData(GameProduct product) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference reference = db.collection("GameProducts").document(String.valueOf(product.getID()));
+        reference.update("viewCount", product.getViewCount());
+        reference.update("amountSold", product.getAmountSold());
     }
 
     /**

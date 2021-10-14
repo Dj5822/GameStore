@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import com.example.gamestoreapp.R;
+import com.example.gamestoreapp.data.QueryHandler;
 import com.example.gamestoreapp.implementation.Game;
 import com.example.gamestoreapp.implementation.GameProduct;
 
@@ -196,6 +197,7 @@ public class DetailsActivity extends AppCompatActivity {
         Intent returnIntent = new Intent();
         returnIntent.putExtra("Product", gameProduct);
         setResult(Activity.RESULT_OK, returnIntent);
+        QueryHandler.updateSalesData(gameProduct);
         super.onBackPressed();
     }
 }
