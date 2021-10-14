@@ -200,12 +200,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Product callBackProduct = data.getParcelableExtra("Product");
         List<Product> copy = new ArrayList<>(productList);
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);
-            if ((int)product.getID() == requestCode) {
+            if ((int)product.getID() == callBackProduct.getID()) {
                 copy.remove(i);
-                copy.add(i, data.getParcelableExtra("Product"));
+                copy.add(i, callBackProduct);
                 break;
             }
         }
@@ -215,9 +216,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         copy = new ArrayList<>(searchResultList);
         for (int i = 0; i < searchResultList.size(); i++) {
             Product product = searchResultList.get(i);
-            if ((int)product.getID() == requestCode) {
+            if ((int)product.getID() == callBackProduct.getID()) {
                 copy.remove(i);
-                copy.add(i, data.getParcelableExtra("Product"));
+                copy.add(i, callBackProduct);
                 break;
             }
         }

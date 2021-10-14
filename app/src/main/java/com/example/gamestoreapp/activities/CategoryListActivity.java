@@ -143,13 +143,14 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        Product callBackProduct = data.getParcelableExtra("Product");
         super.onActivityResult(requestCode, resultCode, data);
         List<Product> copy = new ArrayList<>(productList);
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);
-            if ((int)product.getID() == requestCode) {
+            if ((int)product.getID() == callBackProduct.getID()) {
                 copy.remove(i);
-                copy.add(i, data.getParcelableExtra("Product"));
+                copy.add(i, callBackProduct);
                 break;
             }
         }
