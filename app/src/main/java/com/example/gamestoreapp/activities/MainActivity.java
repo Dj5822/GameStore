@@ -139,6 +139,15 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
      */
     private void propagateAdapter() {
         MainItemAdaptor adapter = new MainItemAdaptor(this, productList);
+        adapter.setClickListener(new MainItemAdaptor.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent detailsOpenIntent = new Intent(view.getContext(), DetailsActivity.class);
+                Product product = productList.get(position);
+                detailsOpenIntent.putExtra("Product", product);
+                startActivityForResult(detailsOpenIntent, 1 );
+            }
+        });
         vh.productListView.setAdapter(adapter);
         vh.mainProgressBar.setVisibility(View.GONE);
         vh.productListView.setVisibility(View.VISIBLE);
@@ -178,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 Intent detailsOpenIntent = new Intent(view.getContext(), DetailsActivity.class);
                 Product product = searchList.get(position);
                 detailsOpenIntent.putExtra("Product", product);
-                startActivityForResult(detailsOpenIntent, (int) product.getID() );
+                startActivityForResult(detailsOpenIntent, 2);
             }
         });
         vh.searchListView.setAdapter(adapter);
@@ -201,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Product callBackProduct = data.getParcelableExtra("Product");
+
         List<Product> copy = new ArrayList<>(productList);
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);
@@ -213,6 +223,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         productList = copy;
         propagateAdapter();
 
+        if (searchResultList == null) {
+            return;
+        }
+
         copy = new ArrayList<>(searchResultList);
         for (int i = 0; i < searchResultList.size(); i++) {
             Product product = searchResultList.get(i);
@@ -224,5 +238,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         }
         searchResultList = copy;
         propagateSearchAdapter();
+
+        if (requestCode == 1) {
+            vh.searchLayout.setVisibility(View.GONE);
+            vh.mainScrollView.setVisibility(View.VISIBLE);
+            vh.mainScrollView.scrollTo(0,0);
+        }
     }
 }
