@@ -2,8 +2,16 @@ package com.example.gamestoreapp.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -43,6 +51,7 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
     protected List<String> imageNames;
     private int currentImage;
     private List<Product> productList;
+    private GestureDetector gestureDetector;
 
     private int expectedProductCount;
 
@@ -53,15 +62,18 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
         ImageView categoryImageView;
         TextView nextImageIcon;
         TextView prevImageIcon;
+        List<Button> imageButtons = new ArrayList<Button>();
+        LinearLayout imageButtonHolder;
 
         public ViewHolder(ListView listView, ProgressBar progressBar, LinearLayout layout,
-                          ImageView categoryImageView, TextView nextImageIcon, TextView prevImageIcon) {
+                          ImageView categoryImageView, TextView nextImageIcon, TextView prevImageIcon, LinearLayout imageButtonHolder) {
             this.listView = listView;
             this.progressBar = progressBar;
             this.layout = layout;
             this.categoryImageView = categoryImageView;
             this.nextImageIcon = nextImageIcon;
             this.prevImageIcon = prevImageIcon;
+            this.imageButtonHolder = imageButtonHolder;
         }
     }
 
@@ -73,7 +85,9 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
             public void OnQueryComplete() {
                 if (!imageNames.isEmpty()) {
                     setCategoryImage(0);
+                    setupImageSwitchButtons();
                 }
+
             }
         });
 
@@ -98,6 +112,41 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
             }
         });
 
+
+
+    }
+
+    private void setupImageSwitchButtons() {
+        //Set up the detection for swipes, triggered when the image switcher receives a on touch event
+        gestureDetector = new GestureDetector(this, new CategoryListActivity.SwitcherGestureDetector());
+        vh.categoryImageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return gestureDetector.onTouchEvent(motionEvent);
+            }
+        });
+
+        //Set up width, height and padding for the buttons in dp and then converted to pixels so that it can be made on runtime.
+        int pixelHeight = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics()));
+        int pixelWidth = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics()));
+
+        for(int i = 0; i < imageNames.size(); i++){
+            Button button = new Button(getApplicationContext());
+            vh.imageButtonHolder.addView(button);
+            button.getLayoutParams().height=pixelHeight;
+            button.getLayoutParams().width=pixelWidth;
+            button.setId(i);
+            vh.imageButtons.add(button);
+
+            button.getBackground().setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int newImage = Math.abs(view.getId());
+                    setCategoryImage(newImage);
+                }
+            });
+        }
     }
 
     @Override
@@ -156,5 +205,38 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
         }
         productList = copy;
         propagateAdapter();
+    }
+
+    /**
+     * An internal class extending SimpleOnGestureListener, used to provide the logic for
+     * checking whether a specific onTouch event is considered a swipe in a horizontal direction
+     */
+    class SwitcherGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        //Needs to be true in order to show that the onDown event is being managed by this detector
+        @Override
+        public boolean onDown(MotionEvent motionEvent){
+            return true;
+        }
+
+        //Called when a fling event occurs, checks what direction it is in and switches the image accordingly
+        @Override
+        public boolean onFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY){
+            //If the movement was more horizontal than vertical, do not change the image.
+            if (Math.abs(velocityY) > Math.abs(velocityX)){
+                return false;
+            }
+            int newImage;
+            //If movement was to the left, switch to the next image, if this was the last image, go to the first instead
+            if (velocityX < 0){
+                newImage = currentImage + 1;
+            }
+            //Otherwise, switch to the previous image, if this was the first image, go to the last instead
+            else {
+                newImage = currentImage -1;
+            }
+            //Sets the new image according to the change in imageCounter decided above
+            setCategoryImage(newImage);
+            return true;
+        }
     }
 }

@@ -24,12 +24,13 @@ public class SimulationListActivity extends CategoryListActivity {
         ImageView categoryImageView = findViewById(R.id.header_image);
         TextView nextImageIcon = findViewById(R.id.next_image_icon);
         TextView prevImageIcon = findViewById(R.id.prev_image_icon);
+        LinearLayout imageSwitcherButtonHolder = findViewById(R.id.imageButtonHolder);
 
         TextView title = findViewById(R.id.category_title);
         title.setText(R.string.simulation);
 
         vh = new ViewHolder(listView, progressBar, actionLayout,
-                categoryImageView, nextImageIcon, prevImageIcon);
+                categoryImageView, nextImageIcon, prevImageIcon, imageSwitcherButtonHolder);
 
         categoryName = "simulation";
 
