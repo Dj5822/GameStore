@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -43,6 +45,7 @@ public class DetailsActivity extends AppCompatActivity {
         Button purchaseButton;
         LinearLayout imageSwitcherButtonHolder;
         ImageSwitcher gameImageSwitcher;
+        List<Button> imageButtons = new ArrayList<Button>();
 
         public ViewHolder(){
             gameIcon = findViewById(R.id.gameIcon);
@@ -139,15 +142,18 @@ public class DetailsActivity extends AppCompatActivity {
             button.getLayoutParams().height=pixelHeight;
             button.getLayoutParams().width=pixelWidth;
             button.setId(i);
+            vh.imageButtons.add(button);
+            button.getBackground().setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    vh.gameImageSwitcher.setImageResource(getApplicationContext().getResources().getIdentifier(images.get(view.getId()), "drawable", "com.example.gamestoreapp"));
-                    imageCounter = view.getId();
+                    int newImage = Math.abs(view.getId());
+                    changeImage(newImage);
                 }
             });
 
         }
+        vh.imageButtons.get(imageCounter).getBackground().setColorFilter(Color.parseColor("#EEEEEE"), PorterDuff.Mode.MULTIPLY);
     }
 
     /**
@@ -168,28 +174,56 @@ public class DetailsActivity extends AppCompatActivity {
             if (Math.abs(velocityY) > Math.abs(velocityX)){
                 return false;
             }
+            int newImage;
             //If movement was to the left, switch to the next image, if this was the last image, go to the first instead
             if (velocityX < 0){
-                imageCounter ++;
-                if(imageCounter >= images.size()){
-                    imageCounter = 0;
-                }
-                vh.gameImageSwitcher.setInAnimation(getApplicationContext(), R.anim.slide_in_right);
-                vh.gameImageSwitcher.setOutAnimation(getApplicationContext(), R.anim.slide_out_left);
+                newImage = imageCounter + 1;
             }
             //Otherwise, switch to the previous image, if this was the first image, go to the last instead
             else {
-                imageCounter --;
-                if (imageCounter < 0){
-                    imageCounter = images.size() - 1;
-                }
-                vh.gameImageSwitcher.setInAnimation(getApplicationContext(), R.anim.slide_in_left);
-                vh.gameImageSwitcher.setOutAnimation(getApplicationContext(), R.anim.slide_out_right);
+                newImage = imageCounter -1;
             }
             //Sets the new image according to the change in imageCounter decided above
-            vh.gameImageSwitcher.setImageResource(getApplicationContext().getResources().getIdentifier(images.get(imageCounter),"drawable", "com.example.gamestoreapp"));
+            changeImage(newImage);
             return true;
         }
+    }
+
+    /**
+     * Change the image on display, and play a smooth animation.
+     * @param newImageIndex id of new image to display
+     * @return true if image was changed
+     */
+    private boolean changeImage(int newImageIndex) {
+
+        // Enforce wrapping on image display
+        if(newImageIndex >= images.size()){
+            newImageIndex = 0;
+            vh.gameImageSwitcher.setInAnimation(getApplicationContext(), R.anim.slide_in_right);
+            vh.gameImageSwitcher.setOutAnimation(getApplicationContext(), R.anim.slide_out_left);
+        } else if (newImageIndex < 0){
+            newImageIndex = images.size() - 1;
+            vh.gameImageSwitcher.setInAnimation(getApplicationContext(), R.anim.slide_in_left);
+            vh.gameImageSwitcher.setOutAnimation(getApplicationContext(), R.anim.slide_out_right);
+        } else
+        // check if image is already on display
+        if (newImageIndex == imageCounter) {
+            return false;
+        // otherwise play animation and change image
+        } else if (imageCounter < newImageIndex) {
+            vh.gameImageSwitcher.setInAnimation(getApplicationContext(), R.anim.slide_in_right);
+            vh.gameImageSwitcher.setOutAnimation(getApplicationContext(), R.anim.slide_out_left);
+        } else {
+            vh.gameImageSwitcher.setInAnimation(getApplicationContext(), R.anim.slide_in_left);
+            vh.gameImageSwitcher.setOutAnimation(getApplicationContext(), R.anim.slide_out_right);
+        }
+        vh.imageButtons.get(newImageIndex).getBackground().setColorFilter(Color.parseColor("#EEEEEE"), PorterDuff.Mode.MULTIPLY);
+        vh.imageButtons.get(imageCounter).getBackground().setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY);
+        imageCounter = newImageIndex;
+        vh.gameImageSwitcher.setImageResource(getApplicationContext().
+                getResources().getIdentifier(images.get(imageCounter),
+                "drawable", "com.example.gamestoreapp"));
+        return true;
     }
 
     @Override
