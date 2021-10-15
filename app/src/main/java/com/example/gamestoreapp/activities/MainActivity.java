@@ -244,5 +244,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             vh.mainScrollView.setVisibility(View.VISIBLE);
             vh.mainScrollView.scrollTo(0,0);
         }
+        vh.mainScrollView.requestFocus();
     }
 }
