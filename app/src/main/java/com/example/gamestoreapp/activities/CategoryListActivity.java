@@ -106,7 +106,7 @@ public abstract class CategoryListActivity  extends ImageSwitcherActivity implem
         }
 
         ProductAdaptor itemsAdapter = new ProductAdaptor(this, R.layout.game_list_view_item,
-                productList);
+                productList, categoryName);
         vh.listView.setAdapter(itemsAdapter);
         vh.listView.setVisibility(View.VISIBLE);
     }

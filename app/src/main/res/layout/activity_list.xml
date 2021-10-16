@@ -89,9 +89,9 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/full_margin"
+        android:paddingTop="4dp"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10sp"
+        android:dividerHeight="4sp"
         android:visibility="gone"
         />
 

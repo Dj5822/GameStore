@@ -1,15 +1,21 @@
 package com.example.gamestoreapp.adaptors;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.interfaces.Item;
@@ -23,8 +29,10 @@ public class ProductAdaptor extends ArrayAdapter {
     private class ViewHolder {
         TextView productNameView, productPriceView;
         ImageView productIconView;
+        CardView listItemView;
 
         public ViewHolder(View currentListViewItem) {
+            listItemView = currentListViewItem.findViewById(R.id.list_view_item);
             productIconView = currentListViewItem.findViewById(R.id.product_icon_view);
             productNameView = currentListViewItem.findViewById(R.id.product_title_view);
             productPriceView = currentListViewItem.findViewById(R.id.product_price_view);
@@ -34,12 +42,15 @@ public class ProductAdaptor extends ArrayAdapter {
     private int layoutId;
     private List<Product> productList;
     private Context context;
+    String categoryName;
 
-    public ProductAdaptor(@NonNull Context context, int resource, @NonNull List objects) {
+
+    public ProductAdaptor(@NonNull Context context, int resource, @NonNull List objects, String categoryName) {
         super(context, resource, objects);
         layoutId = resource;
         this.context = context;
         productList = objects;
+        this.categoryName = categoryName;
     }
 
     @NonNull
@@ -77,6 +88,27 @@ public class ProductAdaptor extends ArrayAdapter {
 
         // Set OnClick Listener
         currentListViewItem.setOnClickListener(new ProductClickListener(currentProduct));
+
+        Drawable background = vh.listItemView.getBackground();
+        background.setAlpha(80);
+        switch (categoryName) {
+            case "action":
+                background.setColorFilter(currentListViewItem.getResources()
+                        .getColor(R.color.dark_red), PorterDuff.Mode.MULTIPLY);
+                break;
+            case "casual":
+                background.setColorFilter(currentListViewItem.getResources()
+                        .getColor(R.color.orange), PorterDuff.Mode.MULTIPLY);
+                break;
+            case "simulation":
+                background.setColorFilter(currentListViewItem.getResources()
+                        .getColor(R.color.deep_blue), PorterDuff.Mode.MULTIPLY);
+                break;
+            case "strategy":
+                background.setColorFilter(currentListViewItem.getResources()
+                        .getColor(R.color.green), PorterDuff.Mode.MULTIPLY);
+                break;
+        }
 
         return currentListViewItem;
     }
