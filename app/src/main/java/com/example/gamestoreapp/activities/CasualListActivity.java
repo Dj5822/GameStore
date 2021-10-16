@@ -19,15 +19,11 @@ public class CasualListActivity extends CategoryListActivity {
         ProgressBar progressBar = findViewById(R.id.load_progressbar);
         ListView listView = findViewById(R.id.list_view);
         LinearLayout actionLayout = findViewById(R.id.list_layout);
-        ImageView categoryImageView = findViewById(R.id.header_image);
-        TextView nextImageIcon = findViewById(R.id.next_image_icon);
-        TextView prevImageIcon = findViewById(R.id.prev_image_icon);
 
         TextView title = findViewById(R.id.category_title);
         title.setText(R.string.casual);
 
-        vh = new ViewHolder(listView, progressBar, actionLayout,
-                categoryImageView, nextImageIcon, prevImageIcon);
+        vh = new ViewHolder(listView, progressBar, actionLayout);
 
         categoryName = "casual";
 

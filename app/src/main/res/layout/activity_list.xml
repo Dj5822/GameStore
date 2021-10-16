@@ -19,40 +19,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-      <ImageView
-          android:id="@+id/header_image"
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/activity_image_height"
-          android:layout_centerHorizontal="true"
-          android:scaleType="centerCrop"
-          android:src="@drawable/action"
-          android:contentDescription="@string/category_image"/>
-
-      <TextView
-          android:id="@+id/prev_image_icon"
+      <ImageSwitcher
+          android:id="@+id/categoryImageSwitcher"
           android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:padding="10dp"
-          android:text="@string/less_than"
-          android:textColor="@color/white"
-          android:background="@color/darker_blue_transparent"
-          android:textSize="@dimen/arrow_size"
-          android:layout_alignBaseline="@id/header_image"
-          android:layout_centerVertical="true"
-          android:layout_alignStart="@id/header_image" />
-
-      <TextView
-          android:id="@+id/next_image_icon"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:padding="10dp"
-          android:text="@string/greater_than"
-          android:textColor="@color/white"
-          android:background="@color/darker_blue_transparent"
-          android:textSize="@dimen/arrow_size"
-          android:layout_alignBaseline="@id/header_image"
-          android:layout_centerVertical="true"
-          android:layout_alignEnd="@id/header_image" />
+          android:layout_height="208dp"
+          android:background="@color/white"/>
 
       <TextView
           android:id="@+id/category_title"
@@ -61,7 +32,7 @@
           android:text="@string/action"
           android:textSize="@dimen/h3_font"
           android:gravity="center"
-          android:layout_alignBaseline="@id/header_image"
+          android:layout_alignBaseline="@id/categoryImageSwitcher"
           android:layout_centerHorizontal="true"
           android:background="@color/darker_blue_transparent"
           android:textColor="@color/white"/>
@@ -69,44 +40,15 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/categoryImageSwitcherButtonHolder"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:gravity="center"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/half_margin"
-        android:layout_marginBottom="@dimen/half_margin"
         android:layout_gravity="center">
-      <Button
-          android:id="@+id/imageSwitchButton1"
-          android:layout_width="30dp"
-          android:layout_height="20dp"
-          android:backgroundTint="#9E9E9E"
-          style="?android:attr/buttonBarButtonStyle"
-          android:layout_marginEnd="@dimen/half_margin"/>
-
-      <Button
-          android:id="@+id/imageSwitchButton2"
-          android:layout_width="30dp"
-          android:layout_height="20dp"
-          android:backgroundTint="#9E9E9E"
-          style="?android:attr/buttonBarButtonStyle"
-          android:layout_marginEnd="@dimen/quarter_margin"/>
-
-      <Button
-          android:id="@+id/imageSwitchButton3"
-          android:layout_width="30dp"
-          android:layout_height="20dp"
-          android:backgroundTint="#9E9E9E"
-          style="?android:attr/buttonBarButtonStyle"
-          android:layout_marginStart="@dimen/quarter_margin"/>
-
-      <Button
-          android:id="@+id/imageSwitchButton4"
-          android:layout_width="30dp"
-          android:layout_height="20dp"
-          android:backgroundTint="#9E9E9E"
-          style="?android:attr/buttonBarButtonStyle"
-          android:layout_marginStart="@dimen/half_margin"/>
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
