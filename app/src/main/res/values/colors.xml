@@ -17,4 +17,8 @@
     <color name="dark_red">#C62828</color>
     <color name="orange">#FFB300</color>
     <color name="orange_dark">#FFA000</color>
+    <color name="deep_blue">#03A9F4</color>
+    <color name="deep_darker_blue">#0288D1</color>
+    <color name="green">#8BC34A</color>
+    <color name="green_dark">#689F38</color>
 </resources>

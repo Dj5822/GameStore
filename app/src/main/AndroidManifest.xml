@@ -15,11 +15,13 @@
         <activity
             android:name=".activities.SimulationListActivity"
             android:exported="true"
-            android:label="Simulation Games" />
+            android:label="Simulation Games"
+            android:theme="@style/SimulationCategoryTheme"/>
         <activity
             android:name=".activities.StrategyListActivity"
             android:exported="true"
-            android:label="Strategy Games" />
+            android:label="Strategy Games"
+            android:theme="@style/StrategyCategoryTheme"/>
         <activity
             android:name=".activities.CasualListActivity"
             android:exported="true"
