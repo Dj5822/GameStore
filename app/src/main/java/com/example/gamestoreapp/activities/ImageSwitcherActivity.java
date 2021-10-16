@@ -76,6 +76,11 @@ public abstract class ImageSwitcherActivity extends AppCompatActivity {
     }
 
     protected void initialiseButtons() {
+
+        if (imageNames.size() <= 0) {
+            return;
+        }
+
         //Set up the factory to switch images in the image switcher
         imageViewHolder.imageSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
