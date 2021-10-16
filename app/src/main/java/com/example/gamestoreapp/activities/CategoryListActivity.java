@@ -2,8 +2,14 @@ package com.example.gamestoreapp.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -11,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,43 +43,36 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class CategoryListActivity  extends AppCompatActivity implements ListActivity {
+public abstract class CategoryListActivity  extends ImageSwitcherActivity implements ListActivity {
 
     protected String categoryName;
     protected ViewHolder vh;
-    protected List<String> imageNames;
-    private int currentImage;
     private List<Product> productList;
-
-    private int expectedProductCount;
 
     protected class ViewHolder {
         ListView listView;
         ProgressBar progressBar;
         LinearLayout layout;
-        ImageView categoryImageView;
-        TextView nextImageIcon;
-        TextView prevImageIcon;
 
-        public ViewHolder(ListView listView, ProgressBar progressBar, LinearLayout layout,
-                          ImageView categoryImageView, TextView nextImageIcon, TextView prevImageIcon) {
+        public ViewHolder(ListView listView, ProgressBar progressBar, LinearLayout layout) {
             this.listView = listView;
             this.progressBar = progressBar;
             this.layout = layout;
-            this.categoryImageView = categoryImageView;
-            this.nextImageIcon = nextImageIcon;
-            this.prevImageIcon = prevImageIcon;
         }
     }
 
     @Override
     public void loadCategory() {
+        imageViewHolder = new ImageSwitcherViewHolder(
+                findViewById(R.id.categoryImageSwitcherButtonHolder),
+                findViewById(R.id.categoryImageSwitcher)
+                );
 
         imageNames = QueryHandler.fetchCategoryImageNames(categoryName, new QueryHandler.QueryListener() {
             @Override
             public void OnQueryComplete() {
                 if (!imageNames.isEmpty()) {
-                    setCategoryImage(0);
+                    initialiseButtons();
                 }
             }
         });
@@ -81,20 +81,6 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
             @Override
             public void OnQueryComplete() {
                 propagateAdapter();
-            }
-        });
-
-        vh.nextImageIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setCategoryImage(currentImage + 1);
-            }
-        });
-
-        vh.prevImageIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setCategoryImage(currentImage - 1);
             }
         });
 
@@ -123,22 +109,6 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
                 productList);
         vh.listView.setAdapter(itemsAdapter);
         vh.listView.setVisibility(View.VISIBLE);
-    }
-
-    private void setCategoryImage(int i) {
-        if (imageNames.size() == 0) {
-            return;
-        } else if (i >= imageNames.size()) {
-            i = 0;
-        } else if (i < 0) {
-            i = imageNames.size()-1;
-        }
-        int image = getBaseContext().getResources().getIdentifier(
-                imageNames.get(i), "drawable",
-                getBaseContext().getPackageName());
-        vh.categoryImageView.setImageResource(image);
-
-        currentImage = i;
     }
 
     @Override
