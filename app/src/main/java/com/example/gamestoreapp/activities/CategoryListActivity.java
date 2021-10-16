@@ -2,13 +2,19 @@ package com.example.gamestoreapp.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.OrientationEventListener;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -44,21 +50,25 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import io.grpc.okhttp.internal.framed.Header;
+
 public abstract class CategoryListActivity  extends ImageSwitcherActivity implements ListActivity {
 
     protected String categoryName;
     protected ViewHolder vh;
     private List<Product> productList;
+    private OrientationEventListener orientationEventListener;
 
     protected class ViewHolder {
         ListView listView;
         ProgressBar progressBar;
-        LinearLayout layout;
+        LinearLayout layout, header;
 
-        public ViewHolder(ListView listView, ProgressBar progressBar, LinearLayout layout) {
+        public ViewHolder(ListView listView, ProgressBar progressBar, LinearLayout layout, LinearLayout header) {
             this.listView = listView;
             this.progressBar = progressBar;
             this.layout = layout;
+            this.header = header;
         }
     }
 
@@ -85,6 +95,22 @@ public abstract class CategoryListActivity  extends ImageSwitcherActivity implem
             }
         });
 
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        vh.header.setVisibility(
+                newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE
+                        ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        vh.header.setVisibility(
+                getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
+                        ? View.GONE : View.VISIBLE);
     }
 
     @Override

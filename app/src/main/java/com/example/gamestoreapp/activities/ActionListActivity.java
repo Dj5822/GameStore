@@ -20,11 +20,12 @@ public class ActionListActivity extends CategoryListActivity {
         ProgressBar progressBar = findViewById(R.id.load_progressbar);
         ListView listView = findViewById(R.id.list_view);
         LinearLayout actionLayout = findViewById(R.id.list_layout);
+        LinearLayout header = findViewById(R.id.category_header);
 
         TextView title = findViewById(R.id.category_title);
         title.setText(R.string.action);
 
-        vh = new ViewHolder(listView, progressBar, actionLayout);
+        vh = new ViewHolder(listView, progressBar, actionLayout, header);
 
         categoryName = "action";
 

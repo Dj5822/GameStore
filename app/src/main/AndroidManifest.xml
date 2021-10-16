@@ -16,22 +16,26 @@
             android:name=".activities.SimulationListActivity"
             android:exported="true"
             android:label="Simulation Games"
-            android:theme="@style/SimulationCategoryTheme"/>
+            android:theme="@style/SimulationCategoryTheme"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".activities.StrategyListActivity"
             android:exported="true"
             android:label="Strategy Games"
-            android:theme="@style/StrategyCategoryTheme"/>
+            android:theme="@style/StrategyCategoryTheme"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".activities.CasualListActivity"
             android:exported="true"
             android:label="Casual Games"
-            android:theme="@style/CasualCategoryTheme" />
+            android:theme="@style/CasualCategoryTheme"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".activities.ActionListActivity"
             android:exported="true"
             android:label="Action Games"
-            android:theme="@style/ActionCategoryTheme" />
+            android:theme="@style/ActionCategoryTheme"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".activities.SearchActivity"
             android:exported="true" />
