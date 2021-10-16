@@ -19,14 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-      <ImageView
+      <ImageSwitcher
           android:id="@+id/header_image"
           android:layout_width="match_parent"
           android:layout_height="@dimen/activity_image_height"
           android:layout_centerHorizontal="true"
+          android:contentDescription="@string/category_image"
           android:scaleType="centerCrop"
-          android:src="@drawable/action"
-          android:contentDescription="@string/category_image"/>
+          android:src="@drawable/action" />
 
       <TextView
           android:id="@+id/prev_image_icon"

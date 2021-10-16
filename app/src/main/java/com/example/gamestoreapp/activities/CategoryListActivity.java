@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -59,18 +60,18 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
         ListView listView;
         ProgressBar progressBar;
         LinearLayout layout;
-        ImageView categoryImageView;
+        ImageSwitcher categoryImageSwitcher;
         TextView nextImageIcon;
         TextView prevImageIcon;
         List<Button> imageButtons = new ArrayList<Button>();
         LinearLayout imageButtonHolder;
 
         public ViewHolder(ListView listView, ProgressBar progressBar, LinearLayout layout,
-                          ImageView categoryImageView, TextView nextImageIcon, TextView prevImageIcon, LinearLayout imageButtonHolder) {
+                          ImageSwitcher categoryImageSwitcher, TextView nextImageIcon, TextView prevImageIcon, LinearLayout imageButtonHolder) {
             this.listView = listView;
             this.progressBar = progressBar;
             this.layout = layout;
-            this.categoryImageView = categoryImageView;
+            this.categoryImageSwitcher = categoryImageSwitcher;
             this.nextImageIcon = nextImageIcon;
             this.prevImageIcon = prevImageIcon;
             this.imageButtonHolder = imageButtonHolder;
@@ -117,9 +118,20 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
     }
 
     private void setupImageSwitchButtons() {
+
+        vh.categoryImageSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+                return new ImageView(getApplicationContext());
+            }
+        });
+
+        vh.categoryImageSwitcher.setImageResource(getBaseContext().getResources().getIdentifier(imageNames.get(0),"drawable", "com.example.gamestoreapp"));
+        currentImage = 0;
+
         //Set up the detection for swipes, triggered when the image switcher receives a on touch event
         gestureDetector = new GestureDetector(this, new CategoryListActivity.SwitcherGestureDetector());
-        vh.categoryImageView.setOnTouchListener(new View.OnTouchListener() {
+        vh.categoryImageSwitcher.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 return gestureDetector.onTouchEvent(motionEvent);
@@ -174,7 +186,8 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
         vh.listView.setVisibility(View.VISIBLE);
     }
 
-    private void setCategoryImage(int i) {
+    private boolean setCategoryImage(int newImageIndex) {
+        /**
         if (imageNames.size() == 0) {
             return;
         } else if (i >= imageNames.size()) {
@@ -188,6 +201,40 @@ public abstract class CategoryListActivity  extends AppCompatActivity implements
         vh.categoryImageView.setImageResource(image);
 
         currentImage = i;
+        **/
+
+        // Enforce wrapping on image display
+        if(newImageIndex >= imageNames.size()){
+            newImageIndex = 0;
+            vh.categoryImageSwitcher.setInAnimation(getBaseContext(), R.anim.slide_in_right);
+            vh.categoryImageSwitcher.setOutAnimation(getBaseContext(), R.anim.slide_out_left);
+        } else if (newImageIndex < 0){
+            newImageIndex = imageNames.size() - 1;
+            vh.categoryImageSwitcher.setInAnimation(getBaseContext(), R.anim.slide_in_left);
+            vh.categoryImageSwitcher.setOutAnimation(getBaseContext(), R.anim.slide_out_right);
+        } else
+            // check if image is already on display
+            if (newImageIndex == currentImage) {
+                return false;
+                // otherwise play animation and change image
+            } else if (currentImage < newImageIndex) {
+                vh.categoryImageSwitcher.setInAnimation(getBaseContext(), R.anim.slide_in_right);
+                vh.categoryImageSwitcher.setOutAnimation(getBaseContext(), R.anim.slide_out_left);
+            } else {
+                vh.categoryImageSwitcher.setInAnimation(getBaseContext(), R.anim.slide_in_left);
+                vh.categoryImageSwitcher.setOutAnimation(getBaseContext(), R.anim.slide_out_right);
+            }
+        vh.imageButtons.get(newImageIndex).getBackground().setColorFilter(Color.parseColor("#EEEEEE"), PorterDuff.Mode.MULTIPLY);
+        vh.imageButtons.get(currentImage).getBackground().setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY);
+        currentImage = newImageIndex;
+        vh.categoryImageSwitcher.setImageResource(getBaseContext().
+                getResources().getIdentifier(imageNames.get(currentImage),
+                "drawable", "com.example.gamestoreapp"));
+        return true;
+
+
+
+
     }
 
     @Override

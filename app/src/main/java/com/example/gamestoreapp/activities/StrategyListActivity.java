@@ -2,6 +2,7 @@ package com.example.gamestoreapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -21,7 +22,7 @@ public class StrategyListActivity extends CategoryListActivity {
         ProgressBar progressBar = findViewById(R.id.load_progressbar);
         ListView listView = findViewById(R.id.list_view);
         LinearLayout actionLayout = findViewById(R.id.list_layout);
-        ImageView categoryImageView = findViewById(R.id.header_image);
+        ImageSwitcher categoryImageSwitcher = findViewById(R.id.header_image);
         TextView nextImageIcon = findViewById(R.id.next_image_icon);
         TextView prevImageIcon = findViewById(R.id.prev_image_icon);
         LinearLayout imageSwitcherButtonHolder = findViewById(R.id.imageButtonHolder);
@@ -30,7 +31,7 @@ public class StrategyListActivity extends CategoryListActivity {
         title.setText(R.string.strategy);
 
         vh = new ViewHolder(listView, progressBar, actionLayout,
-                categoryImageView, nextImageIcon, prevImageIcon, imageSwitcherButtonHolder);
+                categoryImageSwitcher, nextImageIcon, prevImageIcon, imageSwitcherButtonHolder);
 
         categoryName = "strategy";
 
