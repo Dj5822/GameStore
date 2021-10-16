@@ -1,6 +1,9 @@
 package com.example.gamestoreapp.implementation;
 
+import android.os.Build;
 import android.os.Parcel;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.gamestoreapp.data.QueryHandler;
 import com.example.gamestoreapp.interfaces.Item;
@@ -13,6 +16,7 @@ public class GameProduct implements Product {
     private int cost;
     private int amountSold;
     private int viewCount;
+    private boolean isMobile = false;
 
     public GameProduct(long id, Item item, int cost, int amountSold, int viewCount){
         this.id = id;
@@ -22,12 +26,24 @@ public class GameProduct implements Product {
         this.viewCount = viewCount;
     }
 
+    public GameProduct(long id, Item item, int cost, int amountSold, int viewCount, Boolean isMobile){
+        this.id = id;
+        this.item = item;
+        this.cost = cost;
+        this.amountSold = amountSold;
+        this.viewCount = viewCount;
+        if (isMobile != null) {
+            this.isMobile = isMobile;
+        }
+    }
+
     protected GameProduct(Parcel parcel) {
         id = parcel.readLong();
         item = Game.CREATOR.createFromParcel(parcel);
         cost = parcel.readInt();
         amountSold = parcel.readInt();
         viewCount = parcel.readInt();
+        isMobile = parcel.readInt() > 0;
     }
 
     public static final Creator<GameProduct> CREATOR = new Creator<GameProduct>() {
@@ -67,6 +83,8 @@ public class GameProduct implements Product {
         return id;
     }
 
+    public boolean isMobile() {return isMobile;}
+
     @Override
     public void setViewCount(int viewCount) {
         //todo: need to update database here with new view count
@@ -105,6 +123,7 @@ public class GameProduct implements Product {
         parcel.writeInt(cost);
         parcel.writeInt(amountSold);
         parcel.writeInt(viewCount);
+        parcel.writeInt(isMobile ? 1 : 0);
     }
 
     @Override

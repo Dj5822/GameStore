@@ -1,5 +1,6 @@
 package com.example.gamestoreapp.activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -8,6 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.gamestoreapp.R;
+import com.example.gamestoreapp.adaptors.ProductAdaptor;
 
 public class CasualListActivity extends CategoryListActivity {
 
@@ -28,5 +30,12 @@ public class CasualListActivity extends CategoryListActivity {
         categoryName = "casual";
 
         loadCategory();
+    }
+
+    @Override
+    protected ProductAdaptor getAdaptor() {
+        ProductAdaptor itemsAdapter = new ProductAdaptor(this, R.layout.casual_game_list_view_item,
+                getProductList(), categoryName);
+        return itemsAdapter;
     }
 }

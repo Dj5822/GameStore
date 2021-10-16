@@ -236,7 +236,9 @@ public class QueryHandler {
                 item,
                 productSnapshot.get("price", int.class),
                 productSnapshot.get("amountSold", int.class),
-                productSnapshot.get("viewCount", int.class));
+                productSnapshot.get("viewCount", int.class),
+                productSnapshot.getBoolean("isMobile"));
+
         Log.i("Parsing Products", product.getItem().getName() + " loaded.");
 
         return product;

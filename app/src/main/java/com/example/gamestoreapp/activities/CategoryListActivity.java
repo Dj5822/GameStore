@@ -9,6 +9,7 @@ import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -104,10 +105,7 @@ public abstract class CategoryListActivity  extends ImageSwitcherActivity implem
         } else {
             Toast.makeText(getBaseContext(), "Products Collection was empty!", Toast.LENGTH_LONG).show();
         }
-
-        ProductAdaptor itemsAdapter = new ProductAdaptor(this, R.layout.game_list_view_item,
-                productList, categoryName);
-        vh.listView.setAdapter(itemsAdapter);
+        vh.listView.setAdapter(getAdaptor());
         vh.listView.setVisibility(View.VISIBLE);
     }
 
@@ -126,5 +124,15 @@ public abstract class CategoryListActivity  extends ImageSwitcherActivity implem
         }
         productList = copy;
         propagateAdapter();
+    }
+
+    protected ProductAdaptor getAdaptor() {
+        ProductAdaptor itemsAdapter = new ProductAdaptor(this, R.layout.game_list_view_item,
+                productList, categoryName);
+        return itemsAdapter;
+    }
+
+    protected List<Product> getProductList() {
+        return productList;
     }
 }

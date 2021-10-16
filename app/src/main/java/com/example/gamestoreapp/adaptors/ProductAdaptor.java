@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import com.example.gamestoreapp.R;
+import com.example.gamestoreapp.implementation.GameProduct;
 import com.example.gamestoreapp.interfaces.Item;
 import com.example.gamestoreapp.interfaces.Product;
 import com.example.gamestoreapp.listeners.ProductClickListener;
@@ -36,6 +37,20 @@ public class ProductAdaptor extends ArrayAdapter {
             productIconView = currentListViewItem.findViewById(R.id.product_icon_view);
             productNameView = currentListViewItem.findViewById(R.id.product_title_view);
             productPriceView = currentListViewItem.findViewById(R.id.product_price_view);
+        }
+
+        public ViewHolder(ViewHolder viewHolder, View currentListViewItem) {
+            listItemView = viewHolder.listItemView;
+            productIconView = viewHolder.productIconView;
+            productNameView = viewHolder.productNameView;
+            productPriceView = viewHolder.productPriceView;
+        }
+    }
+
+    private class CasualViewHolder {
+        ImageView mobileIcon;
+        public CasualViewHolder(View currentListViewItem) {
+            mobileIcon = currentListViewItem.findViewById(R.id.mobile_icon_view);
         }
     }
 
@@ -99,6 +114,12 @@ public class ProductAdaptor extends ArrayAdapter {
             case "casual":
                 background.setColorFilter(currentListViewItem.getResources()
                         .getColor(R.color.orange), PorterDuff.Mode.MULTIPLY);
+                CasualViewHolder cvh = new CasualViewHolder(currentListViewItem);
+                if (((GameProduct) currentProduct).isMobile()) {
+                    cvh.mobileIcon.setVisibility(View.VISIBLE);
+                } else {
+                    cvh.mobileIcon.setVisibility(View.GONE);
+                }
                 break;
             case "simulation":
                 background.setColorFilter(currentListViewItem.getResources()
