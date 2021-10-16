@@ -1,9 +1,12 @@
 package com.example.gamestoreapp.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -17,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
@@ -40,6 +44,7 @@ public class DetailsActivity extends ImageSwitcherActivity {
         ImageView gameIcon;
         TextView gameName, studioName, viewCount, soldCount, detailsText;
         Button purchaseButton;
+        ScrollView scrollView;
 
         public ViewHolder(){
             gameIcon = findViewById(R.id.gameIcon);
@@ -49,6 +54,7 @@ public class DetailsActivity extends ImageSwitcherActivity {
             soldCount = findViewById(R.id.soldCount);
             detailsText = findViewById(R.id.detailsText);
             purchaseButton = findViewById(R.id.purchaseButton);
+            scrollView = findViewById(R.id.scroll_details);
         }
     }
 
@@ -101,7 +107,6 @@ public class DetailsActivity extends ImageSwitcherActivity {
                 findViewById(R.id.imageSwitcherButtonHolder),
                 findViewById(R.id.gameImageSwitcher));
         initialiseButtons();
-
     }
 
     @Override
