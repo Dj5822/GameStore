@@ -14,6 +14,7 @@ public class Game implements Item {
     private List<String> imageNames;
     private String iconImageName;
     private String studioName;
+    private int ageRestriction = 0;
 
     protected static final Creator<Game> CREATOR = new Creator<Game>() {
         @Override
@@ -35,12 +36,24 @@ public class Game implements Item {
         this.studioName = studioName;
     }
 
+    public Game(String name, String description, List<String> imageNames, String iconImageName, String studioName, Integer ageRestriction){
+        this.name = name;
+        this.description = description.replace("\\n",System.lineSeparator());
+        this.imageNames = imageNames;
+        this.iconImageName = iconImageName;
+        this.studioName = studioName;
+        if (ageRestriction != null) {
+            this.ageRestriction = ageRestriction;
+        }
+    }
+
     public Game(Parcel parcel) {
         this.name = parcel.readString();
         this.description = parcel.readString();
         this.imageNames = parcel.createStringArrayList();
         this.iconImageName = parcel.readString();
         this.studioName = parcel.readString();
+        this.ageRestriction = parcel.readInt();
     }
 
     @Override
@@ -80,5 +93,11 @@ public class Game implements Item {
         parcel.writeStringList(imageNames);
         parcel.writeString(iconImageName);
         parcel.writeString(studioName);
+        parcel.writeInt(ageRestriction);
+    }
+
+    @Override
+    public int getAgeRestriction() {
+        return ageRestriction;
     }
 }

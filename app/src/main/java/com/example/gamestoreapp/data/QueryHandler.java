@@ -230,7 +230,8 @@ public class QueryHandler {
                 itemSnapshot.get("description", String.class),
                 (List<String>) itemSnapshot.get("imageNames"),
                 itemSnapshot.get("iconImageName", String.class),
-                itemSnapshot.get("studioName", String.class));
+                itemSnapshot.get("studioName", String.class),
+                itemSnapshot.get("ageRestriction", int.class));
         Product product = new GameProduct(
                 Integer.parseInt(id),
                 item,

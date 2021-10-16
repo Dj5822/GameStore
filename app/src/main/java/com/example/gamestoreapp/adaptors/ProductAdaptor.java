@@ -47,10 +47,19 @@ public class ProductAdaptor extends ArrayAdapter {
         }
     }
 
-    private class CasualViewHolder {
+    private class CasualViewHolder extends ViewHolder {
         ImageView mobileIcon;
         public CasualViewHolder(View currentListViewItem) {
+            super(currentListViewItem);
             mobileIcon = currentListViewItem.findViewById(R.id.mobile_icon_view);
+        }
+    }
+
+    private class ActionViewHolder extends ViewHolder {
+        ImageView ageRestrictionIcon;
+        public ActionViewHolder(View currentListViewItem) {
+            super(currentListViewItem);
+            ageRestrictionIcon = currentListViewItem.findViewById(R.id.age_restriction_icon_view);
         }
     }
 
@@ -107,10 +116,30 @@ public class ProductAdaptor extends ArrayAdapter {
         Drawable background = vh.listItemView.getBackground();
         background.setAlpha(80);
         switch (categoryName) {
+
             case "action":
                 background.setColorFilter(currentListViewItem.getResources()
                         .getColor(R.color.dark_red), PorterDuff.Mode.MULTIPLY);
+                ActionViewHolder avh = new ActionViewHolder(currentListViewItem);
+
+                if (currentItem.getAgeRestriction() >= 18) {
+                    int j = context.getResources().getIdentifier(
+                            "eighteen", "drawable",
+                            context.getPackageName());
+                    avh.ageRestrictionIcon.setImageResource(j);
+
+                } else if (currentItem.getAgeRestriction() >= 16) {
+                    int j = context.getResources().getIdentifier(
+                            "sixteen", "drawable",
+                            context.getPackageName());
+                    avh.ageRestrictionIcon.setImageResource(j);
+
+                } else {
+                    avh.ageRestrictionIcon.setVisibility(View.GONE);
+                }
                 break;
+
+
             case "casual":
                 background.setColorFilter(currentListViewItem.getResources()
                         .getColor(R.color.orange), PorterDuff.Mode.MULTIPLY);
@@ -121,6 +150,8 @@ public class ProductAdaptor extends ArrayAdapter {
                     cvh.mobileIcon.setVisibility(View.GONE);
                 }
                 break;
+
+
             case "simulation":
                 background.setColorFilter(currentListViewItem.getResources()
                         .getColor(R.color.deep_blue), PorterDuff.Mode.MULTIPLY);

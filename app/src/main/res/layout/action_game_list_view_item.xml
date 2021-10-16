@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="4dp"
+    android:elevation="4dp"
+    android:background="@color/dark_blue_background"
+    android:theme="@style/ListViewItemTheme"
+    android:id="@+id/list_view_item">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/full_margin"
+            android:layout_marginEnd="@dimen/full_margin"
+            android:layout_gravity="center"
+            android:background="@color/white">
+            <ImageView
+                android:id="@+id/product_icon_view"
+                android:layout_width="@dimen/list_icon_height"
+                android:layout_height="@dimen/list_icon_height"
+                android:src="@drawable/lemon"
+                android:contentDescription="@string/game_icon"/>
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/product_title_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:text="@string/game_name"
+            android:padding="@dimen/full_margin"
+            android:textSize="@dimen/subtitle1_font"
+            />
+        <ImageView
+            android:id="@+id/age_restriction_icon_view"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/eighteen"
+            android:contentDescription="@string/game_icon" />
+        <TextView
+            android:id="@+id/product_price_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/price"
+            android:padding="@dimen/full_margin"
+            android:textSize="@dimen/subtitle1_font"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -16,4 +16,6 @@ public interface Item extends Parcelable {
 
     public String getStudioName();
 
+    public int getAgeRestriction();
+
 }
