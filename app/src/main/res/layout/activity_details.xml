@@ -124,16 +124,12 @@
             android:paddingTop="@dimen/half_margin"
             android:paddingBottom="@dimen/half_margin"/>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/full_margin">
             <ImageSwitcher
                 android:id="@+id/gameImageSwitcher"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@color/white"/>
-        </androidx.cardview.widget.CardView>
+                android:layout_marginTop="@dimen/full_margin"
+                android:background="@color/dark_blue_background"/>
 
         <LinearLayout
             android:id="@+id/imageSwitcherButtonHolder"
