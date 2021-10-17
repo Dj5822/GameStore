@@ -27,7 +27,7 @@
           android:id="@+id/categoryImageSwitcher"
           android:layout_width="wrap_content"
           android:layout_height="208dp"
-          android:background="@color/white"/>
+          android:background="@color/dark_blue_background"/>
 
       <TextView
           android:id="@+id/category_title"
