@@ -1,6 +1,8 @@
 package com.example.gamestoreapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,6 +19,10 @@ public class SimulationListActivity extends CategoryListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.dark_blue_background));
+        }
 
         ProgressBar progressBar = findViewById(R.id.load_progressbar);
         ListView listView = findViewById(R.id.list_view);
