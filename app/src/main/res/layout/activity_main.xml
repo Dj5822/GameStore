@@ -112,13 +112,21 @@
                         android:layout_weight="1"
                         app:cardBackgroundColor="@android:color/holo_red_light"
                         android:layout_marginEnd="@dimen/half_margin"
+                        app:cardCornerRadius="@dimen/full_margin"
                         >
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/action"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/action"
                             android:textSize="@dimen/h5_font"
+                            android:textColor="@color/white"
                             android:textAlignment="center"
+                            android:background="@color/darker_blue_transparent"
                             />
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
@@ -128,13 +136,21 @@
                         android:layout_weight="1"
                         app:cardBackgroundColor="@android:color/holo_orange_light"
                         android:layout_marginStart="@dimen/half_margin"
+                        app:cardCornerRadius="@dimen/full_margin"
                         >
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/casual"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/casual"
                             android:textSize="@dimen/h5_font"
                             android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:background="@color/darker_blue_transparent"
                             />
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -151,13 +167,21 @@
                         android:layout_weight="1"
                         app:cardBackgroundColor="@android:color/holo_blue_light"
                         android:layout_marginEnd="@dimen/half_margin"
+                        app:cardCornerRadius="@dimen/full_margin"
                         >
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/simulation"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/simulation"
                             android:textSize="@dimen/h5_font"
                             android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:background="@color/darker_blue_transparent"
                             />
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
@@ -167,13 +191,21 @@
                         android:layout_weight="1"
                         app:cardBackgroundColor="@android:color/holo_green_light"
                         android:layout_marginStart="@dimen/half_margin"
+                        app:cardCornerRadius="@dimen/full_margin"
                         >
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/strategy"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/strategy"
                             android:textSize="@dimen/h5_font"
                             android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:background="@color/darker_blue_transparent"
                             />
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>

@@ -2,6 +2,7 @@ package com.example.gamestoreapp.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -78,6 +79,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         vh = new ViewHolder();
         store = new GameStore();
 
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.dark_blue_background));
+        }
+
         // Setup listeners.
         vh.actionCardView.setOnClickListener(new CategoryClickListener(ActionListActivity.class));
         vh.strategyCardView.setOnClickListener(new CategoryClickListener(StrategyListActivity.class));
@@ -96,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         LinearLayoutManager searchProductRecycleListLayout = new LinearLayoutManager (this);
         vh.searchListView.setLayoutManager(searchProductRecycleListLayout);
         vh.searchListView.setNestedScrollingEnabled(false);
+
+
 
         bestsellingProductsSelected();
     }
