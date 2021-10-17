@@ -105,6 +105,9 @@ public class GameProduct implements Product {
         int dollars = cost / 100;
         priceString = "$" + dollars;
         if (cents > 0) {
+            if (cents < 10) {
+                cents *= 10;
+            }
             priceString += "." + cents;
         }
         return priceString;
