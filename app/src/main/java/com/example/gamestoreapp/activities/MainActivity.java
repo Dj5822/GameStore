@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.adaptors.MainItemAdaptor;
 import com.example.gamestoreapp.data.QueryHandler;
-import com.example.gamestoreapp.interfaces.Product;
+import com.example.gamestoreapp.model.Product;
 import com.example.gamestoreapp.listeners.CategoryClickListener;
 
 import java.util.ArrayList;

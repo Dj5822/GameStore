@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gamestoreapp.R;
-import com.example.gamestoreapp.interfaces.Product;
+import com.example.gamestoreapp.model.Product;
 
 import java.util.List;
 

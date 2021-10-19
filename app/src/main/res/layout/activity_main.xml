@@ -124,7 +124,7 @@
                         android:layout_weight="1"
                         app:cardBackgroundColor="@android:color/holo_red_light"
                         android:layout_marginEnd="@dimen/half_margin"
-                        app:cardCornerRadius="@dimen/full_margin"
+
                         >
                         <ImageView
                             android:layout_width="match_parent"
@@ -148,7 +148,6 @@
                         android:layout_weight="1"
                         app:cardBackgroundColor="@android:color/holo_orange_light"
                         android:layout_marginStart="@dimen/half_margin"
-                        app:cardCornerRadius="@dimen/full_margin"
                         >
                         <ImageView
                             android:layout_width="match_parent"
@@ -179,7 +178,6 @@
                         android:layout_weight="1"
                         app:cardBackgroundColor="@android:color/holo_blue_light"
                         android:layout_marginEnd="@dimen/half_margin"
-                        app:cardCornerRadius="@dimen/full_margin"
                         >
                         <ImageView
                             android:layout_width="match_parent"
@@ -203,7 +201,6 @@
                         android:layout_weight="1"
                         app:cardBackgroundColor="@android:color/holo_green_light"
                         android:layout_marginStart="@dimen/half_margin"
-                        app:cardCornerRadius="@dimen/full_margin"
                         >
                         <ImageView
                             android:layout_width="match_parent"

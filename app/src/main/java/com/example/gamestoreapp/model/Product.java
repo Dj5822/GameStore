@@ -1,4 +1,4 @@
-package com.example.gamestoreapp.interfaces;
+package com.example.gamestoreapp.model;
 
 import android.os.Parcelable;
 

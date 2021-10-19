@@ -1,9 +1,6 @@
-package com.example.gamestoreapp.implementation;
+package com.example.gamestoreapp.model;
 
 import android.os.Parcel;
-import android.os.Parcelable;
-
-import com.example.gamestoreapp.interfaces.Item;
 
 import java.util.List;
 
