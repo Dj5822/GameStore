@@ -1,17 +1,13 @@
 package com.example.gamestoreapp.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.gamestoreapp.R;
-import com.example.gamestoreapp.interfaces.ListActivity;
 
 public class StrategyListActivity extends CategoryListActivity {
 

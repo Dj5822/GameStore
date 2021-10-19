@@ -3,14 +3,12 @@ package com.example.gamestoreapp.listeners;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
-import android.os.ResultReceiver;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gamestoreapp.activities.DetailsActivity;
-import com.example.gamestoreapp.implementation.GameProduct;
-import com.example.gamestoreapp.interfaces.Product;
+import com.example.gamestoreapp.model.Product;
 
 public class ProductClickListener implements View.OnClickListener {
 

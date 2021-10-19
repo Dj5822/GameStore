@@ -1,38 +1,20 @@
 package com.example.gamestoreapp.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
-import android.view.GestureDetector;
-import android.view.GestureDetector.SimpleOnGestureListener;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageSwitcher;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
 
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.data.QueryHandler;
-import com.example.gamestoreapp.implementation.Game;
-import com.example.gamestoreapp.implementation.GameProduct;
-import com.example.gamestoreapp.interfaces.Product;
+import com.example.gamestoreapp.model.Product;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DetailsActivity extends ImageSwitcherActivity {
 

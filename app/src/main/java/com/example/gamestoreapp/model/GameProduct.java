@@ -1,13 +1,6 @@
-package com.example.gamestoreapp.implementation;
+package com.example.gamestoreapp.model;
 
-import android.os.Build;
 import android.os.Parcel;
-
-import androidx.annotation.RequiresApi;
-
-import com.example.gamestoreapp.data.QueryHandler;
-import com.example.gamestoreapp.interfaces.Item;
-import com.example.gamestoreapp.interfaces.Product;
 
 public class GameProduct implements Product {
 

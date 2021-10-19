@@ -1,58 +1,27 @@
 package com.example.gamestoreapp.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.OrientationEventListener;
 import android.view.View;
-import android.view.animation.TranslateAnimation;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewSwitcher;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.adaptors.ProductAdaptor;
 import com.example.gamestoreapp.data.QueryHandler;
-import com.example.gamestoreapp.implementation.Game;
-import com.example.gamestoreapp.implementation.GameProduct;
-import com.example.gamestoreapp.interfaces.Item;
-import com.example.gamestoreapp.interfaces.ListActivity;
-import com.example.gamestoreapp.interfaces.Product;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import org.w3c.dom.Text;
+import com.example.gamestoreapp.model.Product;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import io.grpc.okhttp.internal.framed.Header;
-
-public abstract class CategoryListActivity  extends ImageSwitcherActivity implements ListActivity {
+public abstract class CategoryListActivity  extends ImageSwitcherActivity {
 
     protected String categoryName;
     protected ViewHolder vh;
@@ -72,7 +41,7 @@ public abstract class CategoryListActivity  extends ImageSwitcherActivity implem
         }
     }
 
-    @Override
+
     public void loadCategory() {
         imageViewHolder = new ImageSwitcherViewHolder(
                 findViewById(R.id.categoryImageSwitcherButtonHolder),
@@ -111,16 +80,6 @@ public abstract class CategoryListActivity  extends ImageSwitcherActivity implem
         vh.header.setVisibility(
                 getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
                         ? View.GONE : View.VISIBLE);
-    }
-
-    @Override
-    public void goToNextCategory() {
-
-    }
-
-    @Override
-    public void goToPreviousCategory() {
-
     }
 
     private void propagateAdapter() {
