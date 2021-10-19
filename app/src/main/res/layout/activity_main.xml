@@ -66,6 +66,18 @@
             android:layout_marginTop="60dp"
             android:visibility="gone"
             />
+
+        <TextView
+            android:id="@+id/no_results_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_results"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:textSize="34sp"
+            android:layout_margin="12dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/main_product_search_list_view"
             android:layout_width="match_parent"

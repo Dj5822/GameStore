@@ -23,4 +23,5 @@
     <string name="greater_than"><![CDATA[>]]></string>
     <string name="category_image">Category image</string>
     <string name="game_icon">Game icon</string>
+    <string name="no_results">Sorry, we couldn\'t find anything for that.</string>
 </resources>

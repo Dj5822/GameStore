@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         RecyclerView productListView, searchListView;
         ProgressBar mainProgressBar, searchProgressBar;
         NestedScrollView mainScrollView;
+        TextView noResultsView;
 
         public ViewHolder() {
             actionCardView = findViewById(R.id.card_view_action);
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             mainProgressBar = findViewById(R.id.main_progress_bar);
             searchProgressBar = findViewById(R.id.search_progress_bar);
             mainScrollView = findViewById(R.id.main_scroll_view);
+            noResultsView = findViewById(R.id.no_results_view);
         }
     }
 
@@ -197,6 +200,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 startActivityForResult(detailsOpenIntent, 2);
             }
         });
+
+        if (searchResultList.size() <= 0) {
+            vh.noResultsView.setVisibility(View.VISIBLE);
+        } else {
+            vh.noResultsView.setVisibility(View.GONE);
+        }
+        
         vh.searchListView.setAdapter(adapter);
         vh.searchLayout.setVisibility(View.VISIBLE);
         vh.mainScrollView.setVisibility(View.GONE);
