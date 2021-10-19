@@ -2,7 +2,7 @@ package com.example.gamestoreapp.adaptors;
 
 import android.content.Context;
 
-import com.example.gamestoreapp.interfaces.Product;
+import com.example.gamestoreapp.model.Product;
 
 import java.util.List;
 

@@ -1,14 +1,13 @@
 package com.example.gamestoreapp.data;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.gamestoreapp.implementation.Game;
-import com.example.gamestoreapp.implementation.GameProduct;
-import com.example.gamestoreapp.interfaces.Item;
-import com.example.gamestoreapp.interfaces.Product;
+import com.example.gamestoreapp.model.Game;
+import com.example.gamestoreapp.model.GameProduct;
+import com.example.gamestoreapp.model.Item;
+import com.example.gamestoreapp.model.Product;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -19,9 +18,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 /**

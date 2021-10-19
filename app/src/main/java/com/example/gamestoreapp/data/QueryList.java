@@ -1,7 +1,5 @@
 package com.example.gamestoreapp.data;
 
-import com.example.gamestoreapp.interfaces.Product;
-
 import java.util.ArrayList;
 
 /**

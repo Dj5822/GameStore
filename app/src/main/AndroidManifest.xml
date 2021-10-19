@@ -37,9 +37,6 @@
             android:theme="@style/ActionCategoryTheme"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".activities.SearchActivity"
-            android:exported="true" />
-        <activity
             android:name=".activities.DetailsActivity"
             android:exported="true" />
         <activity
