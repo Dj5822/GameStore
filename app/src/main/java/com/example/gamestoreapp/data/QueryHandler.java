@@ -181,7 +181,7 @@ public class QueryHandler {
      * Update viewCount and amountSold on db for the given product
      * @param product product whose fields will be updated
      */
-    public static void updateSalesData(GameProduct product) {
+    public static void updateSalesData(Product product) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference reference = db.collection("GameProducts").document(String.valueOf(product.getID()));
         reference.update("viewCount", product.getViewCount());

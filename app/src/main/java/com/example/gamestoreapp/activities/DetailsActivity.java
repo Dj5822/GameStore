@@ -29,6 +29,7 @@ import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.data.QueryHandler;
 import com.example.gamestoreapp.implementation.Game;
 import com.example.gamestoreapp.implementation.GameProduct;
+import com.example.gamestoreapp.interfaces.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ import java.util.List;
 public class DetailsActivity extends ImageSwitcherActivity {
 
     private ViewHolder vh;
-    private GameProduct gameProduct;
+    private Product gameProduct;
 
     /**
      * An internal class used to hold all of the views for this activity
