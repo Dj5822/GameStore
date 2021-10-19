@@ -1,8 +1,10 @@
 package com.example.gamestoreapp.data;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gamestoreapp.model.Game;
 import com.example.gamestoreapp.model.GameProduct;
@@ -40,7 +42,9 @@ public class QueryHandler {
      * @param queryListener functional query listener interface
      * @return List of products that will be filled
      */
-    public static List<Product> queryCategoryCollection(String categoryName, QueryListener queryListener) {
+    public static List<Product> queryCategoryCollection(String categoryName,
+                                                        QueryListener queryListener,
+                                                        AppCompatActivity activity) {
         QueryList<Product> productList = new QueryList<>(queryListener);
         // Get categories collection from Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -52,9 +56,11 @@ public class QueryHandler {
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     List<DocumentSnapshot> productSnapshots = task.getResult().getDocuments();
-                                    queryProductCollection(productSnapshots, productList);
+                                    queryProductCollection(productSnapshots, productList, activity);
                                 } else {
-                                    throw new RuntimeException("Failed to load categories Collection");
+                                    Toast.makeText(activity.getBaseContext(),
+                                            "Failed to get products from category",
+                                            Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -67,7 +73,7 @@ public class QueryHandler {
      * @param categoryName id of the category in the database
      * @return List of image names
      */
-    public static List<String> fetchCategoryImageNames(String categoryName, QueryListener queryListener) {
+    public static List<String> fetchCategoryImageNames(String categoryName, QueryListener queryListener, AppCompatActivity activity) {
         List<String> imageNames = new ArrayList<String>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("categories").
@@ -81,7 +87,7 @@ public class QueryHandler {
                                     imageNames.addAll(result);
                                     queryListener.OnQueryComplete();
                                 } else {
-                                    throw new RuntimeException("Failed to load categories Collection");
+                                    Toast.makeText(activity.getBaseContext(), "Failed to get Category Images!", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -94,7 +100,7 @@ public class QueryHandler {
      * @param field
      * @return List of products that will be filled
      */
-    public static List<Product> queryField(String field, QueryListener queryListener) {
+    public static List<Product> queryField(String field, QueryListener queryListener, AppCompatActivity activity) {
         QueryList<Product> productList = new QueryList<>(queryListener);
         // Get categories collection from Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -105,9 +111,9 @@ public class QueryHandler {
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     List<DocumentSnapshot> productSnapshots = task.getResult().getDocuments();
-                                    queryProductCollection(productSnapshots, productList);
+                                    queryProductCollection(productSnapshots, productList, activity);
                                 } else {
-                                    throw new RuntimeException("Failed to load categories Collection");
+                                    Toast.makeText(activity.getBaseContext(), "Failed to load GameProducts collection", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -118,7 +124,7 @@ public class QueryHandler {
     /**
      * Queries the database for products whose names or studio names match the given string.
      */
-    public static List<Product> searchQuery(String searchInput, QueryListener queryListener) {
+    public static List<Product> searchQuery(String searchInput, QueryListener queryListener, AppCompatActivity activity) {
         QueryList<Product> productList = new QueryList<>(queryListener);
         // Get categories collection from Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -132,10 +138,10 @@ public class QueryHandler {
                                     if (productSnapshots.size() == 0) {
                                         productList.complete();
                                     } else {
-                                        queryProductCollection(productSnapshots, productList);
+                                        queryProductCollection(productSnapshots, productList, activity);
                                     }
                                 } else {
-                                    throw new RuntimeException("Failed to load categories Collection");
+                                    Toast.makeText(activity.getBaseContext(), "Failed keyword search query!", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -150,7 +156,9 @@ public class QueryHandler {
      * @param productDocumentSnapshots list of documents representing products
      * @param productList address of product list to populate
      */
-    private static void queryProductCollection(List<DocumentSnapshot> productDocumentSnapshots, QueryList<Product> productList) {
+    private static void queryProductCollection(List<DocumentSnapshot> productDocumentSnapshots,
+                                               QueryList<Product> productList,
+                                               AppCompatActivity activity) {
 
         productList.setExpectedQuerySize(productDocumentSnapshots.size());
 
@@ -164,9 +172,10 @@ public class QueryHandler {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                     if (task.isSuccessful()) {
-                                        queryItemCollection(task.getResult(), productList, pos);
+                                        queryItemCollection(task.getResult(), productList, pos, activity);
                                     } else {
-                                        throw new RuntimeException("Failed to load Products Collection");
+                                        Toast.makeText(activity.getBaseContext(),
+                                                "Failed to load products!", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             }
@@ -193,7 +202,9 @@ public class QueryHandler {
      * @param productList address of product list to populate
      * @param pos position to insert product in list
      */
-    private static void queryItemCollection(DocumentSnapshot productDocumentSnapshot, QueryList<Product> productList, int pos) {
+    private static void queryItemCollection(DocumentSnapshot productDocumentSnapshot,
+                                            QueryList<Product> productList,
+                                            int pos, AppCompatActivity activity) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String id = productDocumentSnapshot.get("id", String.class);
         db.collection("games").document(id)
@@ -205,7 +216,8 @@ public class QueryHandler {
                             Product product = createProductFromSnapshots(task.getResult(), productDocumentSnapshot);
                             productList.addWrapper(pos, product);
                         } else {
-                            throw new RuntimeException("Failed to load Items collection!");
+                            Toast.makeText(activity.getBaseContext(),
+                                    "Failed to load Items!", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -247,7 +259,7 @@ public class QueryHandler {
      * Not called anywhere in code currently as it only needs to be used once when a game is
      * added to the database.
      */
-    public static void updateKeyWords() {
+    public static void updateKeyWords(AppCompatActivity activity) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("GameProducts").get().addOnCompleteListener(
                 new OnCompleteListener<QuerySnapshot>() {
@@ -266,14 +278,18 @@ public class QueryHandler {
                                                     List<String> keyWords = getKeyWords(task.getResult());
                                                     documentSnapshot.getReference().update("keywords", keyWords);
                                                 } else {
-                                                    throw new RuntimeException("Failed to load Items collection!");
+                                                    Toast.makeText(activity.getBaseContext(),
+                                                            "Failed to load items for keyword creation!",
+                                                            Toast.LENGTH_LONG).show();
                                                 }
                                             }
                                         }
                                 );
                             }
                         } else {
-                            throw new RuntimeException("Failed to load Items collection!");
+                            Toast.makeText(activity.getBaseContext(),
+                                    "Failed to load Products for keyword creation!",
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 }

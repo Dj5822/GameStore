@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             public void OnQueryComplete() {
                 propagateAdapter();
             }
-        });
+        }, this);
     }
 
     /**
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             public void OnQueryComplete() {
                 propagateAdapter();
             }
-        });
+        }, this);
     }
 
     /**
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 vh.searchProgressBar.setVisibility(View.GONE);
                 propagateSearchAdapter();
             }
-        });
+        }, this);
         return true;
     }
 

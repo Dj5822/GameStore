@@ -61,7 +61,7 @@ public abstract class CategoryListActivity  extends ImageSwitcherActivity {
                     initialiseButtons();
                 }
             }
-        });
+        }, this);
 
         // Query for the products in the category
         productList = QueryHandler.queryCategoryCollection(categoryName, new QueryHandler.QueryListener() {
@@ -69,8 +69,7 @@ public abstract class CategoryListActivity  extends ImageSwitcherActivity {
             public void OnQueryComplete() {
                 propagateAdapter();
             }
-        });
-
+        }, this);
     }
 
     @Override
