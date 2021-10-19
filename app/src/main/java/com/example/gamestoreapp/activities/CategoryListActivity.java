@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.adaptors.ProductAdaptor;
 import com.example.gamestoreapp.data.QueryHandler;
-import com.example.gamestoreapp.interfaces.Product;
+import com.example.gamestoreapp.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
