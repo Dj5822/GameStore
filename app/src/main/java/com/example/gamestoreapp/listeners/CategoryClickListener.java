@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gamestoreapp.activities.ActionListActivity;
 
+/**
+ * Listener that opens a category class when clicked
+ */
 public class CategoryClickListener implements View.OnClickListener {
 
     Class<?> activity;
@@ -17,6 +20,9 @@ public class CategoryClickListener implements View.OnClickListener {
     }
 
     @Override
+    /**
+     * Open the relevant category
+     */
     public void onClick(View view) {
         Intent categoryOpenIntent = new Intent(view.getContext(), activity);
         categoryOpenIntent.putExtra("MessageFromMainActivity", "This message came from Main Activity");
