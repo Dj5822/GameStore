@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
@@ -22,21 +21,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.adaptors.MainItemAdaptor;
 import com.example.gamestoreapp.data.QueryHandler;
-import com.example.gamestoreapp.implementation.GameStore;
 import com.example.gamestoreapp.interfaces.Product;
-import com.example.gamestoreapp.interfaces.Store;
 import com.example.gamestoreapp.listeners.CategoryClickListener;
-import com.example.gamestoreapp.listeners.ProductClickListener;
-import com.example.gamestoreapp.listeners.QueryTextListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
-    private Store store;
     private ViewHolder vh;
     List<Product> productList;
     List<Product> searchResultList;
@@ -77,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         // Setup view holder and store.
         vh = new ViewHolder();
-        store = new GameStore();
 
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.dark_blue_background));
