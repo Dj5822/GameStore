@@ -2,6 +2,12 @@ package com.example.gamestoreapp.model;
 
 import android.os.Parcelable;
 
+/**
+ * Implementation of a sellable digital product. Contains sales data for a product as well as
+ * a reference to the underlying item.
+ *
+ * Is parcelable so that it can be efficiently passed between activities.
+ */
 public interface Product extends Parcelable{
 
     public int getCost();

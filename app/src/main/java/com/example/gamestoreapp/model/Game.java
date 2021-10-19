@@ -4,6 +4,13 @@ import android.os.Parcel;
 
 import java.util.List;
 
+/**
+ * Implementation of Item as a digital Game. Conceptually, this is a game as a work of art,
+ * not as a product.
+ *
+ * One game could be represented by multiple products - for example, if it is available on
+ * different platforms.
+ */
 public class Game implements Item {
 
     private String name;
@@ -24,14 +31,6 @@ public class Game implements Item {
             return new Game[0];
         }
     };
-
-    public Game(String name, String description, List<String> imageNames, String iconImageName, String studioName){
-        this.name = name;
-        this.description = description.replace("\\n",System.lineSeparator());
-        this.imageNames = imageNames;
-        this.iconImageName = iconImageName;
-        this.studioName = studioName;
-    }
 
     public Game(String name, String description, List<String> imageNames, String iconImageName, String studioName, Integer ageRestriction){
         this.name = name;

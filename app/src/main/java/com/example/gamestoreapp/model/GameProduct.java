@@ -2,6 +2,12 @@ package com.example.gamestoreapp.model;
 
 import android.os.Parcel;
 
+/**
+ * Implementation of Product as a digital game product.
+ *
+ * Contains information about what platform the product is available on,
+ * as well as its sales data.
+ */
 public class GameProduct implements Product {
 
     private long id;
