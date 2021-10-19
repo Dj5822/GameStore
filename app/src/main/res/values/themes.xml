@@ -3,7 +3,7 @@
     <style name="Theme.MainActivity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/dark_blue_background</item>
-        <item name="colorPrimaryVariant">@color/darker_blue_background</item>
+        <item name="colorPrimaryVariant">@color/dark_blue_background</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -23,19 +23,19 @@
     </style>
     <style name="ActionCategoryTheme" parent="Theme.MainActivity">
         <item name="colorPrimary">@color/red</item>
-        <item name="colorPrimaryVariant">@color/dark_red</item>
+        <item name="colorPrimaryVariant">@color/dark_blue_background</item>
     </style>
     <style name="CasualCategoryTheme" parent="Theme.MainActivity">
         <item name="colorPrimary">@color/orange</item>
-        <item name="colorPrimaryVariant">@color/orange_dark</item>
+        <item name="colorPrimaryVariant">@color/dark_blue_background</item>
     </style>
     <style name="SimulationCategoryTheme" parent="Theme.MainActivity">
         <item name="colorPrimary">@color/deep_blue</item>
-        <item name="colorPrimaryVariant">@color/deep_darker_blue</item>
+        <item name="colorPrimaryVariant">@color/dark_blue_background</item>
     </style>
     <style name="StrategyCategoryTheme" parent="Theme.MainActivity">
         <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryVariant">@color/green_dark</item>
+        <item name="colorPrimaryVariant">@color/dark_blue_background</item>
     </style>
 
     <style name="Theme.DetailsActivity" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
