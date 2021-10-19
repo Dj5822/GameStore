@@ -20,6 +20,9 @@ import com.example.gamestoreapp.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstraction of an activity featuring an animated image switcher with dynamic buttons.
+ */
 public abstract class ImageSwitcherActivity extends AppCompatActivity {
     protected List<String> imageNames;
     private int currentImageIndex;
@@ -55,7 +58,7 @@ public abstract class ImageSwitcherActivity extends AppCompatActivity {
             imageViewHolder.imageSwitcher.setInAnimation(getApplicationContext(), R.anim.slide_in_left);
             imageViewHolder.imageSwitcher.setOutAnimation(getApplicationContext(), R.anim.slide_out_right);
         } else
-            // check if image is already on display
+            // check if image is already on display, and do not change image if so
             if (newImageIndex == currentImageIndex) {
                 return false;
                 // otherwise play animation and change image
@@ -66,9 +69,11 @@ public abstract class ImageSwitcherActivity extends AppCompatActivity {
                 imageViewHolder.imageSwitcher.setInAnimation(getApplicationContext(), R.anim.slide_in_left);
                 imageViewHolder.imageSwitcher.setOutAnimation(getApplicationContext(), R.anim.slide_out_right);
             }
+            // update colours of buttons to reflect whether they are currently selected
         imageViewHolder.buttonList.get(newImageIndex).getBackground().setColorFilter(Color.parseColor("#EEEEEE"), PorterDuff.Mode.MULTIPLY);
         imageViewHolder.buttonList.get(currentImageIndex).getBackground().setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY);
         currentImageIndex = newImageIndex;
+        // update the image to reflect the new index
         imageViewHolder.imageSwitcher.setImageResource(getApplicationContext().
                 getResources().getIdentifier(imageNames.get(currentImageIndex),
                 "drawable", "com.example.gamestoreapp"));
@@ -108,6 +113,7 @@ public abstract class ImageSwitcherActivity extends AppCompatActivity {
         int pixelWidth = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics()));
         int padding = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics()));
 
+        // dynamically add buttons to the layout for each image
         for (int i = 0; i < imageNames.size(); i++){
             Button button = new Button(getApplicationContext());
             imageViewHolder.buttonHolder.addView(button);
@@ -125,6 +131,7 @@ public abstract class ImageSwitcherActivity extends AppCompatActivity {
             });
 
         }
+        // the currently selected button should be highlighted in white
         imageViewHolder.buttonList.get(currentImageIndex).getBackground().setColorFilter(Color.parseColor("#EEEEEE"), PorterDuff.Mode.MULTIPLY);
     }
 

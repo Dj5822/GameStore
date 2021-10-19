@@ -38,13 +38,6 @@ public class ProductAdaptor extends ArrayAdapter {
             productNameView = currentListViewItem.findViewById(R.id.product_title_view);
             productPriceView = currentListViewItem.findViewById(R.id.product_price_view);
         }
-
-        public ViewHolder(ViewHolder viewHolder, View currentListViewItem) {
-            listItemView = viewHolder.listItemView;
-            productIconView = viewHolder.productIconView;
-            productNameView = viewHolder.productNameView;
-            productPriceView = viewHolder.productPriceView;
-        }
     }
 
     private class CasualViewHolder extends ViewHolder {
@@ -115,13 +108,16 @@ public class ProductAdaptor extends ArrayAdapter {
 
         Drawable background = vh.listItemView.getBackground();
         background.setAlpha(80);
+        // Different colour schemes and unique elements for each category
         switch (categoryName) {
 
+            // Action games have age ratings
             case "action":
                 background.setColorFilter(currentListViewItem.getResources()
                         .getColor(R.color.dark_red), PorterDuff.Mode.MULTIPLY);
                 ActionViewHolder avh = new ActionViewHolder(currentListViewItem);
 
+                // Check age rating
                 if (currentItem.getAgeRestriction() >= 18) {
                     int j = context.getResources().getIdentifier(
                             "eighteen", "drawable",
@@ -139,7 +135,7 @@ public class ProductAdaptor extends ArrayAdapter {
                 }
                 break;
 
-
+            // Casual games might be mobile games
             case "casual":
                 background.setColorFilter(currentListViewItem.getResources()
                         .getColor(R.color.orange), PorterDuff.Mode.MULTIPLY);
@@ -151,7 +147,7 @@ public class ProductAdaptor extends ArrayAdapter {
                 }
                 break;
 
-
+            // No special features for these two categories, other than colour.
             case "simulation":
                 background.setColorFilter(currentListViewItem.getResources()
                         .getColor(R.color.deep_blue), PorterDuff.Mode.MULTIPLY);

@@ -245,6 +245,11 @@ public class QueryHandler {
         return product;
     }
 
+    /**
+     * One-Time use. Populates keyword field in database with substrings to enable searching.
+     * Not called anywhere in code currently as it only needs to be used once when a game is
+     * added to the database.
+     */
     public static void updateKeyWords() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("GameProducts").get().addOnCompleteListener(
@@ -278,18 +283,28 @@ public class QueryHandler {
         );
     }
 
+    /**
+     * Gets substrings of the name and studio for a particular game snapshot.
+     * @param gameSnapshot snapshot to get keywords for
+     * @return list of keywords
+     */
     private static List<String> getKeyWords(DocumentSnapshot gameSnapshot) {
         Set<String> keywords = new HashSet<String>();
         String studioName = gameSnapshot.getString("studioName");
         String name = gameSnapshot.getString("name");
 
-        keywords.addAll(createKeyWords(name));
-        keywords.addAll(createKeyWords(studioName));
+        keywords.addAll(getSubstrings(name));
+        keywords.addAll(getSubstrings(studioName));
 
         return new ArrayList<>(keywords);
     }
 
-    private static List<String> createKeyWords(String name) {
+    /**
+     * Returns a list of substrings for the input string. Used to create keywords.
+     * @param name string to get substrings of
+     * @return list of substrings
+     */
+    private static List<String> getSubstrings(String name) {
         name = name.toLowerCase();
         int length = name.length();
         List<String> keywords = new ArrayList<String>((length * (length-1))/2);

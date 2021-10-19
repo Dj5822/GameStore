@@ -34,6 +34,9 @@ import com.example.gamestoreapp.interfaces.Product;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activity that shows detailed information about a particular product
+ */
 public class DetailsActivity extends ImageSwitcherActivity {
 
     private ViewHolder vh;

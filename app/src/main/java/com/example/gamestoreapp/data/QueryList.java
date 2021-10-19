@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 /**
  * An Arraylist for use with queries.
- * Executes a method once the query is complete.
+ * Has support for the QueryListener to detect when the query is complete.
  */
 public class QueryList<Object> extends ArrayList<Object> {
 
-    QueryHandler.QueryListener queryListener;
-    int expectedQuerySize = 0;
-    int size = 0;
+    QueryHandler.QueryListener queryListener; // Listener for query completion
+    int expectedQuerySize = 0; // the number of products we expect to get from the query
+    int size = 0; // the number of products actually received from the query
 
     public QueryList(QueryHandler.QueryListener queryListener) {
         this.queryListener = queryListener;
@@ -22,6 +22,11 @@ public class QueryList<Object> extends ArrayList<Object> {
         this.expectedQuerySize = expectedQuerySize;
     }
 
+    /**
+     * Add products to the list while updating size and monitoring completion status
+     * @param pos position to add at
+     * @param object object to add
+     */
     public void addWrapper(int pos,Object object) {
         for (int i = size(); i <= pos; i++) {
             super.add(i, null);
@@ -29,7 +34,7 @@ public class QueryList<Object> extends ArrayList<Object> {
         super.set(pos, object);
         size++;
         if (sizeWrapper() == expectedQuerySize) {
-            queryListener.OnQueryComplete();
+            complete();
         }
     }
 
