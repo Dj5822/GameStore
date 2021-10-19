@@ -28,6 +28,11 @@ import com.example.gamestoreapp.listeners.CategoryClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Main activity for the Games Store app UI. Launched when the app is first opened.
+ * Includes search interface, buttons to access categories activities, and a list of
+ * either bestselling or most viewed products.
+ */
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private ViewHolder vh;
@@ -160,6 +165,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     @Override
+    /**
+     * Called whenever search text is changed
+     */
     public boolean onQueryTextChange(String query) {
         if (query.length() > 0) {
             vh.searchProgressBar.setVisibility(View.VISIBLE);
@@ -169,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             vh.searchProgressBar.setVisibility(View.GONE);
             return true;
         }
+        // Perform query with new search text
         searchResultList = QueryHandler.searchQuery(query, new QueryHandler.QueryListener() {
             @Override
             public void OnQueryComplete() {
@@ -179,11 +188,17 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         return true;
     }
 
+    /**
+     * Update live search results
+     */
     private void propagateSearchAdapter() {
         List<Product> searchList = new ArrayList<>(searchResultList);
         MainItemAdaptor adapter = new MainItemAdaptor(this, searchList);
         adapter.setClickListener(new MainItemAdaptor.ItemClickListener() {
             @Override
+            /**
+             * Open details activity for the clicked product
+             */
             public void onItemClick(View view, int position) {
                 Intent detailsOpenIntent = new Intent(view.getContext(), DetailsActivity.class);
                 Product product = searchList.get(position);
@@ -192,7 +207,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             }
         });
 
-        if (searchResultList.size() <= 0) {
+        // show a "no results found" message to the user if their query doesn't match anything
+        if (searchList.size() <= 0) {
             vh.noResultsView.setVisibility(View.VISIBLE);
         } else {
             vh.noResultsView.setVisibility(View.GONE);
@@ -205,6 +221,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public void onBackPressed() {
+        // Close search results if they are open
         if (vh.searchLayout.getVisibility() == View.VISIBLE) {
             vh.searchLayout.setVisibility(View.GONE);
             vh.mainScrollView.setVisibility(View.VISIBLE);
@@ -215,10 +232,15 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     @Override
+    /**
+     * Replace existing product instance with updated instance from DetailsActivity
+     */
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        // Get updated product instance from result intent
         Product callBackProduct = data.getParcelableExtra("Product");
 
+        // replace bestselling/most viewed instance
         List<Product> copy = new ArrayList<>(productList);
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);
@@ -231,10 +253,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         productList = copy;
         propagateAdapter();
 
+        // don't touch search results if no search has been performed
         if (searchResultList == null) {
             return;
         }
 
+        // replace search results instance
         copy = new ArrayList<>(searchResultList);
         for (int i = 0; i < searchResultList.size(); i++) {
             Product product = searchResultList.get(i);
@@ -247,6 +271,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         searchResultList = copy;
         propagateSearchAdapter();
 
+        // if search results were not open when detailsActivity was open, hide search results.
         if (requestCode == 1) {
             vh.searchLayout.setVisibility(View.GONE);
             vh.mainScrollView.setVisibility(View.VISIBLE);
