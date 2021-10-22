@@ -1,5 +1,7 @@
 package com.example.gamestoreapp.activities;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -27,6 +29,7 @@ import com.example.gamestoreapp.listeners.CategoryClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Main activity for the Games Store app UI. Launched when the app is first opened.
@@ -151,7 +154,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 Intent detailsOpenIntent = new Intent(view.getContext(), DetailsActivity.class);
                 Product product = productList.get(position);
                 detailsOpenIntent.putExtra("Product", product);
-                startActivityForResult(detailsOpenIntent, 1 );
+                startActivityForResult(detailsOpenIntent,  1);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
         vh.productListView.setAdapter(adapter);
@@ -202,8 +206,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             public void onItemClick(View view, int position) {
                 Intent detailsOpenIntent = new Intent(view.getContext(), DetailsActivity.class);
                 Product product = searchList.get(position);
+
+                detailsOpenIntent.putExtra("TransitionName", view.getTransitionName());
                 detailsOpenIntent.putExtra("Product", product);
                 startActivityForResult(detailsOpenIntent, 2);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
 

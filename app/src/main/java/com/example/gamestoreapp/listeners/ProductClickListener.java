@@ -1,5 +1,6 @@
 package com.example.gamestoreapp.listeners;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.activities.DetailsActivity;
 import com.example.gamestoreapp.model.Product;
 
@@ -30,6 +32,7 @@ public class ProductClickListener implements View.OnClickListener {
         detailsOpenIntent.putExtra("Product", product);
         AppCompatActivity activity = unwrap(view.getContext());
         activity.startActivityForResult(detailsOpenIntent, (int) product.getID());
+        activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     /**

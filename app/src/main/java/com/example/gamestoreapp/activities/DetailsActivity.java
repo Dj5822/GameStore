@@ -13,8 +13,11 @@ import android.widget.TextView;
 import com.example.gamestoreapp.R;
 import com.example.gamestoreapp.data.QueryHandler;
 import com.example.gamestoreapp.model.Product;
+import androidx.transition.*;
 
 import java.util.ArrayList;
+
+import com.google.android.material.transition.platform.MaterialContainerTransform;
 
 /**
  * Activity that shows detailed information about a particular product
@@ -56,6 +59,8 @@ public class DetailsActivity extends ImageSwitcherActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //MaterialContainerTransform();
         setContentView(R.layout.activity_details);
 
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -77,7 +82,6 @@ public class DetailsActivity extends ImageSwitcherActivity {
         vh.purchaseButton.setText(gameProduct.getCostAsString());
         vh.soldCount.setText(String.valueOf(gameProduct.getAmountSold()));
         vh.viewCount.setText(String.valueOf(gameProduct.getViewCount()));
-        //may end up rounding these and then converting to "200k +" format
 
         // Buy game when purchase button is clicked
         vh.purchaseButton.setOnClickListener(new View.OnClickListener() {
@@ -107,5 +111,6 @@ public class DetailsActivity extends ImageSwitcherActivity {
         setResult(Activity.RESULT_OK, returnIntent);
         QueryHandler.updateSalesData(gameProduct);
         super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }
