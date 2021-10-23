@@ -62,6 +62,7 @@ public class MainItemAdaptor extends RecyclerView.Adapter<MainItemAdaptor.ViewHo
         Product product = mData.get(position);
         holder.itemNameTextview.setText(product.getItem().getName());
         holder.itemPriceTextview.setText(String.format("%s", product.getCostAsString()));
+        holder.itemIcon.setTransitionName("uniqueId"+position);
         holder.itemIcon.setImageResource(context.getResources().getIdentifier(
                 product.getItem().getIconImageName(), "drawable",
                 context.getPackageName()));

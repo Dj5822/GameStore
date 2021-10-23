@@ -135,6 +135,12 @@ public abstract class CategoryListActivity  extends ImageSwitcherActivity {
         propagateAdapter();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
     /**
      * Can be overridden by inheriting activities to use a different xml layout
      * @return The adaptor to use
@@ -151,4 +157,6 @@ public abstract class CategoryListActivity  extends ImageSwitcherActivity {
     protected List<Product> getProductList() {
         return productList;
     }
+
+
 }
