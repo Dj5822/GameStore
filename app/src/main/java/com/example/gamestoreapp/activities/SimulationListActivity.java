@@ -16,6 +16,7 @@ public class SimulationListActivity extends CategoryListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        // Used to modify navigation bar color.
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.dark_blue_background));
         }

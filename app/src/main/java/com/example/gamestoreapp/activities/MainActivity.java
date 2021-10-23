@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         NestedScrollView mainScrollView;
         TextView noResultsView;
 
+        // Initialises view components.
         public ViewHolder() {
             actionCardView = findViewById(R.id.card_view_action);
             strategyCardView = findViewById(R.id.card_view_strategy);
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         // Setup view holder and store.
         vh = new ViewHolder();
 
+        // Used to modify navigation bar color.
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.dark_blue_background));
         }
@@ -100,8 +102,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         LinearLayoutManager searchProductRecycleListLayout = new LinearLayoutManager (this);
         vh.searchListView.setLayoutManager(searchProductRecycleListLayout);
         vh.searchListView.setNestedScrollingEnabled(false);
-
-
 
         bestsellingProductsSelected();
     }
