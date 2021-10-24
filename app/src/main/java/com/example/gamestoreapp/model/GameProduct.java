@@ -17,6 +17,9 @@ public class GameProduct implements Product {
     private int viewCount;
     private boolean isMobile = false;
 
+    /**
+     * Constructor for a GameProduct
+     */
     public GameProduct(long id, Item item, int cost, int amountSold, int viewCount){
         this.id = id;
         this.item = item;
@@ -25,6 +28,9 @@ public class GameProduct implements Product {
         this.viewCount = viewCount;
     }
 
+    /**
+     * Constructor for a GameProduct including if the product is mobile or not
+     */
     public GameProduct(long id, Item item, int cost, int amountSold, int viewCount, Boolean isMobile){
         this.id = id;
         this.item = item;
@@ -36,6 +42,11 @@ public class GameProduct implements Product {
         }
     }
 
+    /**
+     * Constructor for a GameProduct object using a parcel
+     *
+     * @param parcel a parcel containing all of the information needed to create a GameProduct object
+     */
     protected GameProduct(Parcel parcel) {
         id = parcel.readLong();
         item = Game.CREATOR.createFromParcel(parcel);
@@ -86,7 +97,6 @@ public class GameProduct implements Product {
 
     @Override
     public void setViewCount(int viewCount) {
-        //todo: need to update database here with new view count
         this.viewCount = viewCount;
     }
 
@@ -117,6 +127,11 @@ public class GameProduct implements Product {
         return 0;
     }
 
+    /**
+     * Writes to the provided parcel with all the values of this Game instance
+     *
+     * @param parcel the parcel to be written to
+     */
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeLong(id);
@@ -128,11 +143,17 @@ public class GameProduct implements Product {
         parcel.writeInt(isMobile ? 1 : 0);
     }
 
+    /**
+     * Increase the view count of this GameProduct
+     */
     @Override
     public void view() {
         viewCount++;
     }
 
+    /**
+     * Increase the amount sold of this GameProduct
+     */
     @Override
     public void buy() {
         amountSold++;

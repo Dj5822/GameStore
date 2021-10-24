@@ -32,6 +32,9 @@ public class Game implements Item {
         }
     };
 
+    /**
+     * Constructor for a game object using individual inputs of values
+     */
     public Game(String name, String description, List<String> imageNames, String iconImageName, String studioName, Integer ageRestriction){
         this.name = name;
         this.description = description.replace("\\n",System.lineSeparator());
@@ -43,6 +46,11 @@ public class Game implements Item {
         }
     }
 
+    /**
+     * Constructor for a game object using a parcel
+     *
+     * @param parcel a parcel containing all of the information needed to create a game object
+     */
     public Game(Parcel parcel) {
         this.name = parcel.readString();
         this.description = parcel.readString();
@@ -82,6 +90,11 @@ public class Game implements Item {
         return 0;
     }
 
+    /**
+     * Writes to the provided parcel with all the values of this Game instance
+     *
+     * @param parcel the parcel to be written to
+     */
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);

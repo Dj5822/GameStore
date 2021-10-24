@@ -24,6 +24,9 @@ import java.util.List;
 
 public class ProductAdaptor extends ArrayAdapter {
 
+    /**
+     * Stores views for this adaptor
+     */
     private class ViewHolder {
         TextView productNameView, productPriceView;
         ImageView productIconView;
@@ -37,6 +40,9 @@ public class ProductAdaptor extends ArrayAdapter {
         }
     }
 
+    /**
+     * Specific view holder for the casualListActivity, containing the extra information
+     */
     private class CasualViewHolder extends ViewHolder {
         ImageView mobileIcon;
         public CasualViewHolder(View currentListViewItem) {
@@ -45,6 +51,9 @@ public class ProductAdaptor extends ArrayAdapter {
         }
     }
 
+    /**
+     * Specific view holder for the actionListActivity, containing the extra information
+     */
     private class ActionViewHolder extends ViewHolder {
         ImageView ageRestrictionIcon;
         public ActionViewHolder(View currentListViewItem) {
@@ -58,7 +67,9 @@ public class ProductAdaptor extends ArrayAdapter {
     private Context context;
     String categoryName;
 
-
+    /**
+     * Constructor for the product adaptor
+     */
     public ProductAdaptor(@NonNull Context context, int resource, @NonNull List objects, String categoryName) {
         super(context, resource, objects);
         layoutId = resource;
@@ -67,6 +78,9 @@ public class ProductAdaptor extends ArrayAdapter {
         this.categoryName = categoryName;
     }
 
+    /**
+     * Gets the current view item
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

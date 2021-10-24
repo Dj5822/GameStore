@@ -80,6 +80,10 @@ public abstract class ImageSwitcherActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Sets up the image switcher buttons, creating buttons equal to the amount of images in this switcher instance
+     * and setting the on click functionality of each one.
+     */
     protected void initialiseButtons() {
 
         if (imageNames.size() <= 0) {
@@ -123,6 +127,7 @@ public abstract class ImageSwitcherActivity extends AppCompatActivity {
             imageViewHolder.buttonList.add(button);
             button.getBackground().setColorFilter(Color.parseColor("#BDBDBD"), PorterDuff.Mode.MULTIPLY);
             button.setOnClickListener(new View.OnClickListener() {
+                //Set up the on click functionality of each button, calling the changeImage function.
                 @Override
                 public void onClick(View view) {
                     int newImage = Math.abs(view.getId());

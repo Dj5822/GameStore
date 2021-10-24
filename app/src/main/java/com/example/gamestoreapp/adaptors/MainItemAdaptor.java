@@ -22,7 +22,9 @@ public class MainItemAdaptor extends RecyclerView.Adapter<MainItemAdaptor.ViewHo
     private Context context;
     private ItemClickListener mClickListener;
 
-    // stores and recycles views as they are scrolled off screen
+    /**
+     * stores and recycles views as they are scrolled off screen
+     */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView itemNameTextview, itemPriceTextview;
         ImageView itemIcon;
@@ -41,14 +43,18 @@ public class MainItemAdaptor extends RecyclerView.Adapter<MainItemAdaptor.ViewHo
         }
     }
 
-    // data is passed into the constructor
+    /**
+     * data is passed into the constructor
+     */
     public MainItemAdaptor(Context context, List<Product> data) {
         this.context = context;
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
 
-    // inflates the row layout from xml when needed
+    /**
+     * inflates the row layout from xml when needed
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,7 +62,9 @@ public class MainItemAdaptor extends RecyclerView.Adapter<MainItemAdaptor.ViewHo
         return new ViewHolder(view);
     }
 
-    // binds the data to the TextView in each row
+    /**
+     * binds the data to the TextView in each row
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Product product = mData.get(position);
@@ -67,26 +75,32 @@ public class MainItemAdaptor extends RecyclerView.Adapter<MainItemAdaptor.ViewHo
                 product.getItem().getIconImageName(), "drawable",
                 context.getPackageName()));
     }
-
-    // total number of rows
+    /**
+     * total number of rows
+     */
     @Override
     public int getItemCount() {
         return mData.size();
     }
 
-
-    // convenience method for getting data at click position
+    /**
+     * convenience method for getting data at click position
+     */
     Product getItem(int id) {
         return mData.get(id);
     }
 
-    // allows clicks events to be caught
-    public void setClickListener(ItemClickListener itemClickListener) {
+    /**
+     * allows clicks events to be caught
+     */
+     public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
+    /**
+     * parent activity will implement this method to respond to click events
+     */
+     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
 }

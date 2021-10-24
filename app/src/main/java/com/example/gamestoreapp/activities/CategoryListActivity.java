@@ -30,6 +30,9 @@ public abstract class CategoryListActivity  extends ImageSwitcherActivity {
     protected ViewHolder vh;
     private List<Product> productList;
 
+    /**
+     * An internal class used to hold all of the views for this activity
+     */
     protected class ViewHolder {
         ListView listView;
         ProgressBar progressBar;
@@ -135,6 +138,9 @@ public abstract class CategoryListActivity  extends ImageSwitcherActivity {
         propagateAdapter();
     }
 
+    /**
+     * Run when the back navigation button is pressed, returning to the previous page with a sliding animation
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();

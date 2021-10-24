@@ -11,6 +11,13 @@ import com.example.gamestoreapp.R;
 
 public class StrategyListActivity extends CategoryListActivity {
 
+    /**
+     * Manages this initialisation of the ActionListActivity, run whenever this activity
+     * is loaded. This method sets up all of the references to elements within the activity
+     * and sets appropriate values for labels within this activity
+     *
+     * @param savedInstanceState The save state to enable going back to the previous activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
